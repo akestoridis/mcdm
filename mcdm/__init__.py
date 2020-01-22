@@ -6,3 +6,7 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 """
 
 from .__about__ import *
+from .load import load
+
+
+__all__ = ["load"]

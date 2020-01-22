@@ -18,7 +18,9 @@ __classifiers__ = [
     "Operating System :: OS Independent",
     "Intended Audience :: Science/Research"
 ]
-__requires__ = []
+__requires__ = [
+    "numpy>=1.18.1"
+]
 __python_requires__ = ">=3.5.3"
 __all__ = [
     "__title__",
