@@ -1,24 +1,36 @@
 # Copyright (c) 2020 Dimitrios-Georgios Akestoridis
 # This project is licensed under the terms of the MIT license.
 
+"""
+Metadata for the mcdm package
+"""
+
 __title__ = "mcdm"
 __version__ = "0.0.dev1"
 __author__ = "Dimitrios-Georgios Akestoridis"
 __author_email__ = "akestoridis@gmail.com"
-__description__ = ("Python implementation of Multiple-Criteria "
-                   "Decision-Making algorithms")
+__description__ = (
+    "Python implementation of Multiple-Criteria Decision-Making algorithms"
+)
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2020 Dimitrios-Georgios Akestoridis"
 __url__ = "https://github.com/akestoridis/mcdm"
-__keywords__ = ("multiple-criteria decision-making, evaluation, ranking, "
-                "scoring, weighting, correlation, normalization")
+__keywords__ = [
+    "multiple-criteria decision-making",
+    "evaluation",
+    "ranking",
+    "scoring",
+    "weighting",
+    "correlation",
+    "normalization"
+]
 __classifiers__ = [
-    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Intended Audience :: Science/Research"
+    "Programming Language :: Python :: 3"
 ]
-__requires__ = [
+__install_requires__ = [
     "numpy>=1.18.1"
 ]
 __python_requires__ = ">=3.5.3"
@@ -33,6 +45,6 @@ __all__ = [
     "__url__",
     "__keywords__",
     "__classifiers__",
-    "__requires__",
+    "__install_requires__",
     "__python_requires__"
 ]

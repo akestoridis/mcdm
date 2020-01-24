@@ -1,11 +1,14 @@
 # Copyright (c) 2020 Dimitrios-Georgios Akestoridis
 # This project is licensed under the terms of the MIT license.
 
+import os
 import setuptools
 
 
 about = {}
-with open("mcdm/__about__.py", "r") as fp:
+top_dirpath = os.path.dirname(os.path.abspath(__file__))
+about_filepath = os.path.join(top_dirpath, "mcdm", "__about__.py")
+with open(about_filepath, "r") as fp:
     exec(fp.read(), about)
 
 with open("README.md", "r") as fp:
@@ -23,7 +26,7 @@ setuptools.setup(
     url=about["__url__"],
     keywords=about["__keywords__"],
     classifiers=about["__classifiers__"],
-    install_requires=about["__requires__"],
+    install_requires=about["__install_requires__"],
     python_requires=about["__python_requires__"],
     packages=setuptools.find_packages()
 )
