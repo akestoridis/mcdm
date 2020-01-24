@@ -7,4 +7,4 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 
 Copyright (c) 2020 Dimitrios-Georgios Akestoridis
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the MIT License.
