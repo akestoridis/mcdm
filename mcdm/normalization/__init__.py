@@ -20,13 +20,13 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of Multiple-Criteria Decision-Making algorithms
+Python implementation of normalization methods
 """
 
-from . import normalization
-from .__about__ import *
-from .load import load
-from .normalize import normalize
+from .linear1 import linear1
+from .linear2 import linear2
+from .linear3 import linear3
+from .vector import vector
 
 
-__all__ = ["load", "normalize"]
+__all__ = ["linear1", "linear2", "linear3", "vector"]
