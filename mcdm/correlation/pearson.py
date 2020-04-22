@@ -19,16 +19,21 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of Multiple-Criteria Decision-Making algorithms
-"""
-
-from . import correlation
-from . import normalization
-from .__about__ import *
-from .correlate import correlate
-from .load import load
-from .normalize import normalize
+import numpy as np
 
 
-__all__ = ["load", "normalize", "correlate"]
+def pearson(z_matrix):
+    """Python implementation of the Pearson correlation method.
+
+    For more information, see the following publication:
+      * J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the
+        correlation coefficient," The American Statistician, vol. 42, no. 1,
+        pp. 59--66, 1988. DOI: 10.2307/2685263.
+    """
+    # Make sure that the matrix is a float64 NumPy array
+    if type(z_matrix) is not np.ndarray:
+        z_matrix = np.array(z_matrix, dtype=np.float64)
+    elif z_matrix.dtype is not np.float64:
+        z_matrix = np.array(z_matrix, dtype=np.float64)
+
+    return np.corrcoef(z_matrix, rowvar=False)

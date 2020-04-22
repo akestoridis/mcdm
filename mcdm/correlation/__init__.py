@@ -20,15 +20,12 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of Multiple-Criteria Decision-Making algorithms
+Python implementation of correlation methods
 """
 
-from . import correlation
-from . import normalization
-from .__about__ import *
-from .correlate import correlate
-from .load import load
-from .normalize import normalize
+from .abspearson import abspearson
+from .dcor import dcor
+from .pearson import pearson
 
 
-__all__ = ["load", "normalize", "correlate"]
+__all__ = ["pearson", "abspearson", "dcor"]

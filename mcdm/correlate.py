@@ -19,16 +19,19 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of Multiple-Criteria Decision-Making algorithms
-"""
+import numpy as np
 
 from . import correlation
-from . import normalization
-from .__about__ import *
-from .correlate import correlate
-from .load import load
-from .normalize import normalize
 
 
-__all__ = ["load", "normalize", "correlate"]
+def correlate(z_matrix, c_method):
+    """Compute the requested correlation coefficients of a matrix."""
+    # Use the selected correlation method
+    if c_method.upper() == "PEARSON":
+        return correlation.pearson(z_matrix)
+    elif c_method.upper() == "ABSPEARSON":
+        return correlation.abspearson(z_matrix)
+    elif c_method.upper() == "DCOR":
+        return correlation.dcor(z_matrix)
+    else:
+        raise ValueError("Unknown correlation method ({})".format(c_method))
