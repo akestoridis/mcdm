@@ -21,21 +21,19 @@
 
 import numpy as np
 
-from . import weighting
+from . import scoring
 
 
-def weigh(z_matrix, w_method, c_method=None):
-    """Compute the requested weight vector of a decision matrix."""
-    # Use the selected weighting method
-    if w_method.upper() == "MW":
-        return weighting.mw(z_matrix)
-    elif w_method.upper() == "EM":
-        return weighting.em(z_matrix)
-    elif w_method.upper() == "SD":
-        return weighting.sd(z_matrix)
-    elif w_method.upper() == "CRITIC":
-        return weighting.critic(z_matrix, c_method)
-    elif w_method.upper() == "VIC":
-        return weighting.vic(z_matrix, c_method)
+def score(z_matrix, is_benefit_z, w_vector, s_method):
+    """Compute the requested score vector of a decision matrix."""
+    # Use the selected scoring method
+    if s_method.upper() == "SAW":
+        return scoring.saw(z_matrix, w_vector, is_benefit_z)
+    elif s_method.upper() == "MEW":
+        return scoring.mew(z_matrix, w_vector, is_benefit_z)
+    elif s_method.upper() == "TOPSIS":
+        return scoring.topsis(z_matrix, w_vector, is_benefit_z)
+    elif s_method.upper() == "MTOPSIS":
+        return scoring.mtopsis(z_matrix, w_vector, is_benefit_z)
     else:
-        raise ValueError("Unknown weighting method ({})".format(w_method))
+        raise ValueError("Unknown scoring method ({})".format(s_method))

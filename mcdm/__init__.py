@@ -25,12 +25,14 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 
 from . import correlation
 from . import normalization
+from . import scoring
 from . import weighting
 from .__about__ import *
 from .correlate import correlate
 from .load import load
 from .normalize import normalize
+from .score import score
 from .weigh import weigh
 
 
-__all__ = ["load", "normalize", "correlate", "weigh"]
+__all__ = ["load", "normalize", "correlate", "weigh", "score"]

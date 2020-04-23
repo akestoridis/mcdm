@@ -19,23 +19,14 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import numpy as np
+"""
+Python implementation of scoring methods
+"""
 
-from . import weighting
+from .mew import mew
+from .mtopsis import mtopsis
+from .saw import saw
+from .topsis import topsis
 
 
-def weigh(z_matrix, w_method, c_method=None):
-    """Compute the requested weight vector of a decision matrix."""
-    # Use the selected weighting method
-    if w_method.upper() == "MW":
-        return weighting.mw(z_matrix)
-    elif w_method.upper() == "EM":
-        return weighting.em(z_matrix)
-    elif w_method.upper() == "SD":
-        return weighting.sd(z_matrix)
-    elif w_method.upper() == "CRITIC":
-        return weighting.critic(z_matrix, c_method)
-    elif w_method.upper() == "VIC":
-        return weighting.vic(z_matrix, c_method)
-    else:
-        raise ValueError("Unknown weighting method ({})".format(w_method))
+__all__ = ["saw", "mew", "topsis", "mtopsis"]
