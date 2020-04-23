@@ -20,17 +20,14 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of Multiple-Criteria Decision-Making algorithms
+Python implementation of weighting methods
 """
 
-from . import correlation
-from . import normalization
-from . import weighting
-from .__about__ import *
-from .correlate import correlate
-from .load import load
-from .normalize import normalize
-from .weigh import weigh
+from .critic import critic
+from .em import em
+from .mw import mw
+from .sd import sd
+from .vic import vic
 
 
-__all__ = ["load", "normalize", "correlate", "weigh"]
+__all__ = ["mw", "em", "sd", "critic", "vic"]
