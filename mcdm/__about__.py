@@ -45,11 +45,11 @@ __keywords__ = [
 __classifiers__ = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3"
 ]
 __install_requires__ = [
-    "numpy>=1.18.1"
+    "numpy>=1.18.3"
 ]
 __python_requires__ = ">=3.5.3"
 __all__ = [
