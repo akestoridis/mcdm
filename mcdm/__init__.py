@@ -31,8 +31,9 @@ from .__about__ import *
 from .correlate import correlate
 from .load import load
 from .normalize import normalize
+from .rank import rank
 from .score import score
 from .weigh import weigh
 
 
-__all__ = ["load", "normalize", "correlate", "weigh", "score"]
+__all__ = ["load", "normalize", "correlate", "weigh", "score", "rank"]
