@@ -1,0 +1,5 @@
+include LICENSE.txt
+include MANIFEST.in
+include README.md
+include requirements.txt
+recursive-include mcdm/tests/data *

@@ -50,5 +50,6 @@ setuptools.setup(
     classifiers=about["__classifiers__"],
     install_requires=about["__install_requires__"],
     python_requires=about["__python_requires__"],
+    include_package_data=True,
     packages=setuptools.find_packages()
 )
