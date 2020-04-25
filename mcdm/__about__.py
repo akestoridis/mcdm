@@ -24,7 +24,7 @@ Metadata for the mcdm package
 """
 
 __title__ = "mcdm"
-__version__ = "0.0.dev1"
+__version__ = "1.0"
 __author__ = "Dimitrios-Georgios Akestoridis"
 __author_email__ = "akestoridis@gmail.com"
 __description__ = (
