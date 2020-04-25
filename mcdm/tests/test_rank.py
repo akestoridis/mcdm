@@ -38,11 +38,11 @@ class TestRank(unittest.TestCase):
             dtype=np.float64)
         obtained_ranking = mcdm.rank(x_matrix)
         expected_ranking = [
+            ("a1", 0.500000),
+            ("a2", 0.500000),
             ("a3", 0.500000),
-            ("a2", 0.433013),
-            ("a4", 0.433013),
-            ("a1", 0.000000),
-            ("a5", 0.000000),
+            ("a4", 0.500000),
+            ("a5", 0.500000),
         ]
         self.assertEqual(len(obtained_ranking), len(expected_ranking))
         for i, tmp in enumerate(obtained_ranking):

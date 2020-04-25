@@ -27,7 +27,7 @@ from .weigh import weigh
 
 
 def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
-         w_vector=None, c_method=None, w_method="VIC", s_method="MEW"):
+         w_vector=None, c_method=None, w_method="MW", s_method="SAW"):
     """Rank a decision matrix using the selected methods."""
     # Make sure that the decision matrix is a float64 NumPy array
     if type(x_matrix) is not np.ndarray:
