@@ -104,10 +104,10 @@ class TestLoad(unittest.TestCase):
         self.assertEqual(obtained_row_labels, expected_row_labels)
 
     def test_loading_example04(self):
-        """Test loading a matrix with row labels from a TSV file."""
+        """Test loading a matrix with a comment line from a TSV file."""
         filepath = os.path.join(DIR_PATH, "data", "example04.tsv")
         obtained_matrix, obtained_row_labels = mcdm.load(
-            filepath, delimiter="\t", labeled_rows=True)
+            filepath, delimiter="\t", skiprows=1)
         expected_matrix = np.array(
             [[ 2.0,  12.0, 7.0, 7.0],
              [ 4.0, 100.0, 7.0, 7.0],
@@ -116,7 +116,7 @@ class TestLoad(unittest.TestCase):
              [ 6.0, 400.0, 7.0, 7.0],
              [ 1.0, 600.0, 7.0, 7.0]],
             dtype=np.float64)
-        expected_row_labels = ["A", "B", "C", "D", "E", "F"]
+        expected_row_labels = None
         np.testing.assert_allclose(obtained_matrix, expected_matrix)
         self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
         self.assertEqual(obtained_row_labels, expected_row_labels)
@@ -173,17 +173,17 @@ class TestLoad(unittest.TestCase):
         self.assertEqual(obtained_row_labels, expected_row_labels)
 
     def test_loading_example08(self):
-        """Test loading a matrix with a comment line from a TSV file."""
+        """Test loading a matrix with row labels from a TSV file."""
         filepath = os.path.join(DIR_PATH, "data", "example08.tsv")
         obtained_matrix, obtained_row_labels = mcdm.load(
-            filepath, delimiter="\t", skiprows=1)
+            filepath, delimiter="\t", labeled_rows=True)
         expected_matrix = np.array(
             [[4.0,  5.0, 10.0],
              [3.0, 10.0,  6.0],
              [3.0, 20.0,  2.0],
              [2.0, 15.0,  5.0]],
             dtype=np.float64)
-        expected_row_labels = None
+        expected_row_labels = ["A", "B", "C", "D"]
         np.testing.assert_allclose(obtained_matrix, expected_matrix)
         self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
         self.assertEqual(obtained_row_labels, expected_row_labels)
