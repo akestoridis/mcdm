@@ -51,5 +51,6 @@ setuptools.setup(
     install_requires=about["__install_requires__"],
     python_requires=about["__python_requires__"],
     include_package_data=True,
+    zip_safe=False,
     packages=setuptools.find_packages()
 )
