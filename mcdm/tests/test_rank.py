@@ -22,20 +22,19 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import mcdm
-import numpy as np
 import unittest
 
 
 class TestRank(unittest.TestCase):
     def test_rank_default(self):
         """Test the rank function with the default parameters."""
-        x_matrix = np.array(
-            [[0.00, 1.00],
-             [0.25, 0.75],
-             [0.50, 0.50],
-             [0.75, 0.25],
-             [1.00, 0.00]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
         obtained_ranking = mcdm.rank(x_matrix)
         expected_ranking = [
             ("a1", 0.500000),
@@ -51,14 +50,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_mw_linear1(self):
         """Test the rank function with the SAW, MW, Linear1 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
@@ -78,14 +77,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_sd_linear1(self):
         """Test the rank function with the SAW, SD, Linear1 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
@@ -105,14 +104,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_vic_linear1(self):
         """Test the rank function with the SAW, VIC, Linear1 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
@@ -132,14 +131,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_vic_ap_linear1(self):
         """Test the rank function with the SAW, VIC.AP, Linear1 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
@@ -159,14 +158,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_mew_vic_linear1(self):
         """Test the rank function with the MEW, VIC, Linear1 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
@@ -186,14 +185,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_critic_linear2(self):
         """Test the rank function with the SAW, CRITIC, Linear2 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear2",
@@ -213,14 +212,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_critic_dc_linear2(self):
         """Test the rank function with the SAW, CRITIC.DC, Linear2 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear2",
@@ -240,14 +239,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_topsis_em_linear3(self):
         """Test the rank function with the TOPSIS, EM, Linear3 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear3",
@@ -267,14 +266,14 @@ class TestRank(unittest.TestCase):
 
     def test_rank_mtopsis_em_linear3(self):
         """Test the rank function with the mTOPSIS, EM, Linear3 methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Linear3",
@@ -294,19 +293,18 @@ class TestRank(unittest.TestCase):
 
     def test_rank_topsis_w_Vector(self):
         """Test the rank function with the TOPSIS, w, Vector methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
-        w_vector = np.array([0.3, 0.2, 0.4, 0.1], dtype=np.float64)
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Vector",
-            w_vector=w_vector, s_method="TOPSIS")
+            w_vector=[0.3, 0.2, 0.4, 0.1], s_method="TOPSIS")
         expected_ranking = [
             ("a5", 0.868655),
             ("a6", 0.846338),
@@ -322,19 +320,18 @@ class TestRank(unittest.TestCase):
 
     def test_rank_mtopsis_w_Vector(self):
         """Test the rank function with the mTOPSIS, w, Vector methods."""
-        x_matrix = np.array(
-            [[0.9, 30.0, 500.0, 4.0],
-             [0.1, 50.0,   5.0, 6.0],
-             [0.5, 80.0,   8.0, 6.0],
-             [0.8, 40.0, 100.0, 4.0],
-             [0.7, 60.0,  20.0, 5.0],
-             [0.6, 60.0,  10.0, 5.0]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.9, 30.0, 500.0, 4.0],
+            [0.1, 50.0,   5.0, 6.0],
+            [0.5, 80.0,   8.0, 6.0],
+            [0.8, 40.0, 100.0, 4.0],
+            [0.7, 60.0,  20.0, 5.0],
+            [0.6, 60.0,  10.0, 5.0],
+        ]
         is_benefit_x = [True, False, False, True]
-        w_vector = np.array([0.3, 0.2, 0.4, 0.1], dtype=np.float64)
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=is_benefit_x, n_method="Vector",
-            w_vector=w_vector, s_method="mTOPSIS")
+            w_vector=[0.3, 0.2, 0.4, 0.1], s_method="mTOPSIS")
         expected_ranking = [
             ("a5", 0.836287),
             ("a6", 0.814430),
@@ -350,46 +347,46 @@ class TestRank(unittest.TestCase):
 
     def test_rank_saw_critic(self):
         """Test the rank function with the SAW and CRITIC methods."""
-        x_matrix = np.array(
-            [[1.000000, 1.000000, 0.017276],
-             [0.046296, 0.022222, 1.000000],
-             [0.259295, 0.106985, 0.783554],
-             [0.260509, 0.107106, 0.801962],
-             [0.090419, 0.044763, 0.245226],
-             [0.563999, 0.239328, 0.288358],
-             [0.320434, 0.147798, 0.738850],
-             [0.314969, 0.144773, 0.751384],
-             [0.714533, 0.364252, 0.092688],
-             [0.972336, 0.706954, 0.091856],
-             [0.283518, 0.127236, 0.805858],
-             [0.296781, 0.132676, 0.797796],
-             [0.265469, 0.122640, 0.202089],
-             [0.839930, 0.461981, 0.304980],
-             [0.282103, 0.126395, 0.808264],
-             [0.296100, 0.132096, 0.799922],
-             [0.212761, 0.104337, 0.229227],
-             [0.798002, 0.429797, 0.335956],
-             [0.068258, 0.035742, 0.519465],
-             [0.102412, 0.055489, 0.281905],
-             [0.155229, 0.085050, 0.163012],
-             [0.238498, 0.128995, 0.103688],
-             [0.177178, 0.075565, 0.854643],
-             [0.257650, 0.112055, 0.811516],
-             [0.294934, 0.131563, 0.781283],
-             [0.310552, 0.140593, 0.762520],
-             [0.368115, 0.159646, 0.449073],
-             [0.498578, 0.228317, 0.296180],
-             [0.635688, 0.310778, 0.210340],
-             [0.759518, 0.402583, 0.149893],
-             [0.499916, 0.188975, 0.302964],
-             [0.717516, 0.306092, 0.249340],
-             [0.790702, 0.359737, 0.221402],
-             [0.848093, 0.415040, 0.193533],
-             [0.068414, 0.035866, 0.519542],
-             [0.102469, 0.055554, 0.282188],
-             [0.155261, 0.085064, 0.162956],
-             [0.238748, 0.129114, 0.103684]],
-            dtype=np.float64)
+        x_matrix = [
+            [1.000000, 1.000000, 0.017276],
+            [0.046296, 0.022222, 1.000000],
+            [0.259295, 0.106985, 0.783554],
+            [0.260509, 0.107106, 0.801962],
+            [0.090419, 0.044763, 0.245226],
+            [0.563999, 0.239328, 0.288358],
+            [0.320434, 0.147798, 0.738850],
+            [0.314969, 0.144773, 0.751384],
+            [0.714533, 0.364252, 0.092688],
+            [0.972336, 0.706954, 0.091856],
+            [0.283518, 0.127236, 0.805858],
+            [0.296781, 0.132676, 0.797796],
+            [0.265469, 0.122640, 0.202089],
+            [0.839930, 0.461981, 0.304980],
+            [0.282103, 0.126395, 0.808264],
+            [0.296100, 0.132096, 0.799922],
+            [0.212761, 0.104337, 0.229227],
+            [0.798002, 0.429797, 0.335956],
+            [0.068258, 0.035742, 0.519465],
+            [0.102412, 0.055489, 0.281905],
+            [0.155229, 0.085050, 0.163012],
+            [0.238498, 0.128995, 0.103688],
+            [0.177178, 0.075565, 0.854643],
+            [0.257650, 0.112055, 0.811516],
+            [0.294934, 0.131563, 0.781283],
+            [0.310552, 0.140593, 0.762520],
+            [0.368115, 0.159646, 0.449073],
+            [0.498578, 0.228317, 0.296180],
+            [0.635688, 0.310778, 0.210340],
+            [0.759518, 0.402583, 0.149893],
+            [0.499916, 0.188975, 0.302964],
+            [0.717516, 0.306092, 0.249340],
+            [0.790702, 0.359737, 0.221402],
+            [0.848093, 0.415040, 0.193533],
+            [0.068414, 0.035866, 0.519542],
+            [0.102469, 0.055554, 0.282188],
+            [0.155261, 0.085064, 0.162956],
+            [0.238748, 0.129114, 0.103684],
+        ]
         alt_names = [
             "Epidemic",
             "Direct",
@@ -481,46 +478,46 @@ class TestRank(unittest.TestCase):
 
     def test_rank_mew_vic(self):
         """Test the rank function with the MEW and VIC methods."""
-        x_matrix = np.array(
-            [[1.000000, 1.000000, 0.017276],
-             [0.046296, 0.022222, 1.000000],
-             [0.259295, 0.106985, 0.783554],
-             [0.260509, 0.107106, 0.801962],
-             [0.090419, 0.044763, 0.245226],
-             [0.563999, 0.239328, 0.288358],
-             [0.320434, 0.147798, 0.738850],
-             [0.314969, 0.144773, 0.751384],
-             [0.714533, 0.364252, 0.092688],
-             [0.972336, 0.706954, 0.091856],
-             [0.283518, 0.127236, 0.805858],
-             [0.296781, 0.132676, 0.797796],
-             [0.265469, 0.122640, 0.202089],
-             [0.839930, 0.461981, 0.304980],
-             [0.282103, 0.126395, 0.808264],
-             [0.296100, 0.132096, 0.799922],
-             [0.212761, 0.104337, 0.229227],
-             [0.798002, 0.429797, 0.335956],
-             [0.068258, 0.035742, 0.519465],
-             [0.102412, 0.055489, 0.281905],
-             [0.155229, 0.085050, 0.163012],
-             [0.238498, 0.128995, 0.103688],
-             [0.177178, 0.075565, 0.854643],
-             [0.257650, 0.112055, 0.811516],
-             [0.294934, 0.131563, 0.781283],
-             [0.310552, 0.140593, 0.762520],
-             [0.368115, 0.159646, 0.449073],
-             [0.498578, 0.228317, 0.296180],
-             [0.635688, 0.310778, 0.210340],
-             [0.759518, 0.402583, 0.149893],
-             [0.499916, 0.188975, 0.302964],
-             [0.717516, 0.306092, 0.249340],
-             [0.790702, 0.359737, 0.221402],
-             [0.848093, 0.415040, 0.193533],
-             [0.068414, 0.035866, 0.519542],
-             [0.102469, 0.055554, 0.282188],
-             [0.155261, 0.085064, 0.162956],
-             [0.238748, 0.129114, 0.103684]],
-            dtype=np.float64)
+        x_matrix = [
+            [1.000000, 1.000000, 0.017276],
+            [0.046296, 0.022222, 1.000000],
+            [0.259295, 0.106985, 0.783554],
+            [0.260509, 0.107106, 0.801962],
+            [0.090419, 0.044763, 0.245226],
+            [0.563999, 0.239328, 0.288358],
+            [0.320434, 0.147798, 0.738850],
+            [0.314969, 0.144773, 0.751384],
+            [0.714533, 0.364252, 0.092688],
+            [0.972336, 0.706954, 0.091856],
+            [0.283518, 0.127236, 0.805858],
+            [0.296781, 0.132676, 0.797796],
+            [0.265469, 0.122640, 0.202089],
+            [0.839930, 0.461981, 0.304980],
+            [0.282103, 0.126395, 0.808264],
+            [0.296100, 0.132096, 0.799922],
+            [0.212761, 0.104337, 0.229227],
+            [0.798002, 0.429797, 0.335956],
+            [0.068258, 0.035742, 0.519465],
+            [0.102412, 0.055489, 0.281905],
+            [0.155229, 0.085050, 0.163012],
+            [0.238498, 0.128995, 0.103688],
+            [0.177178, 0.075565, 0.854643],
+            [0.257650, 0.112055, 0.811516],
+            [0.294934, 0.131563, 0.781283],
+            [0.310552, 0.140593, 0.762520],
+            [0.368115, 0.159646, 0.449073],
+            [0.498578, 0.228317, 0.296180],
+            [0.635688, 0.310778, 0.210340],
+            [0.759518, 0.402583, 0.149893],
+            [0.499916, 0.188975, 0.302964],
+            [0.717516, 0.306092, 0.249340],
+            [0.790702, 0.359737, 0.221402],
+            [0.848093, 0.415040, 0.193533],
+            [0.068414, 0.035866, 0.519542],
+            [0.102469, 0.055554, 0.282188],
+            [0.155261, 0.085064, 0.162956],
+            [0.238748, 0.129114, 0.103684],
+        ]
         alt_names = [
             "Epidemic",
             "Direct",
@@ -612,13 +609,13 @@ class TestRank(unittest.TestCase):
 
     def test_rank_alt_names_exception(self):
         """Test the rank function with an invalid list of names."""
-        x_matrix = np.array(
-            [[0.00, 1.00],
-             [0.25, 0.75],
-             [0.50, 0.50],
-             [0.75, 0.25],
-             [1.00, 0.00]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
         alt_names = ["A", "B", "C", "D", "E", "F"]
         is_benefit_x = [True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
@@ -626,13 +623,13 @@ class TestRank(unittest.TestCase):
 
     def test_rank_is_benefit_x_exception(self):
         """Test the rank function with an invalid list of names."""
-        x_matrix = np.array(
-            [[0.00, 1.00],
-             [0.25, 0.75],
-             [0.50, 0.50],
-             [0.75, 0.25],
-             [1.00, 0.00]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
         alt_names = ["A", "B", "C", "D", "E"]
         is_benefit_x = [True, True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
@@ -640,33 +637,31 @@ class TestRank(unittest.TestCase):
 
     def test_rank_w_vector_exception(self):
         """Test the rank function with an invalid list of names."""
-        x_matrix = np.array(
-            [[0.00, 1.00],
-             [0.25, 0.75],
-             [0.50, 0.50],
-             [0.75, 0.25],
-             [1.00, 0.00]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
         alt_names = ["A", "B", "C", "D", "E"]
         is_benefit_x = [True, True]
-        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x, w_vector=w_vector)
+                          is_benefit_x, w_vector=[0.25, 0.25, 0.25, 0.25])
 
     def test_rank_sum_exception(self):
         """Test the rank function with an invalid list of names."""
-        x_matrix = np.array(
-            [[0.00, 1.00],
-             [0.25, 0.75],
-             [0.50, 0.50],
-             [0.75, 0.25],
-             [1.00, 0.00]],
-            dtype=np.float64)
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
         alt_names = ["A", "B", "C", "D", "E"]
         is_benefit_x = [True, True]
-        w_vector = np.array([0.5, 0.4], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x, w_vector=w_vector)
+                          is_benefit_x, w_vector=[0.5, 0.4])
 
 
 if __name__ == "__main__":
