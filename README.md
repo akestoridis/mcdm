@@ -5,18 +5,16 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 
 ## Installation
 
-The `mcdm` package can be installed using pip for Python 3:
+The `mcdm` package can be installed from PyPI using pip for Python 3:
+```
+$ pip3 install mcdm
+```
+
+Alternatively, you can install the latest version of the `mcdm` package from its GitHub repository:
 ```
 $ git clone https://github.com/akestoridis/mcdm
 $ cd mcdm
 $ pip3 install .
-```
-
-Alternatively, you can install it by executing the `setup.py` script:
-```
-$ git clone https://github.com/akestoridis/mcdm
-$ cd mcdm
-$ sudo python3 setup.py install
 ```
 
 You can run all the tests of the `mcdm` package with the following command:
@@ -124,12 +122,11 @@ You can also use the TOPSIS scoring method with a mixture of benefit and cost cr
 ...     [0.75, 0.25],
 ...     [1.00, 0.00],
 ... ]
->>> is_benefit_x = [True, False]
->>> mcdm.rank(x_matrix, is_benefit_x=is_benefit_x, s_method="TOPSIS")
+>>> mcdm.rank(x_matrix, is_benefit_x=[True, False], s_method="TOPSIS")
 [('a5', 1.0), ('a4', 0.75), ('a3', 0.5), ('a2', 0.25000000000000006), ('a1', 0.0)]
 ```
 
-Alternatively, you can use the TOPSIS scoring method, with the SD weighting method, and the Vector normalization method with named alternatives as follows:
+Alternatively, you can use the TOPSIS scoring method, the SD weighting method, and the Vector normalization method with named alternatives as follows:
 ```
 >>> x_matrix = [
 ...     [4,  5, 10],
@@ -142,7 +139,7 @@ Alternatively, you can use the TOPSIS scoring method, with the SD weighting meth
 [('A', 0.5623140105790617), ('D', 0.472563994792934), ('C', 0.4474283120076966), ('B', 0.43874437587505694)]
 ```
 
-Similarly, you can use the SAW scoring method, with the CRITIC weighting method, and the Linear2 normalization method with named alternatives as follows:
+Similarly, you can use the SAW scoring method, the CRITIC weighting method, and the Linear2 normalization method with named alternatives as follows:
 ```
 >>> x_matrix = [
 ...     [4,  5, 10],
@@ -155,7 +152,7 @@ Similarly, you can use the SAW scoring method, with the CRITIC weighting method,
 [('C', 0.5864039798997854), ('A', 0.5363555775174913), ('B', 0.42272592958624855), ('D', 0.41815995516110754)]
 ```
 
-Furthermore, you can use the mTOPSIS scoring method, with the EM weighting method, and the Linear3 normalization method with named alternatives as follows:
+Furthermore, you can use the mTOPSIS scoring method, the EM weighting method, and the Linear3 normalization method with named alternatives as follows:
 ```
 >>> x_matrix = [
 ...     [4,  5, 10],
@@ -168,7 +165,7 @@ Furthermore, you can use the mTOPSIS scoring method, with the EM weighting metho
 [('A', 0.5671982017516887), ('D', 0.4737709007480381), ('B', 0.44023602515388915), ('C', 0.43979056725587967)]
 ```
 
-In addition, you can use the MEW scoring method, with the VIC weighting method, and the Linear1 normalization method with named alternatives as follows:
+In addition, you can use the MEW scoring method, the VIC weighting method, and the Linear1 normalization method with named alternatives as follows:
 ```
 >>> x_matrix = [
 ...     [4,  5, 10],
