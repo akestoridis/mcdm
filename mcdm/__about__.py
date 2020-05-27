@@ -24,7 +24,6 @@ Metadata for the mcdm package
 """
 
 __title__ = "mcdm"
-__version__ = "1.0"
 __author__ = "Dimitrios-Georgios Akestoridis"
 __author_email__ = "akestoridis@gmail.com"
 __description__ = (
@@ -54,7 +53,6 @@ __install_requires__ = [
 __python_requires__ = ">=3.5.3"
 __all__ = [
     "__title__",
-    "__version__",
     "__author__",
     "__author_email__",
     "__description__",

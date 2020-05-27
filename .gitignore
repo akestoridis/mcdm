@@ -1,7 +1,8 @@
 *.egg-info/
+*.pyc
+*.swp
 __pycache__/
 build/
 dist/
+mcdm/VERSION.txt
 venv/
-*.pyc
-*.swp

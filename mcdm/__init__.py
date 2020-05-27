@@ -23,11 +23,15 @@
 Python implementation of Multiple-Criteria Decision-Making algorithms
 """
 
+import os
+
+from .__about__ import *
+from .__getversion__ import getversion
+
 from . import correlation
 from . import normalization
 from . import scoring
 from . import weighting
-from .__about__ import *
 from .correlate import correlate
 from .load import load
 from .normalize import normalize
@@ -36,4 +40,5 @@ from .score import score
 from .weigh import weigh
 
 
+__version__ = getversion(os.path.dirname(os.path.abspath(__file__)))
 __all__ = ["load", "normalize", "correlate", "weigh", "score", "rank"]
