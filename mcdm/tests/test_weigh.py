@@ -375,6 +375,19 @@ class TestWeigh(unittest.TestCase):
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC")
 
+    def test_unknown_weigh_exception(self):
+        """Test the selection of an unknown weighting method."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "Unknown")
+
 
 if __name__ == "__main__":
     unittest.main()

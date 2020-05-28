@@ -174,6 +174,19 @@ class TestCorrelate(unittest.TestCase):
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
 
+    def test_unknown_correlate_exception(self):
+        """Test the selection of an unknown correlation method."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.correlate, z_matrix, "Unknown")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -493,6 +493,20 @@ class TestScore(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "mTOPSIS")
 
+    def test_unknown_score_exception(self):
+        """Test the selection of an unknown scoring method."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "Unknown")
+
 
 if __name__ == "__main__":
     unittest.main()

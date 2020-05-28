@@ -317,6 +317,21 @@ class TestNormalize(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, "Vector")
 
+    def test_unknown_normalize_exception(self):
+        """Test the selection of an unknown normalization method."""
+        x_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, True, True]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, "Unknown")
+
 
 if __name__ == "__main__":
     unittest.main()
