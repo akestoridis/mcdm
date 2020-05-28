@@ -58,10 +58,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
-            w_method="MW", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear1", w_method="MW", s_method="SAW")
         expected_ranking = [
             ("a2", 0.677778),
             ("a1", 0.669167),
@@ -85,10 +84,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
-            w_method="SD", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear1", w_method="SD", s_method="SAW")
         expected_ranking = [
             ("a2", 0.653952),
             ("a3", 0.604472),
@@ -112,10 +110,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
-            w_method="VIC", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear1", w_method="VIC", s_method="SAW")
         expected_ranking = [
             ("a2", 0.650527),
             ("a1", 0.612074),
@@ -139,10 +136,10 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
-            c_method="AbsPearson", w_method="VIC", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear1", c_method="AbsPearson", w_method="VIC",
+            s_method="SAW")
         expected_ranking = [
             ("a2", 0.644440),
             ("a1", 0.623018),
@@ -166,10 +163,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear1",
-            w_method="VIC", s_method="MEW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear1", w_method="VIC", s_method="MEW")
         expected_ranking = [
             ("a6", 0.583347),
             ("a3", 0.574199),
@@ -193,10 +189,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear2",
-            w_method="CRITIC", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear2", w_method="CRITIC", s_method="SAW")
         expected_ranking = [
             ("a2", 0.669839),
             ("a5", 0.647361),
@@ -220,10 +215,10 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear2",
-            c_method="dCor", w_method="CRITIC", s_method="SAW")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear2", c_method="dCor", w_method="CRITIC",
+            s_method="SAW")
         expected_ranking = [
             ("a2", 0.677366),
             ("a5", 0.675493),
@@ -247,10 +242,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear3",
-            w_method="EM", s_method="TOPSIS")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear3", w_method="EM", s_method="TOPSIS")
         expected_ranking = [
             ("a6", 0.983188),
             ("a3", 0.980454),
@@ -274,10 +268,9 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Linear3",
-            w_method="EM", s_method="mTOPSIS")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Linear3", w_method="EM", s_method="mTOPSIS")
         expected_ranking = [
             ("a6", 0.955577),
             ("a5", 0.954078),
@@ -301,10 +294,10 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Vector",
-            w_vector=[0.3, 0.2, 0.4, 0.1], s_method="TOPSIS")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Vector", w_vector=[0.3, 0.2, 0.4, 0.1],
+            s_method="TOPSIS")
         expected_ranking = [
             ("a5", 0.868655),
             ("a6", 0.846338),
@@ -328,10 +321,10 @@ class TestRank(unittest.TestCase):
             [0.7, 60.0,  20.0, 5.0],
             [0.6, 60.0,  10.0, 5.0],
         ]
-        is_benefit_x = [True, False, False, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, n_method="Vector",
-            w_vector=[0.3, 0.2, 0.4, 0.1], s_method="mTOPSIS")
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Vector", w_vector=[0.3, 0.2, 0.4, 0.1],
+            s_method="mTOPSIS")
         expected_ranking = [
             ("a5", 0.836287),
             ("a6", 0.814430),
@@ -427,9 +420,8 @@ class TestRank(unittest.TestCase):
             "EBR.L8",
             "EBR.L16",
         ]
-        is_benefit_x = [True, True, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, alt_names=alt_names, is_benefit_x=is_benefit_x,
+            x_matrix, alt_names=alt_names, is_benefit_x=[True, True, True],
             w_method="CRITIC", s_method="SAW")
         expected_ranking = [
             ("Direct",        0.554250),
@@ -558,9 +550,8 @@ class TestRank(unittest.TestCase):
             "EBR.L8",
             "EBR.L16",
         ]
-        is_benefit_x = [True, True, True]
         obtained_ranking = mcdm.rank(
-            x_matrix, alt_names=alt_names, is_benefit_x=is_benefit_x,
+            x_matrix, alt_names=alt_names, is_benefit_x=[True, True, True],
             w_method="VIC", s_method="MEW")
         expected_ranking = [
             ("COORD.PRoPHET", 0.475401),
@@ -617,9 +608,8 @@ class TestRank(unittest.TestCase):
             [1.00, 0.00],
         ]
         alt_names = ["A", "B", "C", "D", "E", "F"]
-        is_benefit_x = [True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x)
+                          is_benefit_x=[True, True])
 
     def test_rank_is_benefit_x_exception(self):
         """Test the rank function with an invalid list of names."""
@@ -631,9 +621,8 @@ class TestRank(unittest.TestCase):
             [1.00, 0.00],
         ]
         alt_names = ["A", "B", "C", "D", "E"]
-        is_benefit_x = [True, True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x)
+                          is_benefit_x=[True, True, True])
 
     def test_rank_w_vector_exception(self):
         """Test the rank function with an invalid list of names."""
@@ -645,9 +634,9 @@ class TestRank(unittest.TestCase):
             [1.00, 0.00],
         ]
         alt_names = ["A", "B", "C", "D", "E"]
-        is_benefit_x = [True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x, w_vector=[0.25, 0.25, 0.25, 0.25])
+                          is_benefit_x=[True, True],
+                          w_vector=[0.25, 0.25, 0.25, 0.25])
 
     def test_rank_sum_exception(self):
         """Test the rank function with an invalid list of names."""
@@ -659,9 +648,8 @@ class TestRank(unittest.TestCase):
             [1.00, 0.00],
         ]
         alt_names = ["A", "B", "C", "D", "E"]
-        is_benefit_x = [True, True]
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x, w_vector=[0.5, 0.4])
+                          is_benefit_x=[True, True], w_vector=[0.5, 0.4])
 
 
 if __name__ == "__main__":

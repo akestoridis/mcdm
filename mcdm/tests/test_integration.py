@@ -86,9 +86,8 @@ class TestIntegration(unittest.TestCase):
         """Test integration with the TOPSIS method and mixed criteria."""
         filepath = os.path.join(DIR_PATH, "data", "example03.tsv")
         x_matrix, alt_names = mcdm.load(filepath, delimiter="\t")
-        is_benefit_x = [True, False]
         obtained_ranking = mcdm.rank(
-            x_matrix, is_benefit_x=is_benefit_x, s_method="TOPSIS")
+            x_matrix, is_benefit_x=[True, False], s_method="TOPSIS")
         expected_ranking = [
             ("a5", 1.000000),
             ("a4", 0.750000),
