@@ -34,6 +34,13 @@ def normalize(x_matrix, is_benefit_x, n_method):
         elif x_matrix.dtype is not np.float64:
             x_matrix = np.array(x_matrix, dtype=np.float64)
 
+        # Sanity check
+        if len(is_benefit_x) != x_matrix.shape[1]:
+            raise ValueError("The number of variables in the list that "
+                             "determines whether each criterion is a benefit "
+                             "or a cost criterion does not match the number "
+                             "of columns in the decision matrix")
+
         # Make sure that the decision matrix is already normalized
         if (np.sum(np.less(x_matrix, 0.0)) > 0
                 or np.sum(np.greater(x_matrix, 1.0)) > 0):

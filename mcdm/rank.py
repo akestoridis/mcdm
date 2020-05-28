@@ -51,9 +51,9 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
     # Sanity check
     if len(is_benefit_x) != x_matrix.shape[1]:
         raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit or "
-                         "a cost criterion does not match the number of "
-                         "columns in the decision matrix")
+                         "determines whether each criterion is a benefit "
+                         "or a cost criterion does not match the number "
+                         "of columns in the decision matrix")
 
     # Normalize the decision matrix using the selected method
     z_matrix, is_benefit_z = normalize(x_matrix, is_benefit_x, n_method)

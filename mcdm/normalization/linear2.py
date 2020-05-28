@@ -40,6 +40,13 @@ def linear2(x_matrix, is_benefit_x):
     elif x_matrix.dtype is not np.float64:
         x_matrix = np.array(x_matrix, dtype=np.float64)
 
+    # Sanity check
+    if len(is_benefit_x) != x_matrix.shape[1]:
+        raise ValueError("The number of variables in the list that "
+                         "determines whether each criterion is a benefit "
+                         "or a cost criterion does not match the number "
+                         "of columns in the decision matrix")
+
     # Construct the normalized decision matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)
     for j in range(x_matrix.shape[1]):

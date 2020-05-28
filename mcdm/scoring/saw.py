@@ -41,16 +41,28 @@ def saw(z_matrix, w_vector, is_benefit_z):
     elif z_matrix.dtype is not np.float64:
         z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    # Make sure that the decision matrix is normalized
+    # Make sure that the weight vector is a float64 NumPy array
+    if type(w_vector) is not np.ndarray:
+        w_vector = np.array(w_vector, dtype=np.float64)
+    elif w_vector.dtype is not np.float64:
+        w_vector = np.array(w_vector, dtype=np.float64)
+
+    # Sanity checks
     if (np.sum(np.less(z_matrix, 0.0)) > 0
             or np.sum(np.greater(z_matrix, 1.0)) > 0):
         raise ValueError("The decision matrix must be normalized "
                          "in order to apply the SAW scoring method")
-
-    # Make sure that the weights sum to 1
-    if not np.isclose(np.sum(w_vector), 1.0):
-        raise ValueError("The weights must sum to 1 in order "
-                         "to apply the SAW scoring method")
+    elif w_vector.shape != (z_matrix.shape[1],):
+        raise ValueError("The shape of the weight vector is not "
+                         "appropriate for the number of columns in the "
+                         "decision matrix")
+    elif not np.isclose(np.sum(w_vector), 1.0):
+        raise ValueError("The weight vector's elements must sum to 1")
+    elif len(is_benefit_z) != z_matrix.shape[1]:
+        raise ValueError("The number of variables in the list that "
+                         "determines whether each criterion is a benefit "
+                         "or a cost criterion does not match the number "
+                         "of columns in the decision matrix")
 
     # Determine whether the scores should be sorted in descending order
     if sum(is_benefit_z) == len(is_benefit_z):
