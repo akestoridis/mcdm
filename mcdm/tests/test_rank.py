@@ -612,7 +612,7 @@ class TestRank(unittest.TestCase):
                           is_benefit_x=[True, True])
 
     def test_rank_is_benefit_x_exception(self):
-        """Test the rank function with an invalid list of names."""
+        """Test the rank function with an invalid Boolean list."""
         x_matrix = [
             [0.00, 1.00],
             [0.25, 0.75],
@@ -624,8 +624,8 @@ class TestRank(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
                           is_benefit_x=[True, True, True])
 
-    def test_rank_w_vector_exception(self):
-        """Test the rank function with an invalid list of names."""
+    def test_rank_w_vector_length_exception(self):
+        """Test the rank function with an invalid weight vector length."""
         x_matrix = [
             [0.00, 1.00],
             [0.25, 0.75],
@@ -638,8 +638,8 @@ class TestRank(unittest.TestCase):
                           is_benefit_x=[True, True],
                           w_vector=[0.25, 0.25, 0.25, 0.25])
 
-    def test_rank_sum_exception(self):
-        """Test the rank function with an invalid list of names."""
+    def test_rank_w_vector_sum_exception(self):
+        """Test the rank function with an invalid weight vector sum."""
         x_matrix = [
             [0.00, 1.00],
             [0.25, 0.75],

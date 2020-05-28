@@ -114,8 +114,22 @@ class TestScore(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "SAW")
 
-    def test_saw_sum_exception(self):
-        """Test the SAW method with weights that do not sum to 1."""
+    def test_saw_w_vector_length_exception(self):
+        """Test the SAW method with an invalid weight vector length."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "SAW")
+
+    def test_saw_w_vector_sum_exception(self):
+        """Test the SAW method with an invalid weight vector sum."""
         z_matrix = np.array(
             [[0.00, 1.00],
              [0.25, 0.75],
@@ -125,6 +139,20 @@ class TestScore(unittest.TestCase):
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.4], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "SAW")
+
+    def test_saw_is_benefit_z_exception(self):
+        """Test the SAW method with an invalid Boolean list."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "SAW")
 
@@ -227,8 +255,22 @@ class TestScore(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "MEW")
 
-    def test_mew_sum_exception(self):
-        """Test the MEW method with weights that do not sum to 1."""
+    def test_mew_w_vector_length_exception(self):
+        """Test the MEW method with an invalid weight vector length."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "MEW")
+
+    def test_mew_w_vector_sum_exception(self):
+        """Test the MEW method with an invalid weight vector sum."""
         z_matrix = np.array(
             [[0.00, 1.00],
              [0.25, 0.75],
@@ -238,6 +280,20 @@ class TestScore(unittest.TestCase):
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.4], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "MEW")
+
+    def test_mew_is_benefit_z_exception(self):
+        """Test the MEW method with an invalid Boolean list."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "MEW")
 
@@ -359,8 +415,22 @@ class TestScore(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "TOPSIS")
 
-    def test_topsis_sum_exception(self):
-        """Test the TOPSIS method with weights that do not sum to 1."""
+    def test_topsis_w_vector_length_exception(self):
+        """Test the TOPSIS method with an invalid weight vector length."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "TOPSIS")
+
+    def test_topsis_w_vector_sum_exception(self):
+        """Test the TOPSIS method with an invalid weight vector sum."""
         z_matrix = np.array(
             [[0.00, 1.00],
              [0.25, 0.75],
@@ -370,6 +440,20 @@ class TestScore(unittest.TestCase):
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.4], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "TOPSIS")
+
+    def test_topsis_is_benefit_z_exception(self):
+        """Test the TOPSIS method with an invalid Boolean list."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "TOPSIS")
 
@@ -479,8 +563,22 @@ class TestScore(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "mTOPSIS")
 
-    def test_mtopsis_sum_exception(self):
-        """Test the mTOPSIS method with weights that do not sum to 1."""
+    def test_mtopsis_w_vector_length_exception(self):
+        """Test the mTOPSIS method with an invalid weight vector length."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "mTOPSIS")
+
+    def test_mtopsis_w_vector_sum_exception(self):
+        """Test the mTOPSIS method with an invalid weight vector sum."""
         z_matrix = np.array(
             [[0.00, 1.00],
              [0.25, 0.75],
@@ -490,6 +588,20 @@ class TestScore(unittest.TestCase):
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.4], dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.score,
+                          z_matrix, is_benefit_z, w_vector, "mTOPSIS")
+
+    def test_mtopsis_is_benefit_z_exception(self):
+        """Test the mTOPSIS method with an invalid Boolean list."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        is_benefit_z = [True, True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(ValueError, mcdm.score,
                           z_matrix, is_benefit_z, w_vector, "mTOPSIS")
 

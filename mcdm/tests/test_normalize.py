@@ -85,6 +85,21 @@ class TestNormalize(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, None)
 
+    def test_none_is_benefit_x_exception(self):
+        """Test a decision matrix with an invalid Boolean list."""
+        x_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, True, True, True]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, None)
+
     def test_linear1_calculations(self):
         """Test the calculations of the Linear1 method."""
         x_matrix = np.array(
@@ -150,6 +165,20 @@ class TestNormalize(unittest.TestCase):
              [ 1.0, 600.0, 7.0, 0.0]],
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, "Linear1")
+
+    def test_linear1_is_benefit_x_exception(self):
+        """Test the Linear1 method with an invalid Boolean list."""
+        x_matrix = np.array(
+            [[ 2.0,  12.0, 7.0, 7.0],
+             [ 4.0, 100.0, 7.0, 7.0],
+             [10.0, 200.0, 7.0, 7.0],
+             [ 0.0, 300.0, 7.0, 7.0],
+             [ 6.0, 400.0, 7.0, 7.0],
+             [ 1.0, 600.0, 7.0, 7.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, False, True, False, True]
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, "Linear1")
 
@@ -221,6 +250,20 @@ class TestNormalize(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, "Linear2")
 
+    def test_linear2_is_benefit_x_exception(self):
+        """Test the Linear2 method with an invalid Boolean list."""
+        x_matrix = np.array(
+            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
+             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
+             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
+             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
+             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
+             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, False, True, False, True, False, True]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, "Linear2")
+
     def test_linear3_calculations(self):
         """Test the calculations of the Linear3 method."""
         x_matrix = np.array(
@@ -271,6 +314,19 @@ class TestNormalize(unittest.TestCase):
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, "Linear3")
 
+    def test_linear3_is_benefit_x_exception(self):
+        """Test the Linear3 method with an invalid Boolean list."""
+        x_matrix = np.array(
+            [[4.0, 4.0, 7.0, 7.0],
+             [3.0, 3.0, 7.0, 7.0],
+             [2.0, 2.0, 7.0, 7.0],
+             [1.0, 1.0, 7.0, 7.0],
+             [0.0, 0.0, 7.0, 7.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, False, True, False, True]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, "Linear3")
+
     def test_vector_calculations(self):
         """Test the calculations of the Vector method."""
         x_matrix = np.array(
@@ -314,6 +370,18 @@ class TestNormalize(unittest.TestCase):
              [8.0, 8.0, 5.0, 0.0]],
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+                          x_matrix, is_benefit_x, "Vector")
+
+    def test_vector_is_benefit_x_exception(self):
+        """Test the Vector method with an invalid Boolean list."""
+        x_matrix = np.array(
+            [[0.0, 0.0, 5.0, 5.0],
+             [6.0, 6.0, 5.0, 5.0],
+             [0.0, 0.0, 5.0, 5.0],
+             [8.0, 8.0, 5.0, 5.0]],
+            dtype=np.float64)
+        is_benefit_x = [True, False, True, False, True]
         self.assertRaises(ValueError, mcdm.normalize,
                           x_matrix, is_benefit_x, "Vector")
 
