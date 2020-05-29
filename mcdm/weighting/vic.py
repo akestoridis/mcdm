@@ -52,6 +52,16 @@ def vic(z_matrix, c_method="dCor"):
     if c_method is None:
         c_method = "dCor"
 
+    # Make sure that VIC is compatible with the selected correlation method
+    if c_method.upper() in {"PEARSON"}:
+        raise ValueError("The VIC weighting method is not compatible "
+                         "with the {} correlation method"
+                         "".format(c_method))
+    elif c_method.upper() not in {"ABSPEARSON", "DCOR"}:
+        raise ValueError("Unknown compatibility of the VIC weighting "
+                         "method with the {} correlation method"
+                         "".format(c_method))
+
     # Compute the correlation coefficients between pairs of criteria
     corr_matrix = correlate(z_matrix, c_method)
 

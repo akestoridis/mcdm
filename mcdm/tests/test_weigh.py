@@ -282,6 +282,129 @@ class TestWeigh(unittest.TestCase):
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
+    def test_critic_pearson_linear(self):
+        """Test the CRITIC.Pearson method with a linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "Pearson")
+        expected_w_vector = np.array(
+            [0.25000000, 0.25857023, 0.49142977],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_critic_pearson_nonlinear(self):
+        """Test the CRITIC.Pearson method with a non-linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 0.0],
+             [0.0, 0.0, 1.0],
+             [0.2, 0.5, 0.0],
+             [0.2, 0.5, 1.0],
+             [0.4, 1.0, 0.0],
+             [0.4, 1.0, 1.0],
+             [0.6, 1.0, 0.0],
+             [0.6, 1.0, 1.0],
+             [0.8, 0.5, 0.0],
+             [0.8, 0.5, 1.0],
+             [1.0, 0.0, 0.0],
+             [1.0, 0.0, 1.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "Pearson")
+        expected_w_vector = np.array(
+            [0.27329284, 0.32664742, 0.40005975],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_critic_abspearson_linear(self):
+        """Test the CRITIC.AbsPearson method with a linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "AbsPearson")
+        expected_w_vector = np.array(
+            [0.50000000, 0.25000000, 0.25000000],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_critic_abspearson_nonlinear(self):
+        """Test the CRITIC.AbsPearson method with a non-linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 0.0],
+             [0.0, 0.0, 1.0],
+             [0.2, 0.5, 0.0],
+             [0.2, 0.5, 1.0],
+             [0.4, 1.0, 0.0],
+             [0.4, 1.0, 1.0],
+             [0.6, 1.0, 0.0],
+             [0.6, 1.0, 1.0],
+             [0.8, 0.5, 0.0],
+             [0.8, 0.5, 1.0],
+             [1.0, 0.0, 0.0],
+             [1.0, 0.0, 1.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "AbsPearson")
+        expected_w_vector = np.array(
+            [0.27329284, 0.32664742, 0.40005975],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_critic_dcor_linear(self):
+        """Test the CRITIC.dCor method with a linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "dCor")
+        expected_w_vector = np.array(
+            [0.50000000, 0.25000000, 0.25000000],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_critic_dcor_nonlinear(self):
+        """Test the CRITIC.dCor method with a non-linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 0.0],
+             [0.0, 0.0, 1.0],
+             [0.2, 0.5, 0.0],
+             [0.2, 0.5, 1.0],
+             [0.4, 1.0, 0.0],
+             [0.4, 1.0, 1.0],
+             [0.6, 1.0, 0.0],
+             [0.6, 1.0, 1.0],
+             [0.8, 0.5, 0.0],
+             [0.8, 0.5, 1.0],
+             [1.0, 0.0, 0.0],
+             [1.0, 0.0, 1.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "CRITIC", "dCor")
+        expected_w_vector = np.array(
+            [0.23971980, 0.28651997, 0.47376023],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
     def test_critic_over_exception(self):
         """Test the CRITIC method with a value greater than 1."""
         z_matrix = np.array(
@@ -307,6 +430,20 @@ class TestWeigh(unittest.TestCase):
              [ 1.0, 1.0, 0.0]],
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "CRITIC")
+
+    def test_critic_unknown_exception(self):
+        """Test the CRITIC method with an unknown correlation method."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.weigh,
+                          z_matrix, "CRITIC", "Unknown")
 
     def test_vic_linear(self):
         """Test the VIC method with a linear association."""
@@ -349,6 +486,88 @@ class TestWeigh(unittest.TestCase):
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
+    def test_vic_abspearson_linear(self):
+        """Test the VIC.AbsPearson method with a linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "VIC", "AbsPearson")
+        expected_w_vector = np.array(
+            [0.33861310, 0.33069345, 0.33069345],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_vic_abspearson_nonlinear(self):
+        """Test the VIC.AbsPearson method with a non-linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 0.0],
+             [0.0, 0.0, 1.0],
+             [0.2, 0.5, 0.0],
+             [0.2, 0.5, 1.0],
+             [0.4, 1.0, 0.0],
+             [0.4, 1.0, 1.0],
+             [0.6, 1.0, 0.0],
+             [0.6, 1.0, 1.0],
+             [0.8, 0.5, 0.0],
+             [0.8, 0.5, 1.0],
+             [1.0, 0.0, 0.0],
+             [1.0, 0.0, 1.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "VIC", "AbsPearson")
+        expected_w_vector = np.array(
+            [0.27329284, 0.32664742, 0.40005975],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_vic_dcor_linear(self):
+        """Test the VIC.dCor method with a linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "VIC", "dCor")
+        expected_w_vector = np.array(
+            [0.33817571, 0.33091215, 0.33091215],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_vic_dcor_nonlinear(self):
+        """Test the VIC.dCor method with a non-linear association."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 0.0],
+             [0.0, 0.0, 1.0],
+             [0.2, 0.5, 0.0],
+             [0.2, 0.5, 1.0],
+             [0.4, 1.0, 0.0],
+             [0.4, 1.0, 1.0],
+             [0.6, 1.0, 0.0],
+             [0.6, 1.0, 1.0],
+             [0.8, 0.5, 0.0],
+             [0.8, 0.5, 1.0],
+             [1.0, 0.0, 0.0],
+             [1.0, 0.0, 1.0]],
+            dtype=np.float64)
+        obtained_w_vector = mcdm.weigh(z_matrix, "VIC", "dCor")
+        expected_w_vector = np.array(
+            [0.22633480, 0.27052183, 0.50314336],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
+        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
     def test_vic_over_exception(self):
         """Test the VIC method with a value greater than 1."""
         z_matrix = np.array(
@@ -374,6 +593,32 @@ class TestWeigh(unittest.TestCase):
              [ 1.0, 1.0, 0.0]],
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC")
+
+    def test_vic_pearson_exception(self):
+        """Test the VIC method with the Pearson correlation method."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC", "Pearson")
+
+    def test_vic_unknown_exception(self):
+        """Test the VIC method with an unknown correlation method."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float64)
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC", "Unknown")
 
     def test_unknown_weigh_exception(self):
         """Test the selection of an unknown weighting method."""

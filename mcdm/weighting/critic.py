@@ -52,6 +52,12 @@ def critic(z_matrix, c_method="Pearson"):
     if c_method is None:
         c_method = "Pearson"
 
+    # Make sure that CRITIC is compatible with the selected correlation method
+    if c_method.upper() not in {"PEARSON", "ABSPEARSON", "DCOR"}:
+        raise ValueError("Unknown compatibility of the CRITIC weighting "
+                         "method with the {} correlation method"
+                         "".format(c_method))
+
     # Compute the correlation coefficients between pairs of criteria
     corr_matrix = correlate(z_matrix, c_method)
 
