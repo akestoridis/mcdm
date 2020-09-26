@@ -1,8 +1,10 @@
 *.egg-info/
 *.pyc
 *.swp
+.coverage
 __pycache__/
 build/
 dist/
+htmlcov/
 mcdm/VERSION.txt
 venv/

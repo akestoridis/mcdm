@@ -46,5 +46,9 @@ jobs:
       run: pip install .
     - name: Install pytest
       run: pip install pytest
-    - name: Execute tests with pytest
-      run: pytest -v mcdm/tests/
+    - name: Install coverage
+      run: pip install coverage
+    - name: Execute tests with pytest and gather coverage data
+      run: coverage run --rcfile=.coveragerc -m pytest -v mcdm/tests/
+    - name: Report coverage results
+      run: coverage report --rcfile=.coveragerc

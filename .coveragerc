@@ -1,0 +1,10 @@
+[run]
+branch = True
+source = mcdm
+omit =
+	mcdm/tests/*
+	mcdm/__getversion__.py
+
+[report]
+show_missing = True
+fail_under = 100
