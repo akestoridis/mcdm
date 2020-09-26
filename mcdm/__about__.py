@@ -48,7 +48,7 @@ __classifiers__ = [
     "Programming Language :: Python :: 3"
 ]
 __install_requires__ = [
-    "numpy>=1.18.3"
+    "numpy>=1.19.2"
 ]
 __python_requires__ = ">=3.7.3"
 __all__ = [
