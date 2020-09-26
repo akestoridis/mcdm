@@ -50,7 +50,7 @@ __classifiers__ = [
 __install_requires__ = [
     "numpy>=1.18.3"
 ]
-__python_requires__ = ">=3.5.3"
+__python_requires__ = ">=3.7.3"
 __all__ = [
     "__title__",
     "__author__",
