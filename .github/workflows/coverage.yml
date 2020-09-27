@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-name: mcdm-ci
+name: coverage
 
 on:
   push:
@@ -28,7 +28,7 @@ on:
     branches: [ master ]
 
 jobs:
-  ubuntu-testing:
+  ubuntu:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -48,11 +48,7 @@ jobs:
       run: pip install pytest
     - name: Install coverage
       run: pip install coverage
-    - name: Install flake8
-      run: pip install flake8
     - name: Execute tests with pytest and gather coverage data
       run: coverage run --rcfile=.coveragerc -m pytest -v mcdm/tests/
     - name: Report coverage results
       run: coverage report --rcfile=.coveragerc
-    - name: Check code quality
-      run: flake8 mcdm/ setup.py
