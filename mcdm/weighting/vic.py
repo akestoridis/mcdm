@@ -67,11 +67,11 @@ def vic(z_matrix, c_method="dCor"):
 
     # Compute the importance of each criterion
     imp_vector = np.zeros(z_matrix.shape[1], dtype=np.float64)
-    for j in range(z_matrix.shape[1]):
+    for j_col in range(z_matrix.shape[1]):
         tmp_sum = 0.0
-        for l in range(z_matrix.shape[1]):
-            tmp_sum += corr_matrix[j, l]
-        imp_vector[j] = sd_vector[j] / tmp_sum
+        for l_col in range(z_matrix.shape[1]):
+            tmp_sum += corr_matrix[j_col, l_col]
+        imp_vector[j_col] = sd_vector[j_col] / tmp_sum
 
     # Normalize the importance of each criterion
     return imp_vector / np.sum(imp_vector)

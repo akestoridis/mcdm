@@ -25,13 +25,20 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 
 import os
 
-from .__about__ import *
+from .__about__ import __author__            # noqa: F401
+from .__about__ import __author_email__      # noqa: F401
+from .__about__ import __classifiers__       # noqa: F401
+from .__about__ import __copyright__         # noqa: F401
+from .__about__ import __description__       # noqa: F401
+from .__about__ import __install_requires__  # noqa: F401
+from .__about__ import __keywords__          # noqa: F401
+from .__about__ import __license__           # noqa: F401
+from .__about__ import __python_requires__   # noqa: F401
+from .__about__ import __title__             # noqa: F401
+from .__about__ import __url__               # noqa: F401
+
 from .__getversion__ import getversion
 
-from . import correlation
-from . import normalization
-from . import scoring
-from . import weighting
 from .correlate import correlate
 from .load import load
 from .normalize import normalize

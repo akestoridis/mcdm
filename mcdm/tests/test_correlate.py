@@ -40,9 +40,9 @@ class TestCorrelate(unittest.TestCase):
             dtype=np.float64)
         obtained_corr_matrix = mcdm.correlate(z_matrix, "Pearson")
         expected_corr_matrix = np.array(
-            [[ 1.0000000,  0.9314381, -0.9314381],
-             [ 0.9314381,  1.0000000, -1.0000000],
-             [-0.9314381, -1.0000000,  1.0000000]],
+            [[ 1.0000000,  0.9314381, -0.9314381],   # noqa: E201
+             [ 0.9314381,  1.0000000, -1.0000000],   # noqa: E201
+             [-0.9314381, -1.0000000,  1.0000000]],  # noqa: E201
             dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix,
                                    expected_corr_matrix)
@@ -89,9 +89,9 @@ class TestCorrelate(unittest.TestCase):
             dtype=np.float32)
         obtained_corr_matrix = mcdm.correlate(z_matrix, "Pearson")
         expected_corr_matrix = np.array(
-            [[ 1.0000000,  0.9314381, -0.9314381],
-             [ 0.9314381,  1.0000000, -1.0000000],
-             [-0.9314381, -1.0000000,  1.0000000]],
+            [[ 1.0000000,  0.9314381, -0.9314381],   # noqa: E201
+             [ 0.9314381,  1.0000000, -1.0000000],   # noqa: E201
+             [-0.9314381, -1.0000000,  1.0000000]],  # noqa: E201
             dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix,
                                    expected_corr_matrix)
@@ -111,9 +111,9 @@ class TestCorrelate(unittest.TestCase):
         ]
         obtained_corr_matrix = mcdm.correlate(z_matrix, "Pearson")
         expected_corr_matrix = np.array(
-            [[ 1.0000000,  0.9314381, -0.9314381],
-             [ 0.9314381,  1.0000000, -1.0000000],
-             [-0.9314381, -1.0000000,  1.0000000]],
+            [[ 1.0000000,  0.9314381, -0.9314381],   # noqa: E201
+             [ 0.9314381,  1.0000000, -1.0000000],   # noqa: E201
+             [-0.9314381, -1.0000000,  1.0000000]],  # noqa: E201
             dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix,
                                    expected_corr_matrix)

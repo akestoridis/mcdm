@@ -129,13 +129,13 @@ class TestNormalize(unittest.TestCase):
     def test_none_under_exception(self):
         """Test a decision matrix with a value less than 0."""
         x_matrix = np.array(
-            [[ 0.0, 0.0, 1.0],
-             [-0.1, 0.2, 0.8],
-             [ 0.2, 0.4, 0.6],
-             [ 0.3, 0.7, 0.3],
-             [ 0.6, 0.8, 0.2],
-             [ 0.8, 0.9, 0.1],
-             [ 1.0, 1.0, 0.0]],
+            [[ 0.0, 0.0, 1.0],   # noqa: E201
+             [-0.1, 0.2, 0.8],   # noqa: E201
+             [ 0.2, 0.4, 0.6],   # noqa: E201
+             [ 0.3, 0.7, 0.3],   # noqa: E201
+             [ 0.6, 0.8, 0.2],   # noqa: E201
+             [ 0.8, 0.9, 0.1],   # noqa: E201
+             [ 1.0, 1.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, True, True]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -159,12 +159,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_calculations(self):
         """Test the calculations of the Linear1 method."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 7.0],
-             [ 4.0, 100.0, 7.0, 7.0],
-             [10.0, 200.0, 7.0, 7.0],
-             [ 0.0, 300.0, 7.0, 7.0],
-             [ 6.0, 400.0, 7.0, 7.0],
-             [ 1.0, 600.0, 7.0, 7.0]],
+            [[ 2.0,  12.0, 7.0, 7.0],   # noqa: E201
+             [ 4.0, 100.0, 7.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -185,12 +185,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_float32(self):
         """Test the Linear1 method with a float32 NumPy array."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 7.0],
-             [ 4.0, 100.0, 7.0, 7.0],
-             [10.0, 200.0, 7.0, 7.0],
-             [ 0.0, 300.0, 7.0, 7.0],
-             [ 6.0, 400.0, 7.0, 7.0],
-             [ 1.0, 600.0, 7.0, 7.0]],
+            [[ 2.0,  12.0, 7.0, 7.0],   # noqa: E201
+             [ 4.0, 100.0, 7.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float32)
         is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -211,12 +211,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_nested_list(self):
         """Test the Linear1 method with a nested list."""
         x_matrix = [
-            [ 2.0,  12.0, 7.0, 7.0],
-            [ 4.0, 100.0, 7.0, 7.0],
-            [10.0, 200.0, 7.0, 7.0],
-            [ 0.0, 300.0, 7.0, 7.0],
-            [ 6.0, 400.0, 7.0, 7.0],
-            [ 1.0, 600.0, 7.0, 7.0],
+            [ 2.0,  12.0, 7.0, 7.0],  # noqa: E201
+            [ 4.0, 100.0, 7.0, 7.0],  # noqa: E201
+            [10.0, 200.0, 7.0, 7.0],  # noqa: E201
+            [ 0.0, 300.0, 7.0, 7.0],  # noqa: E201
+            [ 6.0, 400.0, 7.0, 7.0],  # noqa: E201
+            [ 1.0, 600.0, 7.0, 7.0],  # noqa: E201
         ]
         is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -237,12 +237,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_negative_exception(self):
         """Test the Linear1 method with a negative value."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 7.0],
-             [-4.0, 100.0, 7.0, 7.0],
-             [10.0, 200.0, 7.0, 7.0],
-             [ 0.0, 300.0, 7.0, 7.0],
-             [ 6.0, 400.0, 7.0, 7.0],
-             [ 1.0, 600.0, 7.0, 7.0]],
+            [[ 2.0,  12.0, 7.0, 7.0],   # noqa: E201
+             [-4.0, 100.0, 7.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -251,12 +251,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_zero_benefit_exception(self):
         """Test the Linear1 method with a zero benefit vector."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 0.0, 7.0],
-             [ 4.0, 100.0, 0.0, 7.0],
-             [10.0, 200.0, 0.0, 7.0],
-             [ 0.0, 300.0, 0.0, 7.0],
-             [ 6.0, 400.0, 0.0, 7.0],
-             [ 1.0, 600.0, 0.0, 7.0]],
+            [[ 2.0,  12.0, 0.0, 7.0],   # noqa: E201
+             [ 4.0, 100.0, 0.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 0.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 0.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 0.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 0.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -265,12 +265,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_zero_cost_exception(self):
         """Test the Linear1 method with a zero cost vector."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 0.0],
-             [ 4.0, 100.0, 7.0, 0.0],
-             [10.0, 200.0, 7.0, 0.0],
-             [ 0.0, 300.0, 7.0, 0.0],
-             [ 6.0, 400.0, 7.0, 0.0],
-             [ 1.0, 600.0, 7.0, 0.0]],
+            [[ 2.0,  12.0, 7.0, 0.0],   # noqa: E201
+             [ 4.0, 100.0, 7.0, 0.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 0.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 0.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 0.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -279,12 +279,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear1_is_benefit_x_exception(self):
         """Test the Linear1 method with an invalid Boolean list."""
         x_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 7.0],
-             [ 4.0, 100.0, 7.0, 7.0],
-             [10.0, 200.0, 7.0, 7.0],
-             [ 0.0, 300.0, 7.0, 7.0],
-             [ 6.0, 400.0, 7.0, 7.0],
-             [ 1.0, 600.0, 7.0, 7.0]],
+            [[ 2.0,  12.0, 7.0, 7.0],   # noqa: E201
+             [ 4.0, 100.0, 7.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False, True]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -293,12 +293,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear2_calculations(self):
         """Test the calculations of the Linear2 method."""
         x_matrix = np.array(
-            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
-             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
-             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
-             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
-             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
-             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],
+            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],   # noqa: E201
+             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],   # noqa: E201
+             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],   # noqa: E201
+             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],   # noqa: E201
+             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],   # noqa: E201
+             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -319,12 +319,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear2_float32(self):
         """Test the Linear2 method with a float32 NumPy array."""
         x_matrix = np.array(
-            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
-             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
-             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
-             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
-             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
-             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],
+            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],   # noqa: E201
+             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],   # noqa: E201
+             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],   # noqa: E201
+             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],   # noqa: E201
+             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],   # noqa: E201
+             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],  # noqa: E201
             dtype=np.float32)
         is_benefit_x = [True, False, True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -345,12 +345,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear2_nested_list(self):
         """Test the Linear2 method with a nested list."""
         x_matrix = [
-            [ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
-            [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
-            [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
-            [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
-            [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
-            [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0],
+            [ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],  # noqa: E201
+            [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],  # noqa: E201
+            [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],  # noqa: E201
+            [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],  # noqa: E201
+            [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],  # noqa: E201
+            [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0],  # noqa: E201
         ]
         is_benefit_x = [True, False, True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = mcdm.normalize(
@@ -413,12 +413,12 @@ class TestNormalize(unittest.TestCase):
     def test_linear2_is_benefit_x_exception(self):
         """Test the Linear2 method with an invalid Boolean list."""
         x_matrix = np.array(
-            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
-             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
-             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
-             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
-             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
-             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],
+            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],   # noqa: E201
+             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],   # noqa: E201
+             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],   # noqa: E201
+             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],   # noqa: E201
+             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],   # noqa: E201
+             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False, True, False, True]
         self.assertRaises(ValueError, mcdm.normalize,
@@ -499,11 +499,11 @@ class TestNormalize(unittest.TestCase):
     def test_linear3_negative_exception(self):
         """Test the Linear3 method with a negative value."""
         x_matrix = np.array(
-            [[ 4.0, 4.0, 7.0, 7.0],
-             [ 3.0, 3.0, 7.0, 7.0],
-             [-2.0, 2.0, 7.0, 7.0],
-             [ 1.0, 1.0, 7.0, 7.0],
-             [ 0.0, 0.0, 7.0, 7.0]],
+            [[ 4.0, 4.0, 7.0, 7.0],   # noqa: E201
+             [ 3.0, 3.0, 7.0, 7.0],   # noqa: E201
+             [-2.0, 2.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 1.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 0.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         is_benefit_x = [True, False, True, False]
         self.assertRaises(ValueError, mcdm.normalize,

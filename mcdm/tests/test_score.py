@@ -145,11 +145,11 @@ class TestScore(unittest.TestCase):
     def test_saw_under_exception(self):
         """Test the SAW method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.00, 1.00],
-             [-0.25, 0.75],
-             [ 0.50, 0.50],
-             [ 0.75, 0.25],
-             [ 1.00, 0.00]],
+            [[ 0.00, 1.00],   # noqa: E201
+             [-0.25, 0.75],   # noqa: E201
+             [ 0.50, 0.50],   # noqa: E201
+             [ 0.75, 0.25],   # noqa: E201
+             [ 1.00, 0.00]],  # noqa: E201
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.5], dtype=np.float64)
@@ -328,11 +328,11 @@ class TestScore(unittest.TestCase):
     def test_mew_under_exception(self):
         """Test the MEW method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.00, 1.00],
-             [-0.25, 0.75],
-             [ 0.50, 0.50],
-             [ 0.75, 0.25],
-             [ 1.00, 0.00]],
+            [[ 0.00, 1.00],   # noqa: E201
+             [-0.25, 0.75],   # noqa: E201
+             [ 0.50, 0.50],   # noqa: E201
+             [ 0.75, 0.25],   # noqa: E201
+             [ 1.00, 0.00]],  # noqa: E201
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.5], dtype=np.float64)
@@ -530,11 +530,11 @@ class TestScore(unittest.TestCase):
     def test_topsis_under_exception(self):
         """Test the TOPSIS method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.00, 1.00],
-             [-0.25, 0.75],
-             [ 0.50, 0.50],
-             [ 0.75, 0.25],
-             [ 1.00, 0.00]],
+            [[ 0.00, 1.00],   # noqa: E201
+             [-0.25, 0.75],   # noqa: E201
+             [ 0.50, 0.50],   # noqa: E201
+             [ 0.75, 0.25],   # noqa: E201
+             [ 1.00, 0.00]],  # noqa: E201
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.5], dtype=np.float64)
@@ -720,11 +720,11 @@ class TestScore(unittest.TestCase):
     def test_mtopsis_under_exception(self):
         """Test the mTOPSIS method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.00, 1.00],
-             [-0.25, 0.75],
-             [ 0.50, 0.50],
-             [ 0.75, 0.25],
-             [ 1.00, 0.00]],
+            [[ 0.00, 1.00],   # noqa: E201
+             [-0.25, 0.75],   # noqa: E201
+             [ 0.50, 0.50],   # noqa: E201
+             [ 0.75, 0.25],   # noqa: E201
+             [ 1.00, 0.00]],  # noqa: E201
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.5], dtype=np.float64)

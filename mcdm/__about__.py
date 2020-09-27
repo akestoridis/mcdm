@@ -39,28 +39,15 @@ __keywords__ = [
     "scoring",
     "weighting",
     "correlation",
-    "normalization"
+    "normalization",
 ]
 __classifiers__ = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3"
+    "Programming Language :: Python :: 3",
 ]
 __install_requires__ = [
-    "numpy>=1.19.2"
+    "numpy>=1.19.2",
 ]
 __python_requires__ = ">=3.7.3"
-__all__ = [
-    "__title__",
-    "__author__",
-    "__author_email__",
-    "__description__",
-    "__license__",
-    "__copyright__",
-    "__url__",
-    "__keywords__",
-    "__classifiers__",
-    "__install_requires__",
-    "__python_requires__"
-]

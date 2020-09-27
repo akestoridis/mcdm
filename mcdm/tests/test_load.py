@@ -80,7 +80,7 @@ class TestLoad(unittest.TestCase):
             "a9",
             "a10",
             "a11",
-            "a12"
+            "a12",
         ]
         np.testing.assert_allclose(obtained_matrix, expected_matrix)
         self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
@@ -109,12 +109,12 @@ class TestLoad(unittest.TestCase):
         obtained_matrix, obtained_row_labels = mcdm.load(
             filepath, delimiter="\t", skiprows=1)
         expected_matrix = np.array(
-            [[ 2.0,  12.0, 7.0, 7.0],
-             [ 4.0, 100.0, 7.0, 7.0],
-             [10.0, 200.0, 7.0, 7.0],
-             [ 0.0, 300.0, 7.0, 7.0],
-             [ 6.0, 400.0, 7.0, 7.0],
-             [ 1.0, 600.0, 7.0, 7.0]],
+            [[ 2.0,  12.0, 7.0, 7.0],   # noqa: E201
+             [ 4.0, 100.0, 7.0, 7.0],   # noqa: E201
+             [10.0, 200.0, 7.0, 7.0],   # noqa: E201
+             [ 0.0, 300.0, 7.0, 7.0],   # noqa: E201
+             [ 6.0, 400.0, 7.0, 7.0],   # noqa: E201
+             [ 1.0, 600.0, 7.0, 7.0]],  # noqa: E201
             dtype=np.float64)
         expected_row_labels = None
         np.testing.assert_allclose(obtained_matrix, expected_matrix)
@@ -127,12 +127,12 @@ class TestLoad(unittest.TestCase):
         obtained_matrix, obtained_row_labels = mcdm.load(
             filepath, labeled_rows=True)
         expected_matrix = np.array(
-            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],
-             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],
-             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],
-             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],
-             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],
-             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],
+            [[ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],   # noqa: E201
+             [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],   # noqa: E201
+             [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],   # noqa: E201
+             [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],   # noqa: E201
+             [ 6.0,  6.0,  -7.0,  -7.0,  -5.0,  -5.0],   # noqa: E201
+             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0]],  # noqa: E201
             dtype=np.float64)
         expected_row_labels = ["A", "B", "C", "D", "E", "F"]
         np.testing.assert_allclose(obtained_matrix, expected_matrix)

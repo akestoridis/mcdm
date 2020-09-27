@@ -120,13 +120,13 @@ class TestWeigh(unittest.TestCase):
     def test_mw_under_exception(self):
         """Test the MW method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.0, 0.0, 1.0],
-             [-0.1, 0.2, 0.8],
-             [ 0.2, 0.4, 0.6],
-             [ 0.3, 0.7, 0.3],
-             [ 0.6, 0.8, 0.2],
-             [ 0.8, 0.9, 0.1],
-             [ 1.0, 1.0, 0.0]],
+            [[ 0.0, 0.0, 1.0],   # noqa: E201
+             [-0.1, 0.2, 0.8],   # noqa: E201
+             [ 0.2, 0.4, 0.6],   # noqa: E201
+             [ 0.3, 0.7, 0.3],   # noqa: E201
+             [ 0.6, 0.8, 0.2],   # noqa: E201
+             [ 0.8, 0.9, 0.1],   # noqa: E201
+             [ 1.0, 1.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "MW")
 
@@ -223,13 +223,13 @@ class TestWeigh(unittest.TestCase):
     def test_em_under_exception(self):
         """Test the EM method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.000, 0.000, 0.333],
-             [-0.033, 0.050, 0.267],
-             [ 0.067, 0.100, 0.200],
-             [ 0.100, 0.175, 0.100],
-             [ 0.200, 0.200, 0.067],
-             [ 0.267, 0.225, 0.033],
-             [ 0.333, 0.250, 0.000]],
+            [[ 0.000, 0.000, 0.333],   # noqa: E201
+             [-0.033, 0.050, 0.267],   # noqa: E201
+             [ 0.067, 0.100, 0.200],   # noqa: E201
+             [ 0.100, 0.175, 0.100],   # noqa: E201
+             [ 0.200, 0.200, 0.067],   # noqa: E201
+             [ 0.267, 0.225, 0.033],   # noqa: E201
+             [ 0.333, 0.250, 0.000]],  # noqa: E201
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "EM")
 
@@ -339,13 +339,13 @@ class TestWeigh(unittest.TestCase):
     def test_sd_under_exception(self):
         """Test the SD method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.0, 0.0, 1.0],
-             [-0.1, 0.2, 0.8],
-             [ 0.2, 0.4, 0.6],
-             [ 0.3, 0.7, 0.3],
-             [ 0.6, 0.8, 0.2],
-             [ 0.8, 0.9, 0.1],
-             [ 1.0, 1.0, 0.0]],
+            [[ 0.0, 0.0, 1.0],   # noqa: E201
+             [-0.1, 0.2, 0.8],   # noqa: E201
+             [ 0.2, 0.4, 0.6],   # noqa: E201
+             [ 0.3, 0.7, 0.3],   # noqa: E201
+             [ 0.6, 0.8, 0.2],   # noqa: E201
+             [ 0.8, 0.9, 0.1],   # noqa: E201
+             [ 1.0, 1.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "SD")
 
@@ -673,13 +673,13 @@ class TestWeigh(unittest.TestCase):
     def test_critic_under_exception(self):
         """Test the CRITIC method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.0, 0.0, 1.0],
-             [-0.1, 0.2, 0.8],
-             [ 0.2, 0.4, 0.6],
-             [ 0.3, 0.7, 0.3],
-             [ 0.6, 0.8, 0.2],
-             [ 0.8, 0.9, 0.1],
-             [ 1.0, 1.0, 0.0]],
+            [[ 0.0, 0.0, 1.0],   # noqa: E201
+             [-0.1, 0.2, 0.8],   # noqa: E201
+             [ 0.2, 0.4, 0.6],   # noqa: E201
+             [ 0.3, 0.7, 0.3],   # noqa: E201
+             [ 0.6, 0.8, 0.2],   # noqa: E201
+             [ 0.8, 0.9, 0.1],   # noqa: E201
+             [ 1.0, 1.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "CRITIC")
 
@@ -944,13 +944,13 @@ class TestWeigh(unittest.TestCase):
     def test_vic_under_exception(self):
         """Test the VIC method with a value less than 0."""
         z_matrix = np.array(
-            [[ 0.0, 0.0, 1.0],
-             [-0.1, 0.2, 0.8],
-             [ 0.2, 0.4, 0.6],
-             [ 0.3, 0.7, 0.3],
-             [ 0.6, 0.8, 0.2],
-             [ 0.8, 0.9, 0.1],
-             [ 1.0, 1.0, 0.0]],
+            [[ 0.0, 0.0, 1.0],   # noqa: E201
+             [-0.1, 0.2, 0.8],   # noqa: E201
+             [ 0.2, 0.4, 0.6],   # noqa: E201
+             [ 0.3, 0.7, 0.3],   # noqa: E201
+             [ 0.6, 0.8, 0.2],   # noqa: E201
+             [ 0.8, 0.9, 0.1],   # noqa: E201
+             [ 1.0, 1.0, 0.0]],  # noqa: E201
             dtype=np.float64)
         self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC")
 
