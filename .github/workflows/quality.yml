@@ -47,4 +47,4 @@ jobs:
     - name: Install flake8
       run: pip install flake8
     - name: Check code quality
-      run: flake8 mcdm/ setup.py
+      run: flake8 --max-complexity 10 mcdm/ setup.py
