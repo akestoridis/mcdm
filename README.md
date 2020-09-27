@@ -1,6 +1,6 @@
 # mcdm
 
-Python implementation of Multiple-Criteria Decision-Making algorithms
+**Python implementation of Multiple-Criteria Decision-Making algorithms**
 
 
 ## Installation
