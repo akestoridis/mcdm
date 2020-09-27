@@ -2,6 +2,10 @@
 
 **Python implementation of Multiple-Criteria Decision-Making algorithms**
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/tests?label=tests)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/coverage?label=coverage)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/quality?label=quality)
+
 
 ## Installation
 
