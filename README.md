@@ -1,10 +1,14 @@
 # mcdm
 
-**Python implementation of Multiple-Criteria Decision-Making algorithms**
+Python implementation of Multiple-Criteria Decision-Making algorithms
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/tests?label=tests)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/coverage?label=coverage)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/akestoridis/mcdm/quality?label=quality)
+![Status of tests workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/tests?label=tests)
+![Status of coverage workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/coverage?label=coverage)
+![Status of quality workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/quality?label=quality)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/akestoridis/mcdm)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/akestoridis/mcdm/latest)
+![Python version requirement](https://img.shields.io/badge/python-%3E%3D3.7.3-blue)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 
 ## Installation
