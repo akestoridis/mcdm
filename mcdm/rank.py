@@ -32,7 +32,7 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
     # Make sure that the decision matrix is a float64 NumPy array
     if type(x_matrix) is not np.ndarray:
         x_matrix = np.array(x_matrix, dtype=np.float64)
-    elif x_matrix.dtype is not np.float64:
+    elif x_matrix.dtype is not np.dtype("float64"):
         x_matrix = np.array(x_matrix, dtype=np.float64)
 
     # Create a list of names for the alternatives, if none were given
@@ -66,7 +66,7 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
         # Make sure that the weight vector is a float64 NumPy array
         if type(w_vector) is not np.ndarray:
             w_vector = np.array(w_vector, dtype=np.float64)
-        elif w_vector.dtype is not np.float64:
+        elif w_vector.dtype is not np.dtype("float64"):
             w_vector = np.array(w_vector, dtype=np.float64)
 
         # Sanity checks

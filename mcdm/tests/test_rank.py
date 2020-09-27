@@ -22,6 +22,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import mcdm
+import numpy as np
 import unittest
 
 
@@ -284,7 +285,7 @@ class TestRank(unittest.TestCase):
             self.assertEqual(tmp[0], expected_ranking[i][0])
             self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
-    def test_rank_topsis_w_Vector(self):
+    def test_rank_topsis_w_vector(self):
         """Test the rank function with the TOPSIS, w, Vector methods."""
         x_matrix = [
             [0.9, 30.0, 500.0, 4.0],
@@ -311,7 +312,7 @@ class TestRank(unittest.TestCase):
             self.assertEqual(tmp[0], expected_ranking[i][0])
             self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
-    def test_rank_mtopsis_w_Vector(self):
+    def test_rank_mtopsis_w_vector(self):
         """Test the rank function with the mTOPSIS, w, Vector methods."""
         x_matrix = [
             [0.9, 30.0, 500.0, 4.0],
@@ -592,6 +593,152 @@ class TestRank(unittest.TestCase):
             ("EBR.L4",        0.136547),
             ("SnW.L4",        0.136425),
             ("CnF.Enc",       0.117134),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_default_float64(self):
+        """Test the rank function with a float64 NumPy array."""
+        x_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float64)
+        obtained_ranking = mcdm.rank(x_matrix)
+        expected_ranking = [
+            ("a1", 0.500000),
+            ("a2", 0.500000),
+            ("a3", 0.500000),
+            ("a4", 0.500000),
+            ("a5", 0.500000),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_default_float32(self):
+        """Test the rank function with a float32 NumPy array."""
+        x_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float32)
+        obtained_ranking = mcdm.rank(x_matrix)
+        expected_ranking = [
+            ("a1", 0.500000),
+            ("a2", 0.500000),
+            ("a3", 0.500000),
+            ("a4", 0.500000),
+            ("a5", 0.500000),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_default_w_desc_order(self):
+        """Test the rank function with the default parameters."""
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        obtained_ranking = mcdm.rank(
+            x_matrix, is_benefit_x=[True, True], w_vector=[0.7, 0.3])
+        expected_ranking = [
+            ("a5", 0.700000),
+            ("a4", 0.600000),
+            ("a3", 0.500000),
+            ("a2", 0.400000),
+            ("a1", 0.300000),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_default_w_asc_order(self):
+        """Test the rank function with the default parameters."""
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        obtained_ranking = mcdm.rank(
+            x_matrix, is_benefit_x=[False, False], w_vector=[0.7, 0.3])
+        expected_ranking = [
+            ("a1", 0.300000),
+            ("a2", 0.400000),
+            ("a3", 0.500000),
+            ("a4", 0.600000),
+            ("a5", 0.700000),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_topsis_w_vector_float64(self):
+        """Test the rank function with float64 NumPy arrays."""
+        x_matrix = np.array(
+            [[0.9, 30.0, 500.0, 4.0],
+             [0.1, 50.0,   5.0, 6.0],
+             [0.5, 80.0,   8.0, 6.0],
+             [0.8, 40.0, 100.0, 4.0],
+             [0.7, 60.0,  20.0, 5.0],
+             [0.6, 60.0,  10.0, 5.0]],
+            dtype=np.float64)
+        obtained_ranking = mcdm.rank(
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Vector",
+            w_vector=np.array([0.3, 0.2, 0.4, 0.1], dtype=np.float64),
+            s_method="TOPSIS")
+        expected_ranking = [
+            ("a5", 0.868655),
+            ("a6", 0.846338),
+            ("a4", 0.812076),
+            ("a3", 0.789327),
+            ("a2", 0.718801),
+            ("a1", 0.300742),
+        ]
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
+    def test_rank_topsis_w_vector_float32(self):
+        """Test the rank function with float32 NumPy arrays."""
+        x_matrix = np.array(
+            [[0.9, 30.0, 500.0, 4.0],
+             [0.1, 50.0,   5.0, 6.0],
+             [0.5, 80.0,   8.0, 6.0],
+             [0.8, 40.0, 100.0, 4.0],
+             [0.7, 60.0,  20.0, 5.0],
+             [0.6, 60.0,  10.0, 5.0]],
+            dtype=np.float32)
+        obtained_ranking = mcdm.rank(
+            x_matrix, is_benefit_x=[True, False, False, True],
+            n_method="Vector",
+            w_vector=np.array([0.3, 0.2, 0.4, 0.1], dtype=np.float32),
+            s_method="TOPSIS")
+        expected_ranking = [
+            ("a5", 0.868655),
+            ("a6", 0.846338),
+            ("a4", 0.812076),
+            ("a3", 0.789327),
+            ("a2", 0.718801),
+            ("a1", 0.300742),
         ]
         self.assertEqual(len(obtained_ranking), len(expected_ranking))
         for i, tmp in enumerate(obtained_ranking):

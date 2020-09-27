@@ -76,6 +76,50 @@ class TestCorrelate(unittest.TestCase):
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
 
+    def test_pearson_float32(self):
+        """Test the Pearson method with a float32 NumPy array."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float32)
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "Pearson")
+        expected_corr_matrix = np.array(
+            [[ 1.0000000,  0.9314381, -0.9314381],
+             [ 0.9314381,  1.0000000, -1.0000000],
+             [-0.9314381, -1.0000000,  1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
+    def test_pearson_nested_list(self):
+        """Test the Pearson method with a nested list."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9, 0.1],
+            [1.0, 1.0, 0.0],
+        ]
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "Pearson")
+        expected_corr_matrix = np.array(
+            [[ 1.0000000,  0.9314381, -0.9314381],
+             [ 0.9314381,  1.0000000, -1.0000000],
+             [-0.9314381, -1.0000000,  1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
     def test_abspearson_linear(self):
         """Test the AbsPearson method with a linear association."""
         z_matrix = np.array(
@@ -125,6 +169,50 @@ class TestCorrelate(unittest.TestCase):
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
 
+    def test_abspearson_float32(self):
+        """Test the AbsPearson method with a float32 NumPy array."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float32)
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "AbsPearson")
+        expected_corr_matrix = np.array(
+            [[1.0000000, 0.9314381, 0.9314381],
+             [0.9314381, 1.0000000, 1.0000000],
+             [0.9314381, 1.0000000, 1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
+    def test_abspearson_nested_list(self):
+        """Test the AbsPearson method with a nested list."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9, 0.1],
+            [1.0, 1.0, 0.0],
+        ]
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "AbsPearson")
+        expected_corr_matrix = np.array(
+            [[1.0000000, 0.9314381, 0.9314381],
+             [0.9314381, 1.0000000, 1.0000000],
+             [0.9314381, 1.0000000, 1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
     def test_dcor_linear(self):
         """Test the dCor method with a linear association."""
         z_matrix = np.array(
@@ -168,6 +256,66 @@ class TestCorrelate(unittest.TestCase):
             [[1.0000000, 0.5186014, 0.0000000],
              [0.5186014, 1.0000000, 0.0000000],
              [0.0000000, 0.0000000, 1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
+    def test_dcor_independence(self):
+        """Test the dCor method with independent criteria."""
+        z_matrix = np.array(
+            [[0.0, 0.0],
+             [0.0, 1.0]],
+            dtype=np.float64)
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "dCor")
+        expected_corr_matrix = np.array(
+            [[1.0000000, 0.0000000],
+             [0.0000000, 1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
+    def test_dcor_float32(self):
+        """Test the dCor method with a float32 NumPy array."""
+        z_matrix = np.array(
+            [[0.0, 0.0, 1.0],
+             [0.1, 0.2, 0.8],
+             [0.2, 0.4, 0.6],
+             [0.3, 0.7, 0.3],
+             [0.6, 0.8, 0.2],
+             [0.8, 0.9, 0.1],
+             [1.0, 1.0, 0.0]],
+            dtype=np.float32)
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "dCor")
+        expected_corr_matrix = np.array(
+            [[1.0000000, 0.9369189, 0.9369189],
+             [0.9369189, 1.0000000, 1.0000000],
+             [0.9369189, 1.0000000, 1.0000000]],
+            dtype=np.float64)
+        np.testing.assert_allclose(obtained_corr_matrix,
+                                   expected_corr_matrix)
+        self.assertEqual(obtained_corr_matrix.dtype,
+                         expected_corr_matrix.dtype)
+
+    def test_dcor_nested_list(self):
+        """Test the dCor method with a nested list."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9, 0.1],
+            [1.0, 1.0, 0.0],
+        ]
+        obtained_corr_matrix = mcdm.correlate(z_matrix, "dCor")
+        expected_corr_matrix = np.array(
+            [[1.0000000, 0.9369189, 0.9369189],
+             [0.9369189, 1.0000000, 1.0000000],
+             [0.9369189, 1.0000000, 1.0000000]],
             dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix,
                                    expected_corr_matrix)

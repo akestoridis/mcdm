@@ -86,6 +86,48 @@ class TestScore(unittest.TestCase):
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
 
+    def test_saw_float32(self):
+        """Test the SAW method with float32 NumPy arrays."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float32)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float32)
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "SAW")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_saw_nested_list(self):
+        """Test the SAW method with nested lists."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "SAW")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
     def test_saw_over_exception(self):
         """Test the SAW method with a value greater than 1."""
         z_matrix = np.array(
@@ -223,6 +265,48 @@ class TestScore(unittest.TestCase):
             [0.4418200, 0.5000000, 0.3163389],
             dtype=np.float64)
         expected_desc_order = False
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mew_float32(self):
+        """Test the MEW method with float32 NumPy arrays."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float32)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float32)
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "MEW")
+        expected_s_vector = np.array(
+            [0.0000000, 0.4330127, 0.5000000, 0.4330127, 0.0000000],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mew_nested_list(self):
+        """Test the MEW method with nested lists."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "MEW")
+        expected_s_vector = np.array(
+            [0.0000000, 0.4330127, 0.5000000, 0.4330127, 0.0000000],
+            dtype=np.float64)
+        expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
@@ -387,6 +471,48 @@ class TestScore(unittest.TestCase):
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
 
+    def test_topsis_float32(self):
+        """Test the TOPSIS method with float32 NumPy arrays."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float32)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float32)
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "TOPSIS")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_topsis_nested_list(self):
+        """Test the TOPSIS method with nested lists."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "TOPSIS")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
     def test_topsis_over_exception(self):
         """Test the TOPSIS method with a value greater than 1."""
         z_matrix = np.array(
@@ -529,6 +655,48 @@ class TestScore(unittest.TestCase):
             z_matrix, is_benefit_z, w_vector, "mTOPSIS")
         expected_s_vector = np.array(
             [0.5714286, 0.5000000, 0.4285714],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mtopsis_float32(self):
+        """Test the mTOPSIS method with float32 NumPy arrays."""
+        z_matrix = np.array(
+            [[0.00, 1.00],
+             [0.25, 0.75],
+             [0.50, 0.50],
+             [0.75, 0.25],
+             [1.00, 0.00]],
+            dtype=np.float32)
+        is_benefit_z = [True, True]
+        w_vector = np.array([0.5, 0.5], dtype=np.float32)
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "mTOPSIS")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+            dtype=np.float64)
+        expected_desc_order = True
+        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
+        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
+        self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mtopsis_nested_list(self):
+        """Test the mTOPSIS method with nested lists."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75, 0.25],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        obtained_s_vector, obtained_desc_order = mcdm.score(
+            z_matrix, is_benefit_z, w_vector, "mTOPSIS")
+        expected_s_vector = np.array(
+            [0.5, 0.5, 0.5, 0.5, 0.5],
             dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)

@@ -38,7 +38,7 @@ def em(z_matrix):
     # Make sure that the decision matrix is a float64 NumPy array
     if type(z_matrix) is not np.ndarray:
         z_matrix = np.array(z_matrix, dtype=np.float64)
-    elif z_matrix.dtype is not np.float64:
+    elif z_matrix.dtype is not np.dtype("float64"):
         z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Make sure that the decision matrix is normalized
