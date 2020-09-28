@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-name: coverage
+name: wf01-tests
 
 on:
   push:
@@ -44,11 +44,5 @@ jobs:
       run: pip install --upgrade pip
     - name: Install mcdm
       run: pip install .
-    - name: Install pytest
-      run: pip install pytest
-    - name: Install Coverage.py
-      run: pip install coverage
-    - name: Execute tests with pytest and gather coverage data
-      run: coverage run --rcfile=.coveragerc -m pytest -v mcdm/tests/
-    - name: Report coverage results
-      run: coverage report --rcfile=.coveragerc
+    - name: Execute tests with unittest
+      run: python -m unittest discover mcdm

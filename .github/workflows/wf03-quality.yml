@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-name: tests
+name: wf03-quality
 
 on:
   push:
@@ -42,7 +42,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Upgrade pip
       run: pip install --upgrade pip
-    - name: Install mcdm
-      run: pip install .
-    - name: Execute tests with unittest
-      run: python -m unittest discover mcdm
+    - name: Install Flake8
+      run: pip install flake8
+    - name: Install Bandit
+      run: pip install bandit
+    - name: Check the code quality with Flake8
+      run: flake8 --max-complexity 10 mcdm/ setup.py
+    - name: Check for common security issues with Bandit
+      run: bandit -v -c .banditrc -r mcdm/ setup.py
