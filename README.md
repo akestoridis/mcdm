@@ -186,7 +186,7 @@ In addition, you can use the MEW scoring method, the VIC weighting method, and t
 [('A', 0.596199006150288), ('B', 0.5926510141687035), ('D', 0.5816528401371021), ('C', 0.507066254464828)]
 ```
 
-Finally, you can use the `load` function of the `mcdm` package to load a decision matrix from a text file (e.g., the [example09.tsv](mcdm/tests/data/example09.tsv) file), and then compute the ranking of its alternatives using the MEW scoring method and the VIC weighting method as follows:
+Finally, you can use the `load` function of the `mcdm` package to load a decision matrix from a text file (e.g., the [example09.tsv](https://github.com/akestoridis/mcdm/blob/master/mcdm/tests/data/example09.tsv) file), and then compute the ranking of its alternatives using the MEW scoring method and the VIC weighting method as follows:
 ```
 >>> x_matrix, alt_names = mcdm.load("./mcdm/tests/data/example09.tsv", delimiter="\t", skiprows=1, labeled_rows=True)
 >>> mcdm.rank(x_matrix, alt_names=alt_names, w_method="VIC", s_method="MEW")
