@@ -38,7 +38,14 @@ with open(os.path.join(pkg_dirpath, "__about__.py"), "r") as fp:
 
 long_description = ""
 with open(os.path.join(top_dirpath, "README.md"), "r") as fp:
-    long_description = fp.read()
+    comment_counter = 0
+    for line in fp:
+        if line == "<!-- START OF BADGES -->\n":
+            comment_counter += 1
+        elif line == "<!-- END OF BADGES -->\n":
+            comment_counter -= 1
+        elif comment_counter == 0:
+            long_description += line
 
 getversion_spec = importlib.util.spec_from_file_location(
     "__getversion__", os.path.join(pkg_dirpath, "__getversion__.py"))

@@ -2,6 +2,7 @@
 
 Python implementation of Multiple-Criteria Decision-Making algorithms
 
+<!-- START OF BADGES -->
 ![Status of tests workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/tests?label=tests)
 ![Status of coverage workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/coverage?label=coverage)
 ![Status of quality workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/quality?label=quality)
@@ -9,6 +10,7 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/akestoridis/mcdm/latest)
 ![Python version requirement](https://img.shields.io/badge/python-%3E%3D3.7.3-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+<!-- END OF BADGES -->
 
 
 ## Installation
