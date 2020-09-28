@@ -29,10 +29,7 @@ def normalize(x_matrix, is_benefit_x, n_method):
     # Use the selected normalization method
     if n_method is None:
         # Make sure that the decision matrix is a float64 NumPy array
-        if type(x_matrix) is not np.ndarray:
-            x_matrix = np.array(x_matrix, dtype=np.float64)
-        elif x_matrix.dtype is not np.dtype("float64"):
-            x_matrix = np.array(x_matrix, dtype=np.float64)
+        x_matrix = np.array(x_matrix, dtype=np.float64)
 
         # Sanity check
         if len(is_benefit_x) != x_matrix.shape[1]:

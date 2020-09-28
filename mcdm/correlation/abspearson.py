@@ -31,9 +31,6 @@ def abspearson(z_matrix):
         pp. 59--66, 1988. DOI: 10.2307/2685263.
     """
     # Make sure that the matrix is a float64 NumPy array
-    if type(z_matrix) is not np.ndarray:
-        z_matrix = np.array(z_matrix, dtype=np.float64)
-    elif z_matrix.dtype is not np.dtype("float64"):
-        z_matrix = np.array(z_matrix, dtype=np.float64)
+    z_matrix = np.array(z_matrix, dtype=np.float64)
 
     return np.absolute(np.corrcoef(z_matrix, rowvar=False))

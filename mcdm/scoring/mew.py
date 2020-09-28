@@ -32,16 +32,10 @@ def mew(z_matrix, w_vector, is_benefit_z):
         pp. 507--529, 1998. DOI: 10.1016/S0377-2217(97)00147-1.
     """
     # Make sure that the decision matrix is a float64 NumPy array
-    if type(z_matrix) is not np.ndarray:
-        z_matrix = np.array(z_matrix, dtype=np.float64)
-    elif z_matrix.dtype is not np.dtype("float64"):
-        z_matrix = np.array(z_matrix, dtype=np.float64)
+    z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Make sure that the weight vector is a float64 NumPy array
-    if type(w_vector) is not np.ndarray:
-        w_vector = np.array(w_vector, dtype=np.float64)
-    elif w_vector.dtype is not np.dtype("float64"):
-        w_vector = np.array(w_vector, dtype=np.float64)
+    w_vector = np.array(w_vector, dtype=np.float64)
 
     # Sanity checks
     if (np.sum(np.less(z_matrix, 0.0)) > 0

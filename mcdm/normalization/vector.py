@@ -35,10 +35,7 @@ def vector(x_matrix, is_benefit_x):
         vol. 45, no. 7--8, pp. 801--813, 2007. DOI: 10.1016/j.mcm.2006.03.023.
     """
     # Make sure that the decision matrix is a float64 NumPy array
-    if type(x_matrix) is not np.ndarray:
-        x_matrix = np.array(x_matrix, dtype=np.float64)
-    elif x_matrix.dtype is not np.dtype("float64"):
-        x_matrix = np.array(x_matrix, dtype=np.float64)
+    x_matrix = np.array(x_matrix, dtype=np.float64)
 
     # Sanity check
     if len(is_benefit_x) != x_matrix.shape[1]:

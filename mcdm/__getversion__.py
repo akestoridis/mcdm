@@ -31,6 +31,15 @@ import subprocess
 def getversion(pkg_dirpath):
     version_filepath = os.path.join(pkg_dirpath, "VERSION.txt")
     git_dirpath = os.path.join(os.path.dirname(pkg_dirpath), ".git")
+
+    version = getversion_git(version_filepath, git_dirpath)
+    if version is None:
+        version = getversion_file(version_filepath)
+
+    return version
+
+
+def getversion_git(version_filepath, git_dirpath):
     try:
         cmd = "git --git-dir {} describe --tags".format(git_dirpath)
         cp = subprocess.run(
@@ -62,6 +71,10 @@ def getversion(pkg_dirpath):
     except Exception:
         pass
 
+    return None
+
+
+def getversion_file(version_filepath):
     if os.path.isfile(version_filepath):
         with open(version_filepath, "r") as fp:
             match = re.search(

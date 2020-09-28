@@ -34,10 +34,7 @@ def dcor(z_matrix):
         DOI: 10.1214/09-AOAS312.
     """
     # Make sure that the matrix is a float64 NumPy array
-    if type(z_matrix) is not np.ndarray:
-        z_matrix = np.array(z_matrix, dtype=np.float64)
-    elif z_matrix.dtype is not np.dtype("float64"):
-        z_matrix = np.array(z_matrix, dtype=np.float64)
+    z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Initialize the matrix for the distance correlation coefficients
     dcor_matrix = np.ones((z_matrix.shape[1], z_matrix.shape[1]),
