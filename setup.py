@@ -34,7 +34,7 @@ pkg_dirpath = os.path.join(top_dirpath, "mcdm")
 
 about = {}
 with open(os.path.join(pkg_dirpath, "__about__.py"), "r") as fp:
-    exec(fp.read(), about)
+    exec(fp.read(), about)  # nosec
 
 long_description = ""
 with open(os.path.join(top_dirpath, "README.md"), "r") as fp:

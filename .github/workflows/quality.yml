@@ -44,5 +44,9 @@ jobs:
       run: pip install --upgrade pip
     - name: Install Flake8
       run: pip install flake8
+    - name: Install Bandit
+      run: pip install bandit
     - name: Check the code quality with Flake8
       run: flake8 --max-complexity 10 mcdm/ setup.py
+    - name: Check for common security issues with Bandit
+      run: bandit -v -c .banditrc -r mcdm/ setup.py

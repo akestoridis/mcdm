@@ -68,7 +68,7 @@ def getversion_git(version_filepath, git_dirpath):
                 with open(version_filepath, "w") as fp:
                     fp.write("{}\n".format(version))
                 return version
-    except Exception:
+    except Exception:  # nosec
         pass
 
     return None
