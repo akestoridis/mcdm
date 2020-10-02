@@ -23,11 +23,11 @@ $ pip3 install mcdm
 Alternatively, you can install the latest version of the `mcdm` package from its GitHub repository:
 ```
 $ git clone https://github.com/akestoridis/mcdm
-$ cd mcdm
+$ cd mcdm/
 $ pip3 install .
 ```
 
-You can run all the tests of the `mcdm` package with the following command:
+You can execute all the tests of the `mcdm` package with the following command:
 ```
 $ python3 -m unittest discover mcdm
 ```
