@@ -52,3 +52,51 @@ jobs:
       run: coverage run --rcfile=.coveragerc -m pytest -v mcdm/tests/
     - name: Report coverage results
       run: coverage report --rcfile=.coveragerc
+  macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+    steps:
+    - name: Check out mcdm
+      uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Upgrade pip
+      run: pip install --upgrade pip
+    - name: Install mcdm
+      run: pip install .
+    - name: Install pytest
+      run: pip install pytest
+    - name: Install Coverage.py
+      run: pip install coverage
+    - name: Execute tests with pytest and gather coverage data
+      run: coverage run --rcfile=.coveragerc -m pytest -v mcdm/tests/
+    - name: Report coverage results
+      run: coverage report --rcfile=.coveragerc
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+    steps:
+    - name: Check out mcdm
+      uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Upgrade pip
+      run: pip install --upgrade pip
+    - name: Install mcdm
+      run: pip install .
+    - name: Install pytest
+      run: pip install pytest
+    - name: Install Coverage.py
+      run: pip install coverage
+    - name: Execute tests with pytest and gather coverage data
+      run: coverage run --rcfile=.coveragerc -m pytest -v mcdm\tests\
+    - name: Report coverage results
+      run: coverage report --rcfile=.coveragerc
