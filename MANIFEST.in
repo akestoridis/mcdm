@@ -1,6 +1,10 @@
+include .banditrc
+include .coveragerc
+include .gitattributes
 include LICENSE.txt
 include MANIFEST.in
 include README.md
 include mcdm/VERSION.txt
 include requirements.txt
+recursive-include .github/workflows *
 recursive-include mcdm/tests/data *
