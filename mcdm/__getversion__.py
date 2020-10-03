@@ -41,8 +41,14 @@ def getversion(pkg_dirpath):
 
 def getversion_git(version_filepath, git_dirpath):
     try:
-        cmd = "git --git-dir {} describe --tags".format(git_dirpath)
-        cp = subprocess.run(cmd.split(), capture_output=True)
+        args = [
+            "git",
+            "--git-dir",
+            git_dirpath,
+            "describe",
+            "--tags",
+        ]
+        cp = subprocess.run(args, capture_output=True)
         if cp.returncode == 0:
             match = re.search(
                 r"^v([0-9]+\.[0-9]+)(\-[0-9]+\-g[0-9a-f]{7})?$",
@@ -57,8 +63,15 @@ def getversion_git(version_filepath, git_dirpath):
                     fp.write("{}\n".format(version))
                 return version
 
-        cmd = "git --git-dir {} rev-parse --short HEAD".format(git_dirpath)
-        cp = subprocess.run(cmd.split(), capture_output=True)
+        args = [
+            "git",
+            "--git-dir",
+            git_dirpath,
+            "rev-parse",
+            "--short",
+            "HEAD",
+        ]
+        cp = subprocess.run(args, capture_output=True)
         if cp.returncode == 0:
             match = re.search(r"^[0-9a-f]{7}$", cp.stdout.decode().rstrip())
             if match:

@@ -22,7 +22,7 @@ $ pip3 install mcdm
 
 Alternatively, you can install the latest version of the `mcdm` package from its GitHub repository:
 ```
-$ git clone https://github.com/akestoridis/mcdm
+$ git clone https://github.com/akestoridis/mcdm.git
 $ cd mcdm/
 $ pip3 install .
 ```
