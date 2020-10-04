@@ -22,4 +22,4 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Abort the creation of commits that cause test failures
-python3 -m unittest discover mcdm
+python3 -m unittest discover

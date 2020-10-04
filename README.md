@@ -27,11 +27,6 @@ $ cd mcdm/
 $ pip3 install .
 ```
 
-You can execute all the tests of the `mcdm` package with the following command:
-```
-$ python3 -m unittest discover mcdm
-```
-
 
 ## Features
 

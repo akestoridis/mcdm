@@ -45,7 +45,7 @@ jobs:
     - name: Install mcdm
       run: pip install .
     - name: Execute tests with unittest
-      run: python -m unittest discover mcdm
+      run: python -m unittest discover
   macos:
     runs-on: macos-latest
     strategy:
@@ -63,7 +63,7 @@ jobs:
     - name: Install mcdm
       run: pip install .
     - name: Execute tests with unittest
-      run: python -m unittest discover mcdm
+      run: python -m unittest discover
   windows:
     runs-on: windows-latest
     strategy:
@@ -81,4 +81,4 @@ jobs:
     - name: Install mcdm
       run: pip install .
     - name: Execute tests with unittest
-      run: python -m unittest discover mcdm
+      run: python -m unittest discover
