@@ -745,6 +745,19 @@ class TestRank(unittest.TestCase):
             self.assertEqual(tmp[0], expected_ranking[i][0])
             self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
+    def test_rank_missing_element_exception(self):
+        """Test the rank function with a missing element."""
+        x_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75],
+            [1.00, 0.00],
+        ]
+        alt_names = ["A", "B", "C", "D", "E", "F"]
+        self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
+                          is_benefit_x=[True, True])
+
     def test_rank_alt_names_exception(self):
         """Test the rank function with an invalid list of names."""
         x_matrix = [

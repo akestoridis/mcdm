@@ -120,6 +120,19 @@ class TestCorrelate(unittest.TestCase):
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
 
+    def test_pearson_missing_element_exception(self):
+        """Test the Pearson method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.correlate, z_matrix, "Pearson")
+
     def test_abspearson_linear(self):
         """Test the AbsPearson method with a linear association."""
         z_matrix = np.array(
@@ -212,6 +225,19 @@ class TestCorrelate(unittest.TestCase):
                                    expected_corr_matrix)
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
+
+    def test_abspearson_missing_element_exception(self):
+        """Test the AbsPearson method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.correlate, z_matrix, "AbsPearson")
 
     def test_dcor_linear(self):
         """Test the dCor method with a linear association."""
@@ -321,6 +347,19 @@ class TestCorrelate(unittest.TestCase):
                                    expected_corr_matrix)
         self.assertEqual(obtained_corr_matrix.dtype,
                          expected_corr_matrix.dtype)
+
+    def test_dcor_missing_element_exception(self):
+        """Test the dCor method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.correlate, z_matrix, "dCor")
 
     def test_unknown_correlate_exception(self):
         """Test the selection of an unknown correlation method."""

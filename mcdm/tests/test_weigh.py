@@ -104,6 +104,19 @@ class TestWeigh(unittest.TestCase):
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
+    def test_mw_missing_element_exception(self):
+        """Test the MW method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "MW")
+
     def test_mw_over_exception(self):
         """Test the MW method with a value greater than 1."""
         z_matrix = np.array(
@@ -206,6 +219,19 @@ class TestWeigh(unittest.TestCase):
             dtype=np.float64)
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_em_missing_element_exception(self):
+        """Test the EM method with a missing element."""
+        z_matrix = [
+            [0.000, 0.000, 0.333],
+            [0.033, 0.050, 0.267],
+            [0.067, 0.100, 0.200],
+            [0.100, 0.175, 0.100],
+            [0.200, 0.200, 0.067],
+            [0.267, 0.225],
+            [0.333, 0.250, 0.000],
+        ]
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "EM")
 
     def test_em_over_exception(self):
         """Test the EM method with a value greater than 1."""
@@ -322,6 +348,19 @@ class TestWeigh(unittest.TestCase):
             dtype=np.float64)
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_sd_missing_element_exception(self):
+        """Test the SD method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "SD")
 
     def test_sd_over_exception(self):
         """Test the SD method with a value greater than 1."""
@@ -657,6 +696,19 @@ class TestWeigh(unittest.TestCase):
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
+    def test_critic_missing_element_exception(self):
+        """Test the CRITIC method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "CRITIC")
+
     def test_critic_over_exception(self):
         """Test the CRITIC method with a value greater than 1."""
         z_matrix = np.array(
@@ -927,6 +979,19 @@ class TestWeigh(unittest.TestCase):
             dtype=np.float64)
         np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
         self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
+
+    def test_vic_missing_element_exception(self):
+        """Test the VIC method with a missing element."""
+        z_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        self.assertRaises(ValueError, mcdm.weigh, z_matrix, "VIC")
 
     def test_vic_over_exception(self):
         """Test the VIC method with a value greater than 1."""

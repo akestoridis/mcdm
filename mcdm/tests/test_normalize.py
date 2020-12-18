@@ -111,6 +111,21 @@ class TestNormalize(unittest.TestCase):
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
         self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
 
+    def test_none_missing_element_exception(self):
+        """Test a nested list with a missing element."""
+        x_matrix = [
+            [0.0, 0.0, 1.0],
+            [0.1, 0.2, 0.8],
+            [0.2, 0.4, 0.6],
+            [0.3, 0.7, 0.3],
+            [0.6, 0.8, 0.2],
+            [0.8, 0.9],
+            [1.0, 1.0, 0.0],
+        ]
+        is_benefit_x = [True, True, True]
+        self.assertRaises(ValueError, mcdm.normalize,
+            x_matrix, is_benefit_x, None)
+
     def test_none_over_exception(self):
         """Test a decision matrix with a value greater than 1."""
         x_matrix = np.array(
@@ -233,6 +248,20 @@ class TestNormalize(unittest.TestCase):
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
         self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+
+    def test_linear1_missing_element_exception(self):
+        """Test the Linear1 method with a missing element."""
+        x_matrix = [
+            [ 2.0,  12.0, 7.0, 7.0],  # noqa: E201
+            [ 4.0, 100.0, 7.0, 7.0],  # noqa: E201
+            [10.0, 200.0, 7.0, 7.0],  # noqa: E201
+            [ 0.0, 300.0, 7.0, 7.0],  # noqa: E201
+            [ 6.0, 400.0, 7.0],       # noqa: E201
+            [ 1.0, 600.0, 7.0, 7.0],  # noqa: E201
+        ]
+        is_benefit_x = [True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+            x_matrix, is_benefit_x, "Linear1")
 
     def test_linear1_negative_exception(self):
         """Test the Linear1 method with a negative value."""
@@ -368,6 +397,20 @@ class TestNormalize(unittest.TestCase):
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
         self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
 
+    def test_linear2_missing_element_exception(self):
+        """Test the Linear2 method with a missing element."""
+        x_matrix = [
+            [ 8.0,  8.0,  -1.0,  -1.0,   5.0,   5.0],  # noqa: E201
+            [24.0, 24.0, -11.0, -11.0,   0.0,   0.0],  # noqa: E201
+            [ 4.0,  4.0, -10.0, -10.0,  40.0,  40.0],  # noqa: E201
+            [14.0, 14.0,  -9.0,  -9.0,  15.0,  15.0],  # noqa: E201
+            [ 6.0,  6.0,  -7.0,  -7.0,  -5.0],         # noqa: E201
+            [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0],  # noqa: E201
+        ]
+        is_benefit_x = [True, False, True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+            x_matrix, is_benefit_x, "Linear2")
+
     def test_linear2_positive_constant_exception(self):
         """Test the Linear2 method with a positive constant vector."""
         x_matrix = np.array(
@@ -496,6 +539,19 @@ class TestNormalize(unittest.TestCase):
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
         self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
 
+    def test_linear3_missing_element_exception(self):
+        """Test the Linear3 method with a missing element."""
+        x_matrix = [
+            [4.0, 4.0, 7.0, 7.0],
+            [3.0, 3.0, 7.0, 7.0],
+            [2.0, 2.0, 7.0, 7.0],
+            [1.0, 1.0, 7.0],
+            [0.0, 0.0, 7.0, 7.0],
+        ]
+        is_benefit_x = [True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+            x_matrix, is_benefit_x, "Linear3")
+
     def test_linear3_negative_exception(self):
         """Test the Linear3 method with a negative value."""
         x_matrix = np.array(
@@ -600,6 +656,18 @@ class TestNormalize(unittest.TestCase):
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
         self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+
+    def test_vector_missing_element_exception(self):
+        """Test the Vector method with a missing element."""
+        x_matrix = [
+            [0.0, 0.0, 5.0, 5.0],
+            [6.0, 6.0, 5.0, 5.0],
+            [0.0, 0.0, 5.0],
+            [8.0, 8.0, 5.0, 5.0],
+        ]
+        is_benefit_x = [True, False, True, False]
+        self.assertRaises(ValueError, mcdm.normalize,
+            x_matrix, is_benefit_x, "Vector")
 
     def test_vector_negative_exception(self):
         """Test the Vector method with a negative value."""

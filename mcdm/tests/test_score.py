@@ -128,6 +128,20 @@ class TestScore(unittest.TestCase):
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
 
+    def test_saw_missing_element_exception(self):
+        """Test the SAW method with a missing element."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        self.assertRaises(ValueError, mcdm.score,
+            z_matrix, is_benefit_z, w_vector, "SAW")
+
     def test_saw_over_exception(self):
         """Test the SAW method with a value greater than 1."""
         z_matrix = np.array(
@@ -310,6 +324,20 @@ class TestScore(unittest.TestCase):
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mew_missing_element_exception(self):
+        """Test the MEW method with a missing element."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        self.assertRaises(ValueError, mcdm.score,
+            z_matrix, is_benefit_z, w_vector, "MEW")
 
     def test_mew_over_exception(self):
         """Test the MEW method with a value greater than 1."""
@@ -513,6 +541,20 @@ class TestScore(unittest.TestCase):
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
 
+    def test_topsis_missing_element_exception(self):
+        """Test the TOPSIS method with a missing element."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        self.assertRaises(ValueError, mcdm.score,
+            z_matrix, is_benefit_z, w_vector, "TOPSIS")
+
     def test_topsis_over_exception(self):
         """Test the TOPSIS method with a value greater than 1."""
         z_matrix = np.array(
@@ -702,6 +744,20 @@ class TestScore(unittest.TestCase):
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
         self.assertEqual(obtained_desc_order, expected_desc_order)
+
+    def test_mtopsis_missing_element_exception(self):
+        """Test the mTOPSIS method with a missing element."""
+        z_matrix = [
+            [0.00, 1.00],
+            [0.25, 0.75],
+            [0.50, 0.50],
+            [0.75],
+            [1.00, 0.00],
+        ]
+        is_benefit_z = [True, True]
+        w_vector = [0.5, 0.5]
+        self.assertRaises(ValueError, mcdm.score,
+            z_matrix, is_benefit_z, w_vector, "mTOPSIS")
 
     def test_mtopsis_over_exception(self):
         """Test the mTOPSIS method with a value greater than 1."""
