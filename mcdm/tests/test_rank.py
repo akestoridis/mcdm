@@ -755,8 +755,9 @@ class TestRank(unittest.TestCase):
             [1.00, 0.00],
         ]
         alt_names = ["A", "B", "C", "D", "E", "F"]
-        self.assertRaises(ValueError, mcdm.rank, x_matrix, alt_names,
-                          is_benefit_x=[True, True])
+        self.assertRaises(
+            ValueError, mcdm.rank, x_matrix, alt_names,
+            is_benefit_x=[True, True])
 
     def test_rank_alt_names_exception(self):
         """Test the rank function with an invalid list of names."""

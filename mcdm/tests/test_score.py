@@ -139,8 +139,8 @@ class TestScore(unittest.TestCase):
         ]
         is_benefit_z = [True, True]
         w_vector = [0.5, 0.5]
-        self.assertRaises(ValueError, mcdm.score,
-            z_matrix, is_benefit_z, w_vector, "SAW")
+        self.assertRaises(
+            ValueError, mcdm.score, z_matrix, is_benefit_z, w_vector, "SAW")
 
     def test_saw_over_exception(self):
         """Test the SAW method with a value greater than 1."""
@@ -336,8 +336,8 @@ class TestScore(unittest.TestCase):
         ]
         is_benefit_z = [True, True]
         w_vector = [0.5, 0.5]
-        self.assertRaises(ValueError, mcdm.score,
-            z_matrix, is_benefit_z, w_vector, "MEW")
+        self.assertRaises(
+            ValueError, mcdm.score, z_matrix, is_benefit_z, w_vector, "MEW")
 
     def test_mew_over_exception(self):
         """Test the MEW method with a value greater than 1."""
@@ -350,8 +350,8 @@ class TestScore(unittest.TestCase):
             dtype=np.float64)
         is_benefit_z = [True, True]
         w_vector = np.array([0.5, 0.5], dtype=np.float64)
-        self.assertRaises(ValueError, mcdm.score,
-                          z_matrix, is_benefit_z, w_vector, "MEW")
+        self.assertRaises(
+            ValueError, mcdm.score, z_matrix, is_benefit_z, w_vector, "MEW")
 
     def test_mew_under_exception(self):
         """Test the MEW method with a value less than 0."""
@@ -552,8 +552,9 @@ class TestScore(unittest.TestCase):
         ]
         is_benefit_z = [True, True]
         w_vector = [0.5, 0.5]
-        self.assertRaises(ValueError, mcdm.score,
-            z_matrix, is_benefit_z, w_vector, "TOPSIS")
+        self.assertRaises(
+            ValueError, mcdm.score, z_matrix, is_benefit_z, w_vector,
+            "TOPSIS")
 
     def test_topsis_over_exception(self):
         """Test the TOPSIS method with a value greater than 1."""
@@ -756,8 +757,9 @@ class TestScore(unittest.TestCase):
         ]
         is_benefit_z = [True, True]
         w_vector = [0.5, 0.5]
-        self.assertRaises(ValueError, mcdm.score,
-            z_matrix, is_benefit_z, w_vector, "mTOPSIS")
+        self.assertRaises(
+            ValueError, mcdm.score, z_matrix, is_benefit_z, w_vector,
+            "mTOPSIS")
 
     def test_mtopsis_over_exception(self):
         """Test the mTOPSIS method with a value greater than 1."""

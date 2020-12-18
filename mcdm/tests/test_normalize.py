@@ -123,8 +123,8 @@ class TestNormalize(unittest.TestCase):
             [1.0, 1.0, 0.0],
         ]
         is_benefit_x = [True, True, True]
-        self.assertRaises(ValueError, mcdm.normalize,
-            x_matrix, is_benefit_x, None)
+        self.assertRaises(
+            ValueError, mcdm.normalize, x_matrix, is_benefit_x, None)
 
     def test_none_over_exception(self):
         """Test a decision matrix with a value greater than 1."""
@@ -260,8 +260,8 @@ class TestNormalize(unittest.TestCase):
             [ 1.0, 600.0, 7.0, 7.0],  # noqa: E201
         ]
         is_benefit_x = [True, False, True, False]
-        self.assertRaises(ValueError, mcdm.normalize,
-            x_matrix, is_benefit_x, "Linear1")
+        self.assertRaises(
+            ValueError, mcdm.normalize, x_matrix, is_benefit_x, "Linear1")
 
     def test_linear1_negative_exception(self):
         """Test the Linear1 method with a negative value."""
@@ -408,8 +408,8 @@ class TestNormalize(unittest.TestCase):
             [18.0, 18.0,  -5.0,  -5.0, -10.0, -10.0],  # noqa: E201
         ]
         is_benefit_x = [True, False, True, False, True, False]
-        self.assertRaises(ValueError, mcdm.normalize,
-            x_matrix, is_benefit_x, "Linear2")
+        self.assertRaises(
+            ValueError, mcdm.normalize, x_matrix, is_benefit_x, "Linear2")
 
     def test_linear2_positive_constant_exception(self):
         """Test the Linear2 method with a positive constant vector."""
@@ -549,8 +549,8 @@ class TestNormalize(unittest.TestCase):
             [0.0, 0.0, 7.0, 7.0],
         ]
         is_benefit_x = [True, False, True, False]
-        self.assertRaises(ValueError, mcdm.normalize,
-            x_matrix, is_benefit_x, "Linear3")
+        self.assertRaises(
+            ValueError, mcdm.normalize, x_matrix, is_benefit_x, "Linear3")
 
     def test_linear3_negative_exception(self):
         """Test the Linear3 method with a negative value."""
@@ -666,8 +666,8 @@ class TestNormalize(unittest.TestCase):
             [8.0, 8.0, 5.0, 5.0],
         ]
         is_benefit_x = [True, False, True, False]
-        self.assertRaises(ValueError, mcdm.normalize,
-            x_matrix, is_benefit_x, "Vector")
+        self.assertRaises(
+            ValueError, mcdm.normalize, x_matrix, is_benefit_x, "Vector")
 
     def test_vector_negative_exception(self):
         """Test the Vector method with a negative value."""
