@@ -49,6 +49,7 @@ __classifiers__ = [
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
 ]
 __install_requires__ = [
     "numpy>=1.19.4, <2",
