@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,24 +19,29 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the VIC weighting method.
+
+For more information, see the following publication:
+  * D.-G. Akestoridis and E. Papapetrou, "A framework for the evaluation of
+    routing protocols in opportunistic networks," Computer Communications,
+    vol. 145, pp. 14--28, 2019. DOI: 10.1016/j.comcom.2019.06.003.
+"""
+
 import numpy as np
 
-from mcdm.correlate import correlate
+from ..helper_correlation import correlate
 
 
 def vic(z_matrix, c_method="dCor"):
-    """Python implementation of the VIC weighting method.
-
-    For more information, see the following publication:
-      * D.-G. Akestoridis and E. Papapetrou, "A framework for the evaluation
-        of routing protocols in opportunistic networks," Computer
-        Communications, vol. 145, pp. 14--28, 2019.
-        DOI: 10.1016/j.comcom.2019.06.003.
     """
-    # Make sure that the decision matrix is a float64 NumPy array
+    Return the weight vector of the provided decision matrix using the
+    Variability and Interdependencies of Criteria method.
+    """
+    # Make sure that the provided decision matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    # Make sure that the decision matrix is normalized
+    # Make sure that the provided decision matrix is normalized
     if (np.sum(np.less(z_matrix, 0.0)) > 0
             or np.sum(np.greater(z_matrix, 1.0)) > 0):
         raise ValueError("The decision matrix must be normalized "
@@ -54,7 +59,7 @@ def vic(z_matrix, c_method="dCor"):
         raise ValueError("The VIC weighting method is not compatible "
                          "with the {} correlation method"
                          "".format(c_method))
-    elif c_method.upper() not in {"ABSPEARSON", "DCOR"}:
+    if c_method.upper() not in {"ABSPEARSON", "DCOR"}:
         raise ValueError("Unknown compatibility of the VIC weighting "
                          "method with the {} correlation method"
                          "".format(c_method))

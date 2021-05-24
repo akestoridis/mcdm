@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,16 +19,23 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Helper module for the normalization methods of the `mcdm` package.
+"""
+
 import numpy as np
 
 from . import normalization
 
 
 def normalize(x_matrix, is_benefit_x, n_method):
-    """Normalize a decision matrix using the selected normalization method."""
+    """
+    Return the normalized version of the provided matrix using the selected
+    normalization method.
+    """
     # Use the selected normalization method
     if n_method is None:
-        # Make sure that the decision matrix is a float64 NumPy array
+        # Make sure that the provided matrix is a float64 NumPy array
         x_matrix = np.array(x_matrix, dtype=np.float64)
 
         # Sanity check
@@ -36,15 +43,14 @@ def normalize(x_matrix, is_benefit_x, n_method):
             raise ValueError("The number of variables in the list that "
                              "determines whether each criterion is a benefit "
                              "or a cost criterion does not match the number "
-                             "of columns in the decision matrix")
+                             "of columns in the provided matrix")
 
-        # Make sure that the decision matrix is already normalized
+        # Make sure that the provided matrix is already normalized
         if (np.sum(np.less(x_matrix, 0.0)) > 0
                 or np.sum(np.greater(x_matrix, 1.0)) > 0):
-            raise ValueError("The decision matrix is not normalized such "
+            raise ValueError("The provided matrix is not normalized such "
                              "that each element is between 0 and 1")
-        else:
-            return np.copy(x_matrix), is_benefit_x.copy()
+        return np.copy(x_matrix), is_benefit_x.copy()
     elif n_method.upper() == "LINEAR1":
         return normalization.linear1(x_matrix, is_benefit_x)
     elif n_method.upper() == "LINEAR2":

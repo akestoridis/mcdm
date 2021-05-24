@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,40 +19,42 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Main module for the `mcdm` package.
+"""
+
+import csv
 import numpy as np
 
-from .normalize import normalize
-from .score import score
-from .weigh import weigh
+from .helper_normalization import normalize
+from .helper_scoring import score
+from .helper_weighting import weigh
 
 
 def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
          w_vector=None, c_method=None, w_method="MW", s_method="SAW"):
-    """Rank a decision matrix using the selected methods."""
-    # Make sure that the decision matrix is a float64 NumPy array
+    """
+    Return the ranking of the provided alternatives, in descending order,
+    using the selected methods.
+    """
+    # Make sure that the provided decision matrix is a float64 NumPy array
     x_matrix = np.array(x_matrix, dtype=np.float64)
 
-    # Create a list of names for the alternatives, if none were given
+    # Create a list of names for the alternatives, if none was provided
     if alt_names is None:
         alt_names = ["a" + str(i + 1) for i in range(x_matrix.shape[0])]
 
     # Sanity check
     if len(alt_names) != x_matrix.shape[0]:
-        raise ValueError("The number of names for the alternatives does not "
-                         "match the number of rows in the decision matrix")
+        raise ValueError("The number of names for the provided alternatives "
+                         "does not match the number of rows in the provided "
+                         "decision matrix")
 
     # If not specified, consider all criteria as benefit criteria
     if is_benefit_x is None:
         is_benefit_x = [True for _ in range(x_matrix.shape[1])]
 
-    # Sanity check
-    if len(is_benefit_x) != x_matrix.shape[1]:
-        raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit "
-                         "or a cost criterion does not match the number "
-                         "of columns in the decision matrix")
-
-    # Normalize the decision matrix using the selected method
+    # Normalize the provided decision matrix using the selected method
     z_matrix, is_benefit_z = normalize(x_matrix, is_benefit_x, n_method)
 
     # Determine the weight of each criterion
@@ -60,15 +62,15 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
         # Weigh each criterion using the selected methods
         w_vector = weigh(z_matrix, w_method, c_method)
     else:
-        # Make sure that the weight vector is a float64 NumPy array
+        # Make sure that the provided weight vector is a float64 NumPy array
         w_vector = np.array(w_vector, dtype=np.float64)
 
         # Sanity checks
         if w_vector.shape != (x_matrix.shape[1],):
-            raise ValueError("The shape of the weight vector is not "
+            raise ValueError("The shape of the provided weight vector is not "
                              "appropriate for the number of columns in the "
-                             "decision matrix")
-        elif not np.isclose(np.sum(w_vector), 1.0):
+                             "provided decision matrix")
+        if not np.isclose(np.sum(w_vector), 1.0):
             raise ValueError("The weight vector's elements must sum to 1")
 
     # Score each alternative using the selected method
@@ -87,3 +89,47 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
         ranking.append((alt_names[r_indices[i]], s_vector[r_indices[i]]))
 
     return ranking
+
+
+def load(filepath, delimiter=",", skiprows=0, labeled_rows=False):
+    """
+    Return a matrix, and potentially row labels, from a text file.
+    """
+    matrix = None
+    row_labels = None
+    if labeled_rows:
+        # Separate the row labels from the matrix data
+        row_labels = []
+        matrix_data = []
+        num_columns = None
+        with open(filepath, "r") as fp:
+            rows = csv.reader(fp, delimiter=delimiter)
+            for i, row in enumerate(rows, start=1):
+                # Skip the selected number of rows
+                if i <= skiprows:
+                    continue
+
+                # Determine the expected number of columns
+                if num_columns is None:
+                    num_columns = len(row) - 1
+
+                # Sanity checks
+                if len(row) <= 1:
+                    raise ValueError("The matrix should have at "
+                                     "least 1 column with data")
+                if len(row) - 1 != num_columns:
+                    raise ValueError("Wrong number of columns at "
+                                     "line {}".format(i))
+
+                # The row labels are expected to be
+                # in the first column of the text file
+                row_labels.append(row[0])
+                matrix_data.append(row[1:])
+        # Convert the matrix data into a float64 NumPy array
+        matrix = np.array(matrix_data, dtype=np.float64)
+    else:
+        # Load the matrix from the text file as a float64 NumPy array
+        matrix = np.loadtxt(filepath, dtype=np.float64, delimiter=delimiter,
+                            skiprows=skiprows)
+
+    return matrix, row_labels

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,21 +19,26 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the dCor correlation method.
+
+For more information, see the following publications:
+  * G. J. Székely, M. L. Rizzo, and N. K. Bakirov, "Measuring and testing
+    dependence by correlation of distances," The Annals of Statistics,
+    vol. 35, no. 6, pp. 2769--2794, 2007. DOI: 10.1214/009053607000000505.
+  * G. J. Székely and M. L. Rizzo, "Brownian distance covariance," The Annals
+    of Applied Statistics, vol. 3, no. 4, pp. 1236--1265, 2009.
+    DOI: 10.1214/09-AOAS312.
+"""
+
 import numpy as np
 
 
 def dcor(z_matrix):
-    """Python implementation of the dCor correlation method.
-
-    For more information, see the following publications:
-      * G. J. Székely, M. L. Rizzo, and N. K. Bakirov, "Measuring and testing
-        dependence by correlation of distances," The Annals of Statistics,
-        vol. 35, no. 6, pp. 2769--2794, 2007. DOI: 10.1214/009053607000000505.
-      * G. J. Székely and M. L. Rizzo, "Brownian distance covariance,"
-        The Annals of Applied Statistics, vol. 3, no. 4, pp. 1236--1265, 2009.
-        DOI: 10.1214/09-AOAS312.
     """
-    # Make sure that the matrix is a float64 NumPy array
+    Return the distance correlation coefficients of the provided matrix.
+    """
+    # Make sure that the provided matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Initialize the matrix for the distance correlation coefficients
@@ -72,6 +77,10 @@ def dcor(z_matrix):
 
 
 def squared_dcov_matrix(z_matrix):
+    """
+    Return the matrix of squared distance covariance between the columns of
+    the provided matrix.
+    """
     # Initialize the distance covariance matrix
     dcov2_matrix = np.zeros((z_matrix.shape[1], z_matrix.shape[1]),
                             dtype=np.float64)
@@ -102,6 +111,9 @@ def squared_dcov_matrix(z_matrix):
 
 
 def dist_matrix(z_vector):
+    """
+    Return the Euclidean distance matrix of the provided vector.
+    """
     # Initialize the Euclidean distance matrix
     dmatrix = np.zeros((z_vector.shape[0], z_vector.shape[0]),
                        dtype=np.float64)
@@ -117,6 +129,9 @@ def dist_matrix(z_vector):
 
 
 def lin_func(dmatrix):
+    """
+    Return the result of the linear function for the provided distance matrix.
+    """
     return (dmatrix
             - np.mean(dmatrix, axis=0)
             - np.reshape(np.mean(dmatrix, axis=1), (dmatrix.shape[0], 1))
@@ -124,8 +139,14 @@ def lin_func(dmatrix):
 
 
 def squared_dcov(j_func, l_func):
+    """
+    Return the squared distance covariance between the corresponding columns.
+    """
     return np.sum(np.multiply(j_func, l_func)) / (j_func.shape[0] ** 2)
 
 
 def squared_dcor(jl_dcov2, j_dvar2, l_dvar2):
+    """
+    Return the squared distance correlation between the corresponding columns.
+    """
     return jl_dcov2 / np.sqrt(j_dvar2 * l_dvar2)

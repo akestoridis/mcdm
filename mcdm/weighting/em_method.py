@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,26 +19,30 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the EM weighting method.
+
+For more information, see the following publications:
+  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
+    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
+  * H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using
+    modified TOPSIS with objective weights," Computers & Operations Research,
+    vol. 27, no. 10, pp. 963--973, 2000. DOI: 10.1016/S0305-0548(99)00069-6.
+"""
+
 import numpy as np
 
 
 def em(z_matrix):
-    """Python implementation of the EM weighting method.
-
-    For more information, see the following publications:
-      * C.-L. Hwang and K. Yoon, Multiple attribute decision making,
-        ser. Lecture Notes in Economics and Mathematical Systems.
-        Springer-Verlag Berlin Heidelberg, 1981, vol. 186,
-        ISBN: 9783540105589.
-      * H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using
-        modified TOPSIS with objective weights," Computers & Operations
-        Research, vol. 27, no. 10, pp. 963--973, 2000.
-        DOI: 10.1016/S0305-0548(99)00069-6.
     """
-    # Make sure that the decision matrix is a float64 NumPy array
+    Return the weight vector of the provided decision matrix using the Entropy
+    Measure method.
+    """
+    # Make sure that the provided decision matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    # Make sure that the decision matrix is normalized
+    # Make sure that the provided decision matrix is normalized
     if (np.sum(np.less(z_matrix, 0.0)) > 0
             or np.sum(np.greater(z_matrix, 1.0)) > 0):
         raise ValueError("The decision matrix must be normalized "

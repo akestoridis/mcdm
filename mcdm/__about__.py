@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Metadata for the mcdm package
+Metadata module for the `mcdm` package.
 """
 
 __title__ = "mcdm"
@@ -30,7 +30,7 @@ __description__ = (
     "Python implementation of Multiple-Criteria Decision-Making algorithms"
 )
 __license__ = "MIT"
-__copyright__ = "Copyright (c) 2020 Dimitrios-Georgios Akestoridis"
+__copyright__ = "Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis"
 __url__ = "https://github.com/akestoridis/mcdm"
 __keywords__ = [
     "multiple-criteria decision-making",

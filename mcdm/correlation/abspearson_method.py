@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,18 +19,24 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the AbsPearson correlation method.
+
+For more information, see the following publication:
+  * J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the
+    correlation coefficient," The American Statistician, vol. 42, no. 1,
+    pp. 59--66, 1988. DOI: 10.2307/2685263.
+"""
+
 import numpy as np
 
 
-def pearson(z_matrix):
-    """Python implementation of the Pearson correlation method.
-
-    For more information, see the following publication:
-      * J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the
-        correlation coefficient," The American Statistician, vol. 42, no. 1,
-        pp. 59--66, 1988. DOI: 10.2307/2685263.
+def abspearson(z_matrix):
     """
-    # Make sure that the matrix is a float64 NumPy array
+    Return the absolute value of the Pearson correlation coefficients of the
+    provided matrix.
+    """
+    # Make sure that the provided matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    return np.corrcoef(z_matrix, rowvar=False)
+    return np.absolute(np.corrcoef(z_matrix, rowvar=False))

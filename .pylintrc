@@ -1,0 +1,33 @@
+[MASTER]
+persistent=no
+
+[MESSAGES CONTROL]
+enable=all
+disable=locally-disabled,
+        suppressed-message,
+        no-else-return,
+        too-many-arguments,
+        exec-used
+
+[BASIC]
+module-rgx=^[a-z_][a-z0-9_]+$
+function-rgx=^[a-z_][a-z0-9_]+$
+method-rgx=^[a-z_][a-z0-9_]+$
+class-rgx=^[A-Z_][a-zA-Z0-9]+$
+variable-rgx=^[a-z_][a-z0-9_]*$
+argument-rgx=^[a-z_][a-z0-9_]*$
+attr-rgx=^[a-z_][a-z0-9_]*$
+class-attribute-rgx=^[a-z_][a-z0-9_]*$
+inlinevar-rgx=^[a-z_][a-z0-9_]*$
+const-rgx=^(([A-Z_][A-Z0-9_]*)|(__[a-zA-Z0-9_]*__))$
+class-const-rgx=^(([A-Z_][A-Z0-9_]*)|(__[a-zA-Z0-9_]*__))$
+bad-names=l,O,I
+
+[FORMAT]
+expected-line-ending-format=LF
+
+[STRING]
+check-str-concat-over-line-jumps=yes
+
+[VARIABLES]
+dummy-variables-rgx=^_.*$

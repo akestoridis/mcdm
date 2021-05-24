@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,13 +20,13 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of normalization methods
+Python implementation of normalization methods.
 """
 
-from .linear1 import linear1
-from .linear2 import linear2
-from .linear3 import linear3
-from .vector import vector
+from .linear1_method import linear1
+from .linear2_method import linear2
+from .linear3_method import linear3
+from .vector_method import vector
 
 
 __all__ = ["linear1", "linear2", "linear3", "vector"]

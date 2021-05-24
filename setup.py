@@ -1,4 +1,6 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+#!/usr/bin/env python3
+
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,54 +22,63 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Setup script for the mcdm package
+Setup script for the `mcdm` package.
 """
 
 import importlib
 import os
-import setuptools
 import sys
 
+import setuptools
 
-top_dirpath = os.path.dirname(os.path.abspath(__file__))
-pkg_dirpath = os.path.join(top_dirpath, "mcdm")
 
-about = {}
-with open(os.path.join(pkg_dirpath, "__about__.py"), "r") as fp:
-    exec(fp.read(), about)  # nosec
+def setup():
+    """
+    Customize the setup process of the mcdm package.
+    """
+    top_dirpath = os.path.dirname(os.path.abspath(__file__))
+    pkg_dirpath = os.path.join(top_dirpath, "mcdm")
 
-long_description = ""
-with open(os.path.join(top_dirpath, "README.md"), "r") as fp:
-    comment_counter = 0
-    for line in fp:
-        if line == "<!-- START OF BADGES -->\n":
-            comment_counter += 1
-        elif line == "<!-- END OF BADGES -->\n":
-            comment_counter -= 1
-        elif comment_counter == 0:
-            long_description += line
+    about = {}
+    with open(os.path.join(pkg_dirpath, "__about__.py"), "r") as fp:
+        exec(fp.read(), about)  # nosec
 
-getversion_spec = importlib.util.spec_from_file_location(
-    "__getversion__", os.path.join(pkg_dirpath, "__getversion__.py"))
-getversion_module = importlib.util.module_from_spec(getversion_spec)
-sys.modules["__getversion__"] = getversion_module
-getversion_spec.loader.exec_module(getversion_module)
+    long_description = ""
+    with open(os.path.join(top_dirpath, "README.md"), "r") as fp:
+        comment_counter = 0
+        for line in fp:
+            if line == "<!-- START OF BADGES -->\n":
+                comment_counter += 1
+            elif line == "<!-- END OF BADGES -->\n":
+                comment_counter -= 1
+            elif comment_counter == 0:
+                long_description += line
 
-setuptools.setup(
-    name=about["__title__"],
-    version=getversion_module.getversion(pkg_dirpath),
-    author=about["__author__"],
-    author_email=about["__author_email__"],
-    description=about["__description__"],
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    license=about["__license__"],
-    url=about["__url__"],
-    keywords=about["__keywords__"],
-    classifiers=about["__classifiers__"],
-    install_requires=about["__install_requires__"],
-    python_requires=about["__python_requires__"],
-    include_package_data=True,
-    zip_safe=False,
-    packages=setuptools.find_packages()
-)
+    getversion_spec = importlib.util.spec_from_file_location(
+        "__getversion__", os.path.join(pkg_dirpath, "__getversion__.py"))
+    getversion_module = importlib.util.module_from_spec(getversion_spec)
+    sys.modules["__getversion__"] = getversion_module
+    getversion_spec.loader.exec_module(getversion_module)
+
+    setuptools.setup(
+        name=about["__title__"],
+        version=getversion_module.getversion(pkg_dirpath),
+        author=about["__author__"],
+        author_email=about["__author_email__"],
+        description=about["__description__"],
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        license=about["__license__"],
+        url=about["__url__"],
+        keywords=about["__keywords__"],
+        classifiers=about["__classifiers__"],
+        install_requires=about["__install_requires__"],
+        python_requires=about["__python_requires__"],
+        include_package_data=True,
+        zip_safe=False,
+        packages=setuptools.find_packages()
+    )
+
+
+if __name__ == "__main__":
+    setup()

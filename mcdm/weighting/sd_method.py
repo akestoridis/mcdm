@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,22 +19,28 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the SD weighting method.
+
+For more information, see the following publication:
+  * D. Diakoulaki, G. Mavrotas, and L. Papayannakis, "Determining objective
+    weights in multiple criteria problems: The CRITIC method," Computers &
+    Operations Research, vol. 22, no. 7, pp. 763--770, 1995.
+    DOI: 10.1016/0305-0548(94)00059-H.
+"""
+
 import numpy as np
 
 
 def sd(z_matrix):
-    """Python implementation of the SD weighting method.
-
-    For more information, see the following publication:
-      * D. Diakoulaki, G. Mavrotas, and L. Papayannakis, "Determining
-        objective weights in multiple criteria problems: The CRITIC method,"
-        Computers & Operations Research, vol. 22, no. 7, pp. 763--770, 1995.
-        DOI: 10.1016/0305-0548(94)00059-H.
     """
-    # Make sure that the decision matrix is a float64 NumPy array
+    Return the weight vector of the provided decision matrix using the
+    Standard Deviation method.
+    """
+    # Make sure that the provided decision matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    # Make sure that the decision matrix is normalized
+    # Make sure that the provided decision matrix is normalized
     if (np.sum(np.less(z_matrix, 0.0)) > 0
             or np.sum(np.greater(z_matrix, 1.0)) > 0):
         raise ValueError("The decision matrix must be normalized "

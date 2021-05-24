@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,11 +19,18 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Helper module for the scoring methods of the `mcdm` package.
+"""
+
 from . import scoring
 
 
 def score(z_matrix, is_benefit_z, w_vector, s_method):
-    """Compute the requested score vector of a decision matrix."""
+    """
+    Return the selected scores of the provided decision matrix with the
+    provided weight vector.
+    """
     # Use the selected scoring method
     if s_method.upper() == "SAW":
         return scoring.saw(z_matrix, w_vector, is_benefit_z)

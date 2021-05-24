@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,22 +19,27 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the Linear2 normalization method.
+
+For more information, see the following publications:
+  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
+    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
+  * H.-S. Shih, H.-J. Shyur, and E. S. Lee, "An extension of TOPSIS for group
+    decision making," Mathematical and Computer Modelling, vol. 45, no. 7--8,
+    pp. 801--813, 2007. DOI: 10.1016/j.mcm.2006.03.023.
+"""
+
 import numpy as np
 
 
 def linear2(x_matrix, is_benefit_x):
-    """Python implementation of the Linear2 normalization method.
-
-    For more information, see the following publications:
-      * C.-L. Hwang and K. Yoon, Multiple attribute decision making,
-        ser. Lecture Notes in Economics and Mathematical Systems.
-        Springer-Verlag Berlin Heidelberg, 1981, vol. 186,
-        ISBN: 9783540105589.
-      * H.-S. Shih, H.-J. Shyur, and E. S. Lee, "An extension of TOPSIS for
-        group decision making," Mathematical and Computer Modelling,
-        vol. 45, no. 7--8, pp. 801--813, 2007. DOI: 10.1016/j.mcm.2006.03.023.
     """
-    # Make sure that the decision matrix is a float64 NumPy array
+    Return the normalized version of the provided matrix using the Linear
+    Normalization (2) method.
+    """
+    # Make sure that the provided matrix is a float64 NumPy array
     x_matrix = np.array(x_matrix, dtype=np.float64)
 
     # Sanity check
@@ -42,9 +47,9 @@ def linear2(x_matrix, is_benefit_x):
         raise ValueError("The number of variables in the list that "
                          "determines whether each criterion is a benefit "
                          "or a cost criterion does not match the number "
-                         "of columns in the decision matrix")
+                         "of columns in the provided matrix")
 
-    # Construct the normalized decision matrix
+    # Construct the normalized matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)
     for j in range(x_matrix.shape[1]):
         denominator = np.amax(x_matrix[:, j]) - np.amin(x_matrix[:, j])

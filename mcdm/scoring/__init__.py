@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,13 +20,13 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of scoring methods
+Python implementation of scoring methods.
 """
 
-from .mew import mew
-from .mtopsis import mtopsis
-from .saw import saw
-from .topsis import topsis
+from .mew_method import mew
+from .mtopsis_method import mtopsis
+from .saw_method import saw
+from .topsis_method import topsis
 
 
 __all__ = ["saw", "mew", "topsis", "mtopsis"]

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,21 +19,23 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from . import weighting
+"""
+Helper module for the correlation methods of the `mcdm` package.
+"""
+
+from . import correlation
 
 
-def weigh(z_matrix, w_method, c_method=None):
-    """Compute the requested weight vector of a decision matrix."""
-    # Use the selected weighting method
-    if w_method.upper() == "MW":
-        return weighting.mw(z_matrix)
-    elif w_method.upper() == "EM":
-        return weighting.em(z_matrix)
-    elif w_method.upper() == "SD":
-        return weighting.sd(z_matrix)
-    elif w_method.upper() == "CRITIC":
-        return weighting.critic(z_matrix, c_method)
-    elif w_method.upper() == "VIC":
-        return weighting.vic(z_matrix, c_method)
+def correlate(z_matrix, c_method):
+    """
+    Return the selected correlation coefficients of the provided matrix.
+    """
+    # Use the selected correlation method
+    if c_method.upper() == "PEARSON":
+        return correlation.pearson(z_matrix)
+    elif c_method.upper() == "ABSPEARSON":
+        return correlation.abspearson(z_matrix)
+    elif c_method.upper() == "DCOR":
+        return correlation.dcor(z_matrix)
     else:
-        raise ValueError("Unknown weighting method ({})".format(w_method))
+        raise ValueError("Unknown correlation method ({})".format(c_method))

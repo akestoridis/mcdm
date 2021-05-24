@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,12 +20,12 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of correlation methods
+Python implementation of correlation methods.
 """
 
-from .abspearson import abspearson
-from .dcor import dcor
-from .pearson import pearson
+from .abspearson_method import abspearson
+from .dcor_method import dcor
+from .pearson_method import pearson
 
 
 __all__ = ["pearson", "abspearson", "dcor"]

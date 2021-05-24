@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,14 +20,14 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of weighting methods
+Python implementation of weighting methods.
 """
 
-from .critic import critic
-from .em import em
-from .mw import mw
-from .sd import sd
-from .vic import vic
+from .critic_method import critic
+from .em_method import em
+from .mw_method import mw
+from .sd_method import sd
+from .vic_method import vic
 
 
 __all__ = ["mw", "em", "sd", "critic", "vic"]

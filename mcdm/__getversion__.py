@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Derivation of the version number for the mcdm package
+Version number derivation module for the `mcdm` package.
 """
 
 import os
@@ -29,17 +29,27 @@ import subprocess
 
 
 def getversion(pkg_dirpath):
+    """
+    Return the derived version number of the `mcdm` package.
+    """
     version_filepath = os.path.join(pkg_dirpath, "VERSION.txt")
     git_dirpath = os.path.join(os.path.dirname(pkg_dirpath), ".git")
 
     version = getversion_git(version_filepath, git_dirpath)
     if version is None:
         version = getversion_file(version_filepath)
+        if version is None:
+            version = "0+unknown"
 
     return version
 
 
 def getversion_git(version_filepath, git_dirpath):
+    """
+    Try to derive and then return the version number of the `mcdm` package
+    according to a Git command. If the derivation process succeeds, write the
+    derived version number in the provided filepath before returning it.
+    """
     try:
         args = [
             "git",
@@ -48,7 +58,7 @@ def getversion_git(version_filepath, git_dirpath):
             "describe",
             "--tags",
         ]
-        cp = subprocess.run(args, capture_output=True)
+        cp = subprocess.run(args, capture_output=True, check=False)
         if cp.returncode == 0:
             match = re.search(
                 r"^v([0-9]+\.[0-9]+)(\-[0-9]+\-g[0-9a-f]{7})?$",
@@ -71,7 +81,7 @@ def getversion_git(version_filepath, git_dirpath):
             "--short",
             "HEAD",
         ]
-        cp = subprocess.run(args, capture_output=True)
+        cp = subprocess.run(args, capture_output=True, check=False)
         if cp.returncode == 0:
             match = re.search(r"^[0-9a-f]{7}$", cp.stdout.decode().rstrip())
             if match:
@@ -79,13 +89,17 @@ def getversion_git(version_filepath, git_dirpath):
                 with open(version_filepath, "w") as fp:
                     fp.write("{}\n".format(version))
                 return version
-    except Exception:  # nosec
-        pass
+    except Exception:  # pylint: disable=broad-except
+        return None
 
     return None
 
 
 def getversion_file(version_filepath):
+    """
+    Try to derive and then return the version number of the `mcdm` package
+    according to an existing file.
+    """
     if os.path.isfile(version_filepath):
         with open(version_filepath, "r") as fp:
             match = re.search(
@@ -102,4 +116,4 @@ def getversion_file(version_filepath):
     if match:
         return "0+" + match.group(0)
 
-    return "0+unknown"
+    return None

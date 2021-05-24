@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -19,22 +19,27 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+"""
+Python implementation of the TOPSIS scoring method.
+
+For more information, see the following publication:
+  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
+    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
+"""
+
 import numpy as np
 
 
 def topsis(z_matrix, w_vector, is_benefit_z):
-    """Python implementation of the TOPSIS scoring method.
-
-    For more information, see the following publication:
-      * C.-L. Hwang and K. Yoon, Multiple attribute decision making,
-        ser. Lecture Notes in Economics and Mathematical Systems.
-        Springer-Verlag Berlin Heidelberg, 1981, vol. 186,
-        ISBN: 9783540105589.
     """
-    # Make sure that the decision matrix is a float64 NumPy array
+    Return the Technique for Order Preference by Similarity to Ideal Solution
+    scores of the provided decision matrix with the provided weight vector.
+    """
+    # Make sure that the provided decision matrix is a float64 NumPy array
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
-    # Make sure that the weight vector is a float64 NumPy array
+    # Make sure that the provided weight vector is a float64 NumPy array
     w_vector = np.array(w_vector, dtype=np.float64)
 
     # Sanity checks
@@ -42,17 +47,17 @@ def topsis(z_matrix, w_vector, is_benefit_z):
             or np.sum(np.greater(z_matrix, 1.0)) > 0):
         raise ValueError("The decision matrix must be normalized "
                          "in order to apply the TOPSIS scoring method")
-    elif w_vector.shape != (z_matrix.shape[1],):
-        raise ValueError("The shape of the weight vector is not "
+    if w_vector.shape != (z_matrix.shape[1],):
+        raise ValueError("The shape of the provided weight vector is not "
                          "appropriate for the number of columns in the "
-                         "decision matrix")
-    elif not np.isclose(np.sum(w_vector), 1.0):
+                         "provided decision matrix")
+    if not np.isclose(np.sum(w_vector), 1.0):
         raise ValueError("The weight vector's elements must sum to 1")
-    elif len(is_benefit_z) != z_matrix.shape[1]:
+    if len(is_benefit_z) != z_matrix.shape[1]:
         raise ValueError("The number of variables in the list that "
                          "determines whether each criterion is a benefit "
                          "or a cost criterion does not match the number "
-                         "of columns in the decision matrix")
+                         "of columns in the provided decision matrix")
 
     # TOPSIS scores should always be sorted in descending order
     desc_order = True
