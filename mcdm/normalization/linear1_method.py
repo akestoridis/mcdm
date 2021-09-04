@@ -19,16 +19,19 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the Linear1 normalization method.
+u"""
+Python implementation of the Linear1 normalization method. For more
+information, see the following publications:
 
-For more information, see the following publications:
-  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
-    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
-    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
-  * H.-S. Shih, H.-J. Shyur, and E. S. Lee, "An extension of TOPSIS for group
-    decision making," Mathematical and Computer Modelling, vol. 45, no. 7--8,
-    pp. 801--813, 2007. DOI: 10.1016/j.mcm.2006.03.023.
+* C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. Lecture
+  Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+  Heidelberg, 1981, vol. 186, isbn: 9783540105589.
+
+* H.-S. Shih, H.-J. Shyur, and E. S. Lee, “An extension of TOPSIS for group
+  decision making,” *Math. Comput. Model.*, vol. 45, no. 7–8, pp. 801–813,
+  2007, doi: `10.1016/j.mcm.2006.03.023
+  <https://doi.org/10.1016/j.mcm.2006.03.023>`_.
+
 """
 
 import numpy as np

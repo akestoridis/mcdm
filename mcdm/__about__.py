@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Metadata module for the `mcdm` package.
+Metadata module for the ``mcdm`` package.
 """
 
 __title__ = "mcdm"

@@ -22,7 +22,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Setup script for the `mcdm` package.
+Setup script for the ``mcdm`` package.
 """
 
 import importlib
@@ -34,7 +34,7 @@ import setuptools
 
 def setup():
     """
-    Customize the setup process of the mcdm package.
+    Customize the setup process of the ``mcdm`` package.
     """
     top_dirpath = os.path.dirname(os.path.abspath(__file__))
     pkg_dirpath = os.path.join(top_dirpath, "mcdm")

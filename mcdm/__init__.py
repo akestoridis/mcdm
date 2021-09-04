@@ -19,40 +19,57 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
+u"""
 Python implementation of Multiple-Criteria Decision-Making algorithms
 =====================================================================
 
 Features
 --------
-The following table summarizes the scoring, weighting, correlation, and
-normalization methods that are supported by the `mcdm` package.
 
-+-----------------+------------+------------+
-| Method Category | Short Name | References |
-+=================+============+============+
-| Scoring         | SAW        | [1, 4]     |
-| Scoring         | MEW        | [4]        |
-| Scoring         | TOPSIS     | [1]        |
-| Scoring         | mTOPSIS    | [5]        |
-| Weighting       | MW         | [3]        |
-| Weighting       | EM         | [1, 5]     |
-| Weighting       | SD         | [3]        |
-| Weighting       | CRITIC     | [3]        |
-| Weighting       | VIC        | [9]        |
-| Correlation     | Pearson    | [2]        |
-| Correlation     | AbsPearson | [2]        |
-| Correlation     | dCor       | [7, 8]     |
-| Normalization   | Linear1    | [1, 6]     |
-| Normalization   | Linear2    | [1, 6]     |
-| Normalization   | Linear3    | [1, 6]     |
-| Normalization   | Vector     | [1, 6]     |
-+-----------------+------------+------------+
+The following table summarizes the scoring, weighting, correlation, and
+normalization methods that are supported by the ``mcdm`` package.
+
++-----------------+------------+----------------+
+| Method Category | Short Name | References     |
++=================+============+================+
+| Scoring         | SAW        | `[1]`_, `[2]`_ |
++-----------------+------------+----------------+
+| Scoring         | MEW        | `[2]`_         |
++-----------------+------------+----------------+
+| Scoring         | TOPSIS     | `[1]`_         |
++-----------------+------------+----------------+
+| Scoring         | mTOPSIS    | `[3]`_         |
++-----------------+------------+----------------+
+| Weighting       | MW         | `[4]`_         |
++-----------------+------------+----------------+
+| Weighting       | EM         | `[1]`_, `[3]`_ |
++-----------------+------------+----------------+
+| Weighting       | SD         | `[4]`_         |
++-----------------+------------+----------------+
+| Weighting       | CRITIC     | `[4]`_         |
++-----------------+------------+----------------+
+| Weighting       | VIC        | `[5]`_         |
++-----------------+------------+----------------+
+| Correlation     | Pearson    | `[6]`_         |
++-----------------+------------+----------------+
+| Correlation     | AbsPearson | `[6]`_         |
++-----------------+------------+----------------+
+| Correlation     | dCor       | `[7]`_, `[8]`_ |
++-----------------+------------+----------------+
+| Normalization   | Linear1    | `[1]`_, `[9]`_ |
++-----------------+------------+----------------+
+| Normalization   | Linear2    | `[1]`_, `[9]`_ |
++-----------------+------------+----------------+
+| Normalization   | Linear3    | `[1]`_, `[9]`_ |
++-----------------+------------+----------------+
+| Normalization   | Vector     | `[1]`_, `[9]`_ |
++-----------------+------------+----------------+
 
 Usage
 -----
-After importing the `mcdm` package, you can view its contents using the
-built-in `help` function:
+
+After importing the ``mcdm`` package, you can view its contents using the
+built-in ``help`` function:
 
     >>> import mcdm
     >>> help(mcdm)
@@ -61,11 +78,11 @@ The contents of its subpackages can be viewed similarly, e.g.:
 
     >>> help(mcdm.weighting)
 
-The `mcdm` package can compute the ranking of alternatives, which are provided
-as an `array_like` object, with its `rank` function. By default, the `rank`
-function is using the SAW scoring method, the MW weighting method, and assumes
-that the decision matrix contains unnamed alternatives with normalized benefit
-criteria:
+The ``mcdm`` package can compute the ranking of alternatives, which are
+provided as an ``array_like`` object, with its ``rank`` function. By default,
+the ``rank`` function is using the SAW scoring method, the MW weighting
+method, and assumes that the decision matrix contains unnamed alternatives
+with normalized benefit criteria:
 
     >>> x_matrix = [
     ...     [0.00, 1.00],
@@ -210,7 +227,7 @@ the Linear1 normalization method with named alternatives as follows:
         ('C', 0.507066254464828),
     ]
 
-Finally, you can use the `load` function of the `mcdm` package to load a
+Finally, you can use the ``load`` function of the ``mcdm`` package to load a
 decision matrix from a text file, and then compute the ranking of its
 alternatives using the MEW scoring method and the VIC weighting method as
 follows:
@@ -263,41 +280,76 @@ follows:
 
 References
 ----------
-[1] C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
-    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
-    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
-[2] J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the
-    correlation coefficient," The American Statistician, vol. 42, no. 1,
-    pp. 59--66, 1988. DOI: 10.2307/2685263.
-[3] D. Diakoulaki, G. Mavrotas, and L. Papayannakis, "Determining objective
-    weights in multiple criteria problems: The CRITIC method," Computers &
-    Operations Research, vol. 22, no. 7, pp. 763--770, 1995.
-    DOI: 10.1016/0305-0548(94)00059-H.
-[4] S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, "Multi-attribute
-    decision making: A simulation comparison of select methods," European
-    Journal of Operational Research, vol. 107, no. 3, pp. 507--529, 1998.
-    DOI: 10.1016/S0377-2217(97)00147-1.
-[5] H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using
-    modified TOPSIS with objective weights," Computers & Operations Research,
-    vol. 27, no. 10, pp. 963--973, 2000. DOI: 10.1016/S0305-0548(99)00069-6.
-[6] H.-S. Shih, H.-J. Shyur, and E. S. Lee, "An extension of TOPSIS for group
-    decision making," Mathematical and Computer Modelling, vol. 45, no. 7--8,
-    pp. 801--813, 2007. DOI: 10.1016/j.mcm.2006.03.023.
-[7] G. J. Székely, M. L. Rizzo, and N. K. Bakirov, "Measuring and testing
-    dependence by correlation of distances," The Annals of Statistics,
-    vol. 35, no. 6, pp. 2769--2794, 2007. DOI: 10.1214/009053607000000505.
-[8] G. J. Székely and M. L. Rizzo, "Brownian distance covariance," The Annals
-    of Applied Statistics, vol. 3, no. 4, pp. 1236--1265, 2009.
-    DOI: 10.1214/09-AOAS312.
-[9] D.-G. Akestoridis and E. Papapetrou, "A framework for the evaluation of
-    routing protocols in opportunistic networks," Computer Communications,
-    vol. 145, pp. 14--28, 2019. DOI: 10.1016/j.comcom.2019.06.003.
+
+.. _[1]:
+
+**[1]** C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. \
+Lecture Notes in Economics and Mathematical Systems. Springer-Verlag Berlin \
+Heidelberg, 1981, vol. 186, isbn: 9783540105589.
+
+.. _[2]:
+
+**[2]** S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, \
+“Multi-attribute decision making: A simulation comparison of select \
+methods,” *Eur. J. Oper. Res.*, vol. 107, no. 3, pp. 507–529, 1998, doi: \
+`10.1016/S0377-2217(97)00147-1
+<https://doi.org/10.1016/S0377-2217(97)00147-1>`_.
+
+.. _[3]:
+
+**[3]** H. Deng, C.-H. Yeh, and R. J. Willis, “Inter-company comparison \
+using modified TOPSIS with objective weights,” *Comput. Oper. Res.*, vol. \
+27, no. 10, pp. 963–973, 2000, doi: `10.1016/S0305-0548(99)00069-6
+<https://doi.org/10.1016/S0305-0548(99)00069-6>`_.
+
+.. _[4]:
+
+**[4]** D. Diakoulaki, G. Mavrotas, and L. Papayannakis, “Determining \
+objective weights in multiple criteria problems: The CRITIC method,” \
+*Comput. Oper. Res.*, vol. 22, no. 7, pp. 763–770, 1995, doi: \
+`10.1016/0305-0548(94)00059-H
+<https://doi.org/10.1016/0305-0548(94)00059-H>`_.
+
+.. _[5]:
+
+**[5]** D.-G. Akestoridis and E. Papapetrou, “A framework for the evaluation \
+of routing protocols in opportunistic networks,” *Comput. Commun.*, vol. \
+145, pp. 14–28, 2019, doi: `10.1016/j.comcom.2019.06.003
+<https://doi.org/10.1016/j.comcom.2019.06.003>`_.
+
+.. _[6]:
+
+**[6]** J. L. Rodgers and W. A. Nicewander, “Thirteen ways to look at the \
+correlation coefficient,” *Amer. Statist.*, vol. 42, no. 1, pp. 59–66, 1988, \
+doi: `10.2307/2685263
+<https://doi.org/10.2307/2685263>`_.
+
+.. _[7]:
+
+**[7]** G. J. Székely, M. L. Rizzo, and N. K. Bakirov, “Measuring and \
+testing dependence by correlation of distances,” *Ann. Statist.*, vol. 35, \
+no. 6, pp. 2769–2794, 2007, doi: `10.1214/009053607000000505
+<https://doi.org/10.1214/009053607000000505>`_.
+
+.. _[8]:
+
+**[8]** G. J. Székely and M. L. Rizzo, “Brownian distance covariance,” *Ann. \
+Appl. Statist.*, vol. 3, no. 4, pp. 1236–1265, 2009, doi: `10.1214/09-AOAS312
+<https://doi.org/10.1214/09-AOAS312>`_.
+
+.. _[9]:
+
+**[9]** H.-S. Shih, H.-J. Shyur, and E. S. Lee, “An extension of TOPSIS for \
+group decision making,” *Math. Comput. Model.*, vol. 45, no. 7–8, pp. \
+801–813, 2007, doi: `10.1016/j.mcm.2006.03.023
+<https://doi.org/10.1016/j.mcm.2006.03.023>`_.
 
 License
 -------
+
 Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 
-This project is licensed under the terms of the MIT License.
+This project is licensed under the terms of the MIT License (MIT).
 """
 
 import os

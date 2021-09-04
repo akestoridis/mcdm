@@ -19,13 +19,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the mTOPSIS scoring method.
+u"""
+Python implementation of the mTOPSIS scoring method. For more information, see
+the following publication:
 
-For more information, see the following publication:
-  * H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using
-    modified TOPSIS with objective weights," Computers & Operations Research,
-    vol. 27, no. 10, pp. 963--973, 2000. DOI: 10.1016/S0305-0548(99)00069-6.
+* H. Deng, C.-H. Yeh, and R. J. Willis, “Inter-company comparison using
+  modified TOPSIS with objective weights,” *Comput. Oper. Res.*, vol. 27, no.
+  10, pp. 963–973, 2000, doi: `10.1016/S0305-0548(99)00069-6
+  <https://doi.org/10.1016/S0305-0548(99)00069-6>`_.
+
 """
 
 import numpy as np

@@ -19,14 +19,16 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the MEW scoring method.
+u"""
+Python implementation of the MEW scoring method. For more information, see the
+following publication:
 
-For more information, see the following publication:
-  * S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, "Multi-attribute
-    decision making: A simulation comparison of select methods," European
-    Journal of Operational Research, vol. 107, no. 3, pp. 507--529, 1998.
-    DOI: 10.1016/S0377-2217(97)00147-1.
+* S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, “Multi-attribute
+  decision making: A simulation comparison of select methods,” *Eur. J. Oper.
+  Res.*, vol. 107, no. 3, pp. 507–529, 1998, doi:
+  `10.1016/S0377-2217(97)00147-1
+  <https://doi.org/10.1016/S0377-2217(97)00147-1>`_.
+
 """
 
 import numpy as np

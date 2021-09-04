@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Version number derivation module for the `mcdm` package.
+Version number derivation module for the ``mcdm`` package.
 """
 
 import os
@@ -30,7 +30,7 @@ import subprocess
 
 def getversion(pkg_dirpath):
     """
-    Return the derived version number of the `mcdm` package.
+    Return the derived version number of the ``mcdm`` package.
     """
     version_filepath = os.path.join(pkg_dirpath, "VERSION.txt")
     git_dirpath = os.path.join(os.path.dirname(pkg_dirpath), ".git")
@@ -46,7 +46,7 @@ def getversion(pkg_dirpath):
 
 def getversion_git(version_filepath, git_dirpath):
     """
-    Try to derive and then return the version number of the `mcdm` package
+    Try to derive and then return the version number of the ``mcdm`` package
     according to a Git command. If the derivation process succeeds, write the
     derived version number in the provided filepath before returning it.
     """
@@ -97,7 +97,7 @@ def getversion_git(version_filepath, git_dirpath):
 
 def getversion_file(version_filepath):
     """
-    Try to derive and then return the version number of the `mcdm` package
+    Try to derive and then return the version number of the ``mcdm`` package
     according to an existing file.
     """
     if os.path.isfile(version_filepath):

@@ -19,17 +19,20 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the SAW scoring method.
+u"""
+Python implementation of the SAW scoring method. For more information, see the
+following publications:
 
-For more information, see the following publications:
-  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
-    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
-    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
-  * S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, "Multi-attribute
-    decision making: A simulation comparison of select methods," European
-    Journal of Operational Research, vol. 107, no. 3, pp. 507--529, 1998.
-    DOI: 10.1016/S0377-2217(97)00147-1.
+* C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. Lecture
+  Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+  Heidelberg, 1981, vol. 186, isbn: 9783540105589.
+
+* S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, “Multi-attribute
+  decision making: A simulation comparison of select methods,” *Eur. J. Oper.
+  Res.*, vol. 107, no. 3, pp. 507–529, 1998, doi:
+  `10.1016/S0377-2217(97)00147-1
+  <https://doi.org/10.1016/S0377-2217(97)00147-1>`_.
+
 """
 
 import numpy as np

@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Helper module for the correlation methods of the `mcdm` package.
+Helper module for the correlation methods of the ``mcdm`` package.
 """
 
 from . import correlation

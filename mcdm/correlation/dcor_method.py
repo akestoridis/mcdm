@@ -19,16 +19,19 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the dCor correlation method.
+u"""
+Python implementation of the dCor correlation method. For more information,
+see the following publications:
 
-For more information, see the following publications:
-  * G. J. Székely, M. L. Rizzo, and N. K. Bakirov, "Measuring and testing
-    dependence by correlation of distances," The Annals of Statistics,
-    vol. 35, no. 6, pp. 2769--2794, 2007. DOI: 10.1214/009053607000000505.
-  * G. J. Székely and M. L. Rizzo, "Brownian distance covariance," The Annals
-    of Applied Statistics, vol. 3, no. 4, pp. 1236--1265, 2009.
-    DOI: 10.1214/09-AOAS312.
+* G. J. Székely, M. L. Rizzo, and N. K. Bakirov, “Measuring and testing
+  dependence by correlation of distances,” *Ann. Statist.*, vol. 35, no. 6,
+  pp. 2769–2794, 2007, doi: `10.1214/009053607000000505
+  <https://doi.org/10.1214/009053607000000505>`_.
+
+* G. J. Székely and M. L. Rizzo, “Brownian distance covariance,” *Ann. Appl.
+  Statist.*, vol. 3, no. 4, pp. 1236–1265, 2009, doi: `10.1214/09-AOAS312
+  <https://doi.org/10.1214/09-AOAS312>`_.
+
 """
 
 import numpy as np

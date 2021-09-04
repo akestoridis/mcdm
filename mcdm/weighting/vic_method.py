@@ -19,13 +19,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the VIC weighting method.
+u"""
+Python implementation of the VIC weighting method. For more information, see
+the following publication:
 
-For more information, see the following publication:
-  * D.-G. Akestoridis and E. Papapetrou, "A framework for the evaluation of
-    routing protocols in opportunistic networks," Computer Communications,
-    vol. 145, pp. 14--28, 2019. DOI: 10.1016/j.comcom.2019.06.003.
+* D.-G. Akestoridis and E. Papapetrou, “A framework for the evaluation of
+  routing protocols in opportunistic networks,” *Comput. Commun.*, vol. 145,
+  pp. 14–28, 2019, doi: `10.1016/j.comcom.2019.06.003
+  <https://doi.org/10.1016/j.comcom.2019.06.003>`_.
+
 """
 
 import numpy as np

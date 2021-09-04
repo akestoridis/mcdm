@@ -20,12 +20,13 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of the TOPSIS scoring method.
+Python implementation of the TOPSIS scoring method. For more information, see
+the following publication:
 
-For more information, see the following publication:
-  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
-    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
-    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
+* C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. Lecture
+  Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+  Heidelberg, 1981, vol. 186, isbn: 9783540105589.
+
 """
 
 import numpy as np

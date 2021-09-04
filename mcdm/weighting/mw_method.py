@@ -19,14 +19,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the MW weighting method.
+u"""
+Python implementation of the MW weighting method. For more information, see
+the following publication:
 
-For more information, see the following publication:
-  * D. Diakoulaki, G. Mavrotas, and L. Papayannakis, "Determining objective
-    weights in multiple criteria problems: The CRITIC method," Computers &
-    Operations Research, vol. 22, no. 7, pp. 763--770, 1995.
-    DOI: 10.1016/0305-0548(94)00059-H.
+* D. Diakoulaki, G. Mavrotas, and L. Papayannakis, “Determining objective
+  weights in multiple criteria problems: The CRITIC method,” *Comput. Oper.
+  Res.*, vol. 22, no. 7, pp. 763–770, 1995, doi: `10.1016/0305-0548(94)00059-H
+  <https://doi.org/10.1016/0305-0548(94)00059-H>`_.
+
 """
 
 import numpy as np

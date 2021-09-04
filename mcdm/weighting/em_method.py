@@ -19,16 +19,19 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the EM weighting method.
+u"""
+Python implementation of the EM weighting method. For more information, see
+the following publications:
 
-For more information, see the following publications:
-  * C.-L. Hwang and K. Yoon, Multiple attribute decision making, ser. Lecture
-    Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
-    Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
-  * H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using
-    modified TOPSIS with objective weights," Computers & Operations Research,
-    vol. 27, no. 10, pp. 963--973, 2000. DOI: 10.1016/S0305-0548(99)00069-6.
+* C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. Lecture
+  Notes in Economics and Mathematical Systems. Springer-Verlag Berlin
+  Heidelberg, 1981, vol. 186, isbn: 9783540105589.
+
+* H. Deng, C.-H. Yeh, and R. J. Willis, “Inter-company comparison using
+  modified TOPSIS with objective weights,” *Comput. Oper. Res.*, vol. 27, no.
+  10, pp. 963–973, 2000, doi: `10.1016/S0305-0548(99)00069-6
+  <https://doi.org/10.1016/S0305-0548(99)00069-6>`_.
+
 """
 
 import numpy as np

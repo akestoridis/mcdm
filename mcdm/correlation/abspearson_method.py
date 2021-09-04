@@ -19,13 +19,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""
-Python implementation of the AbsPearson correlation method.
+u"""
+Python implementation of the AbsPearson correlation method. For more
+information, see the following publication:
 
-For more information, see the following publication:
-  * J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the
-    correlation coefficient," The American Statistician, vol. 42, no. 1,
-    pp. 59--66, 1988. DOI: 10.2307/2685263.
+* J. L. Rodgers and W. A. Nicewander, “Thirteen ways to look at the
+  correlation coefficient,” *Amer. Statist.*, vol. 42, no. 1, pp. 59–66, 1988,
+  doi: `10.2307/2685263
+  <https://doi.org/10.2307/2685263>`_.
+
 """
 
 import numpy as np

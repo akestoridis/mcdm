@@ -35,34 +35,34 @@ The following tables include the scoring, weighting, correlation, and normalizat
 ### Scoring methods
 | Short Name | Full Name                                                               | References                 |
 | ---------- | ----------------------------------------------------------------------- | -------------------------- |
-| SAW        | Simple Additive Weighting                                               | [[1]](#ref1), [[4]](#ref4) |
-| MEW        | Multiplicative Exponential Weighting                                    | [[4]](#ref4)               |
+| SAW        | Simple Additive Weighting                                               | [[1]](#ref1), [[2]](#ref2) |
+| MEW        | Multiplicative Exponential Weighting                                    | [[2]](#ref2)               |
 | TOPSIS     | Technique for Order Preference by Similarity to Ideal Solution          | [[1]](#ref1)               |
-| mTOPSIS    | Modified Technique for Order Preference by Similarity to Ideal Solution | [[5]](#ref5)               |
+| mTOPSIS    | Modified Technique for Order Preference by Similarity to Ideal Solution | [[3]](#ref3)               |
 
 ### Weighting methods
 | Short Name | Full Name                                             | References                 |
 | ---------- | ----------------------------------------------------- | -------------------------- |
-| MW         | Mean Weights                                          | [[3]](#ref3)               |
-| EM         | Entropy Measure                                       | [[1]](#ref1), [[5]](#ref5) |
-| SD         | Standard Deviation                                    | [[3]](#ref3)               |
-| CRITIC     | Criteria Importance Through Intercriteria Correlation | [[3]](#ref3)               |
-| VIC        | Variability and Interdependencies of Criteria         | [[9]](#ref9)               |
+| MW         | Mean Weights                                          | [[4]](#ref4)               |
+| EM         | Entropy Measure                                       | [[1]](#ref1), [[3]](#ref3) |
+| SD         | Standard Deviation                                    | [[4]](#ref4)               |
+| CRITIC     | Criteria Importance Through Intercriteria Correlation | [[4]](#ref4)               |
+| VIC        | Variability and Interdependencies of Criteria         | [[5]](#ref5)               |
 
 ### Correlation methods
 | Short Name | Full Name                                              | References                 |
 | ---------- | ------------------------------------------------------ | -------------------------- |
-| Pearson    | Pearson Correlation Coefficients                       | [[2]](#ref2)               |
-| AbsPearson | Absolute Value of the Pearson Correlation Coefficients | [[2]](#ref2)               |
+| Pearson    | Pearson Correlation Coefficients                       | [[6]](#ref6)               |
+| AbsPearson | Absolute Value of the Pearson Correlation Coefficients | [[6]](#ref6)               |
 | dCor       | Distance Correlation Coefficients                      | [[7]](#ref7), [[8]](#ref8) |
 
 ### Normalization methods
 | Short Name | Full Name                | References                 |
 | ---------- | ------------------------ | -------------------------- |
-| Linear1    | Linear Normalization (1) | [[1]](#ref1), [[6]](#ref6) |
-| Linear2    | Linear Normalization (2) | [[1]](#ref1), [[6]](#ref6) |
-| Linear3    | Linear Normalization (3) | [[1]](#ref1), [[6]](#ref6) |
-| Vector     | Vector Normalization     | [[1]](#ref1), [[6]](#ref6) |
+| Linear1    | Linear Normalization (1) | [[1]](#ref1), [[9]](#ref9) |
+| Linear2    | Linear Normalization (2) | [[1]](#ref1), [[9]](#ref9) |
+| Linear3    | Linear Normalization (3) | [[1]](#ref1), [[9]](#ref9) |
+| Vector     | Vector Normalization     | [[1]](#ref1), [[9]](#ref9) |
 
 
 ## Usage
@@ -193,27 +193,27 @@ Finally, you can use the `load` function of the `mcdm` package to load a decisio
 
 ## References
 
-<a name="ref1">**[1]**</a> C.-L. Hwang and K. Yoon, _Multiple attribute decision making_, ser. Lecture Notes in Economics and Mathematical Systems. Springer-Verlag Berlin Heidelberg, 1981, vol. 186, ISBN: 9783540105589.
+<a name="ref1">**[1]**</a> C.-L. Hwang and K. Yoon, *Multiple Attribute Decision Making*, ser. Lecture Notes in Economics and Mathematical Systems. Springer-Verlag Berlin Heidelberg, 1981, vol. 186, isbn: 9783540105589.
 
-<a name="ref2">**[2]**</a> J. L. Rodgers and W. A. Nicewander, "Thirteen ways to look at the correlation coefficient," _The American Statistician_, vol. 42, no. 1, pp. 59--66, 1988. DOI: [10.2307/2685263](https://doi.org/10.2307/2685263).
+<a name="ref2">**[2]**</a> S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, “Multi-attribute decision making: A simulation comparison of select methods,” *Eur. J. Oper. Res.*, vol. 107, no. 3, pp. 507–529, 1998, doi: [10.1016/S0377-2217(97)00147-1](https://doi.org/10.1016/S0377-2217(97)00147-1).
 
-<a name="ref3">**[3]**</a> D. Diakoulaki, G. Mavrotas, and L. Papayannakis, "Determining objective weights in multiple criteria problems: The CRITIC method," _Computers & Operations Research_, vol. 22, no. 7, pp. 763--770, 1995. DOI: [10.1016/0305-0548(94)00059-H](https://doi.org/10.1016/0305-0548(94)00059-H).
+<a name="ref3">**[3]**</a> H. Deng, C.-H. Yeh, and R. J. Willis, “Inter-company comparison using modified TOPSIS with objective weights,” *Comput. Oper. Res.*, vol. 27, no. 10, pp. 963–973, 2000, doi: [10.1016/S0305-0548(99)00069-6](https://doi.org/10.1016/S0305-0548(99)00069-6).
 
-<a name="ref4">**[4]**</a> S. H. Zanakis, A. Solomon, N. Wishart, and S. Dublish, "Multi-attribute decision making: A simulation comparison of select methods," _European Journal of Operational Research_, vol. 107, no. 3, pp. 507--529, 1998. DOI: [10.1016/S0377-2217(97)00147-1](https://doi.org/10.1016/S0377-2217(97)00147-1).
+<a name="ref4">**[4]**</a> D. Diakoulaki, G. Mavrotas, and L. Papayannakis, “Determining objective weights in multiple criteria problems: The CRITIC method,” *Comput. Oper. Res.*, vol. 22, no. 7, pp. 763–770, 1995, doi: [10.1016/0305-0548(94)00059-H](https://doi.org/10.1016/0305-0548(94)00059-H).
 
-<a name="ref5">**[5]**</a> H. Deng, C.-H. Yeh, and R. J. Willis, "Inter-company comparison using modified TOPSIS with objective weights," _Computers & Operations Research_, vol. 27, no. 10, pp. 963--973, 2000. DOI: [10.1016/S0305-0548(99)00069-6](https://doi.org/10.1016/S0305-0548(99)00069-6).
+<a name="ref5">**[5]**</a> D.-G. Akestoridis and E. Papapetrou, “A framework for the evaluation of routing protocols in opportunistic networks,” *Comput. Commun.*, vol. 145, pp. 14–28, 2019, doi: [10.1016/j.comcom.2019.06.003](https://doi.org/10.1016/j.comcom.2019.06.003).
 
-<a name="ref6">**[6]**</a> H.-S. Shih, H.-J. Shyur, and E. S. Lee, "An extension of TOPSIS for group decision making," _Mathematical and Computer Modelling_, vol. 45, no. 7--8, pp. 801--813, 2007. DOI: [10.1016/j.mcm.2006.03.023](https://doi.org/10.1016/j.mcm.2006.03.023).
+<a name="ref6">**[6]**</a> J. L. Rodgers and W. A. Nicewander, “Thirteen ways to look at the correlation coefficient,” *Amer. Statist.*, vol. 42, no. 1, pp. 59–66, 1988, doi: [10.2307/2685263](https://doi.org/10.2307/2685263).
 
-<a name="ref7">**[7]**</a> G. J. Székely, M. L. Rizzo, and N. K. Bakirov, "Measuring and testing dependence by correlation of distances," _The Annals of Statistics_, vol. 35, no. 6, pp. 2769--2794, 2007. DOI: [10.1214/009053607000000505](https://doi.org/10.1214/009053607000000505).
+<a name="ref7">**[7]**</a> G. J. Székely, M. L. Rizzo, and N. K. Bakirov, “Measuring and testing dependence by correlation of distances,” *Ann. Statist.*, vol. 35, no. 6, pp. 2769–2794, 2007, doi: [10.1214/009053607000000505](https://doi.org/10.1214/009053607000000505).
 
-<a name="ref8">**[8]**</a> G. J. Székely and M. L. Rizzo, "Brownian distance covariance," _The Annals of Applied Statistics_, vol. 3, no. 4, pp. 1236--1265, 2009. DOI: [10.1214/09-AOAS312](https://doi.org/10.1214/09-AOAS312).
+<a name="ref8">**[8]**</a> G. J. Székely and M. L. Rizzo, “Brownian distance covariance,” *Ann. Appl. Statist.*, vol. 3, no. 4, pp. 1236–1265, 2009, doi: [10.1214/09-AOAS312](https://doi.org/10.1214/09-AOAS312).
 
-<a name="ref9">**[9]**</a> D.-G. Akestoridis and E. Papapetrou, "A framework for the evaluation of routing protocols in opportunistic networks," _Computer Communications_, vol. 145, pp. 14--28, 2019. DOI: [10.1016/j.comcom.2019.06.003](https://doi.org/10.1016/j.comcom.2019.06.003).
+<a name="ref9">**[9]**</a> H.-S. Shih, H.-J. Shyur, and E. S. Lee, “An extension of TOPSIS for group decision making,” *Math. Comput. Model.*, vol. 45, no. 7–8, pp. 801–813, 2007, doi: [10.1016/j.mcm.2006.03.023](https://doi.org/10.1016/j.mcm.2006.03.023).
 
 
 ## License
 
 Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 
-This project is licensed under the terms of the MIT License.
+This project is licensed under the terms of the MIT License (MIT).

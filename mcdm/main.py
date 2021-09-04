@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Main module for the `mcdm` package.
+Main module for the ``mcdm`` package.
 """
 
 import csv

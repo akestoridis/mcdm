@@ -20,5 +20,5 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Collection of test modules for the `mcdm` package.
+Collection of test modules for the ``mcdm`` package.
 """
