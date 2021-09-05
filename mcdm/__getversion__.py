@@ -69,7 +69,7 @@ def getversion_git(version_filepath, git_dirpath):
                     version += "+" + re.search(
                         r"^\-[0-9]+\-g([0-9a-f]{7})$",
                         match.group(2)).group(1)
-                with open(version_filepath, "w") as fp:
+                with open(version_filepath, mode="w", encoding="utf-8") as fp:
                     fp.write("{}\n".format(version))
                 return version
 
@@ -86,7 +86,7 @@ def getversion_git(version_filepath, git_dirpath):
             match = re.search(r"^[0-9a-f]{7}$", cp.stdout.decode().rstrip())
             if match:
                 version = "0+" + match.group(0)
-                with open(version_filepath, "w") as fp:
+                with open(version_filepath, mode="w", encoding="utf-8") as fp:
                     fp.write("{}\n".format(version))
                 return version
     except Exception:  # pylint: disable=broad-except
@@ -101,7 +101,7 @@ def getversion_file(version_filepath):
     according to an existing file.
     """
     if os.path.isfile(version_filepath):
-        with open(version_filepath, "r") as fp:
+        with open(version_filepath, mode="r", encoding="utf-8") as fp:
             match = re.search(
                 r"^(0\+[0-9a-f]{7}|[0-9]+\.[0-9]+(\+[0-9a-f]{7})?)$",
                 fp.read().rstrip())

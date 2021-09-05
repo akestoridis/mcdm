@@ -102,7 +102,7 @@ def load(filepath, delimiter=",", skiprows=0, labeled_rows=False):
         row_labels = []
         matrix_data = []
         num_columns = None
-        with open(filepath, "r") as fp:
+        with open(filepath, mode="r", encoding="utf-8") as fp:
             rows = csv.reader(fp, delimiter=delimiter)
             for i, row in enumerate(rows, start=1):
                 # Skip the selected number of rows
