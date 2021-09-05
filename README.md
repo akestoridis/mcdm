@@ -16,12 +16,12 @@ Python implementation of Multiple-Criteria Decision-Making algorithms
 ## Installation
 
 The `mcdm` package can be installed from PyPI using pip for Python 3:
-```
+```console
 $ pip3 install mcdm
 ```
 
 Alternatively, you can install the latest version of the `mcdm` package from its GitHub repository:
-```
+```console
 $ git clone https://github.com/akestoridis/mcdm.git
 $ cd mcdm/
 $ pip3 install .
@@ -68,19 +68,19 @@ The following tables include the scoring, weighting, correlation, and normalizat
 ## Usage
 
 After importing the `mcdm` package, you can view its contents using the built-in `help` function:
-```
+```pycon
 >>> import mcdm
 >>> help(mcdm)
 ```
 
 The contents of its subpackages can be viewed similarly, e.g.:
-```
+```pycon
 >>> help(mcdm.weighting)
 ```
 
 The `mcdm` package can compute the ranking of alternatives, which are provided as an `array_like` object, with its `rank` function.
 By default, the `rank` function is using the SAW scoring method, the MW weighting method, and assumes that the decision matrix contains unnamed alternatives with normalized benefit criteria:
-```
+```pycon
 >>> x_matrix = [
 ...     [0.00, 1.00],
 ...     [0.25, 0.75],
@@ -93,7 +93,7 @@ By default, the `rank` function is using the SAW scoring method, the MW weightin
 ```
 
 You can select the use of the MEW scoring method, without changing the remaining default selections, as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [0.00, 1.00],
 ...     [0.25, 0.75],
@@ -106,7 +106,7 @@ You can select the use of the MEW scoring method, without changing the remaining
 ```
 
 Alternatively, you can use the TOPSIS scoring method with predefined weights as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [0.00, 1.00],
 ...     [0.25, 0.75],
@@ -119,7 +119,7 @@ Alternatively, you can use the TOPSIS scoring method with predefined weights as 
 ```
 
 You can also use the TOPSIS scoring method with a mixture of benefit and cost criteria as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [0.00, 1.00],
 ...     [0.25, 0.75],
@@ -132,7 +132,7 @@ You can also use the TOPSIS scoring method with a mixture of benefit and cost cr
 ```
 
 Alternatively, you can use the TOPSIS scoring method, the SD weighting method, and the Vector normalization method with named alternatives as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [4,  5, 10],
 ...     [3, 10,  6],
@@ -145,7 +145,7 @@ Alternatively, you can use the TOPSIS scoring method, the SD weighting method, a
 ```
 
 Similarly, you can use the SAW scoring method, the CRITIC weighting method, and the Linear2 normalization method with named alternatives as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [4,  5, 10],
 ...     [3, 10,  6],
@@ -158,7 +158,7 @@ Similarly, you can use the SAW scoring method, the CRITIC weighting method, and 
 ```
 
 Furthermore, you can use the mTOPSIS scoring method, the EM weighting method, and the Linear3 normalization method with named alternatives as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [4,  5, 10],
 ...     [3, 10,  6],
@@ -171,7 +171,7 @@ Furthermore, you can use the mTOPSIS scoring method, the EM weighting method, an
 ```
 
 In addition, you can use the MEW scoring method, the VIC weighting method, and the Linear1 normalization method with named alternatives as follows:
-```
+```pycon
 >>> x_matrix = [
 ...     [4,  5, 10],
 ...     [3, 10,  6],
@@ -184,7 +184,7 @@ In addition, you can use the MEW scoring method, the VIC weighting method, and t
 ```
 
 Finally, you can use the `load` function of the `mcdm` package to load a decision matrix from a text file (e.g., the [example09.tsv](https://github.com/akestoridis/mcdm/blob/master/mcdm/tests/data/example09.tsv) file), and then compute the ranking of its alternatives using the MEW scoring method and the VIC weighting method as follows:
-```
+```pycon
 >>> x_matrix, alt_names = mcdm.load("./mcdm/tests/data/example09.tsv", delimiter="\t", skiprows=1, labeled_rows=True)
 >>> mcdm.rank(x_matrix, alt_names=alt_names, w_method="VIC", s_method="MEW")
 [('COORD.PRoPHET', 0.47540101629920883), ('DF.PRoPHET', 0.4720540449389032), ('CnR.LTS', 0.38076976314696165), ('SimBetTS.L8', 0.3800058193419937), ('SimBetTS.L16', 0.3799920328578032), ('CnR.DestEnc', 0.37944808013507936), ('LSF-SnW.L16', 0.37739981242275067), ('DF.DestEnc', 0.3737879965369727), ('COORD.DestEnc', 0.3735362169300779), ('SimBetTS.L4', 0.372439515643607), ('LSF-SnW.L8', 0.3689450285406012), ('DF.LTS', 0.36604297140966213), ('COORD.LTS', 0.36532018876831296), ('LSF-SnW.L4', 0.34498575401083065), ('CnF.PRoPHET', 0.344899433667112), ('CnF.DestEnc', 0.34080904510687654), ('CnF.LTS', 0.33682425293123014), ('SnF.L8', 0.3338134560941729), ('SnF.L4', 0.3310799577048607), ('CnR.PRoPHET', 0.3283706628162786), ('SnF.L2', 0.3282710142810222), ('SnF.L16', 0.325965295985982), ('SimBetTS.L2', 0.3198197170434966), ('LSF-SnW.L2', 0.28336307866897725), ('CnR.Enc', 0.25388909503755097), ('DF.Enc', 0.19642752820544426), ('COORD.Enc', 0.18527125018989776), ('Epidemic', 0.17618218317052287), ('Direct', 0.14463684900589485), ('EBR.L16', 0.14427544773753895), ('SnW.L16', 0.14419569083973272), ('EBR.L2', 0.139576851541699), ('SnW.L2', 0.1393465080643217), ('SnW.L8', 0.13728835719879856), ('EBR.L8', 0.13728300706136987), ('EBR.L4', 0.13654721879934206), ('SnW.L4', 0.1364251455180083), ('CnF.Enc', 0.11713353969310777)]
