@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the EM weighting method. For more information, see
 the following publications:
 
@@ -46,16 +46,27 @@ def em(z_matrix):
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Make sure that the provided decision matrix is normalized
-    if (np.sum(np.less(z_matrix, 0.0)) > 0
-            or np.sum(np.greater(z_matrix, 1.0)) > 0):
-        raise ValueError("The decision matrix must be normalized "
-                         "in order to apply the EM weighting method")
+    if (
+        np.sum(np.less(z_matrix, 0.0)) > 0
+        or np.sum(np.greater(z_matrix, 1.0)) > 0
+    ):
+        raise ValueError(
+            "The decision matrix must be normalized in order to apply the EM "
+            + "weighting method")
 
     # Make sure that the columns of the decision matrix sum to 1
-    if not np.all(np.isclose(np.sum(z_matrix, axis=0),
-                             np.ones(z_matrix.shape[1]))):
-        raise ValueError("The columns of the decision matrix must sum to 1 "
-                         "in order to apply the EM weighting method")
+    if (
+        not np.all(
+            np.isclose(
+                np.sum(z_matrix, axis=0),
+                np.ones(z_matrix.shape[1]),
+            )
+        )
+    ):
+        raise ValueError(
+            "The columns of the decision matrix must sum to 1 in order to "
+            + "apply the EM weighting method",
+        )
 
     # Compute the normalization constant
     k_constant = 1.0 / np.log(z_matrix.shape[0])

@@ -41,16 +41,18 @@ def setup():
 
     about = {}
     with open(
-            os.path.join(pkg_dirpath, "__about__.py"),
-            mode="r",
-            encoding="utf-8") as fp:
+        os.path.join(pkg_dirpath, "__about__.py"),
+        mode="r",
+        encoding="utf-8",
+    ) as fp:
         exec(fp.read(), about)  # nosec
 
     long_description = ""
     with open(
-            os.path.join(top_dirpath, "README.md"),
-            mode="r",
-            encoding="utf-8") as fp:
+        os.path.join(top_dirpath, "README.md"),
+        mode="r",
+        encoding="utf-8",
+    ) as fp:
         comment_counter = 0
         for line in fp:
             if line == "<!-- START OF BADGES -->\n":
@@ -61,7 +63,9 @@ def setup():
                 long_description += line
 
     getversion_spec = importlib.util.spec_from_file_location(
-        "__getversion__", os.path.join(pkg_dirpath, "__getversion__.py"))
+        "__getversion__",
+        os.path.join(pkg_dirpath, "__getversion__.py"),
+    )
     getversion_module = importlib.util.module_from_spec(getversion_spec)
     sys.modules["__getversion__"] = getversion_module
     getversion_spec.loader.exec_module(getversion_module)
@@ -82,7 +86,7 @@ def setup():
         python_requires=about["__python_requires__"],
         include_package_data=True,
         zip_safe=False,
-        packages=setuptools.find_packages()
+        packages=setuptools.find_packages(),
     )
 
 

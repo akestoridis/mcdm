@@ -62,13 +62,15 @@ def getversion_git(version_filepath, git_dirpath):
         if cp.returncode == 0:
             match = re.search(
                 r"^v([0-9]+\.[0-9]+)(\-[0-9]+\-g[0-9a-f]{7})?$",
-                cp.stdout.decode().rstrip())
+                cp.stdout.decode().rstrip(),
+            )
             if match:
                 version = match.group(1)
                 if match.group(2) is not None:
                     version += "+" + re.search(
                         r"^\-[0-9]+\-g([0-9a-f]{7})$",
-                        match.group(2)).group(1)
+                        match.group(2),
+                    ).group(1)
                 with open(version_filepath, mode="w", encoding="utf-8") as fp:
                     fp.write("{}\n".format(version))
                 return version
@@ -104,7 +106,8 @@ def getversion_file(version_filepath):
         with open(version_filepath, mode="r", encoding="utf-8") as fp:
             match = re.search(
                 r"^(0\+[0-9a-f]{7}|[0-9]+\.[0-9]+(\+[0-9a-f]{7})?)$",
-                fp.read().rstrip())
+                fp.read().rstrip(),
+            )
         if match:
             return match.group(0)
 

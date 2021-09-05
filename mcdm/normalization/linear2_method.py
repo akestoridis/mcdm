@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the Linear2 normalization method. For more
 information, see the following publications:
 
@@ -47,25 +47,30 @@ def linear2(x_matrix, is_benefit_x):
 
     # Sanity check
     if len(is_benefit_x) != x_matrix.shape[1]:
-        raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit "
-                         "or a cost criterion does not match the number "
-                         "of columns in the provided matrix")
+        raise ValueError(
+            "The number of variables in the list that determines whether "
+            + "each criterion is a benefit or a cost criterion does not "
+            + "match the number of columns in the provided matrix",
+        )
 
     # Construct the normalized matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)
     for j in range(x_matrix.shape[1]):
         denominator = np.amax(x_matrix[:, j]) - np.amin(x_matrix[:, j])
         if denominator == 0.0:
-            raise ValueError("The maximum value of a criterion must not be "
-                             "equal to its minimum value in order to apply "
-                             "the Linear2 normalization method")
+            raise ValueError(
+                "The maximum value of a criterion must not be equal to its "
+                + "minimum value in order to apply the Linear2 normalization "
+                + "method",
+            )
         if is_benefit_x[j]:
-            z_matrix[:, j] = ((x_matrix[:, j] - np.amin(x_matrix[:, j]))
-                              / denominator)
+            z_matrix[:, j] = (
+                (x_matrix[:, j] - np.amin(x_matrix[:, j])) / denominator
+            )
         else:
-            z_matrix[:, j] = ((np.amax(x_matrix[:, j]) - x_matrix[:, j])
-                              / denominator)
+            z_matrix[:, j] = (
+                (np.amax(x_matrix[:, j]) - x_matrix[:, j]) / denominator
+            )
 
     # All criteria have been transformed into benefit criteria
     is_benefit_z = [True for _ in range(x_matrix.shape[1])]

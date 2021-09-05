@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the MW weighting method. For more information, see
 the following publication:
 
@@ -42,11 +42,16 @@ def mw(z_matrix):
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Make sure that the provided decision matrix is normalized
-    if (np.sum(np.less(z_matrix, 0.0)) > 0
-            or np.sum(np.greater(z_matrix, 1.0)) > 0):
-        raise ValueError("The decision matrix must be normalized "
-                         "in order to apply the MW weighting method")
+    if (
+        np.sum(np.less(z_matrix, 0.0)) > 0
+        or np.sum(np.greater(z_matrix, 1.0)) > 0
+    ):
+        raise ValueError(
+            "The decision matrix must be normalized in order to apply the "
+            + "MW weighting method",
+        )
 
     # Each criterion is considered equally important
-    return np.full(z_matrix.shape[1], 1.0 / z_matrix.shape[1],
-                   dtype=np.float64)
+    return (
+        np.full(z_matrix.shape[1], 1.0 / z_matrix.shape[1], dtype=np.float64)
+    )

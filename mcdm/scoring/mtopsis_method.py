@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the mTOPSIS scoring method. For more information, see
 the following publication:
 
@@ -46,21 +46,27 @@ def mtopsis(z_matrix, w_vector, is_benefit_z):
     w_vector = np.array(w_vector, dtype=np.float64)
 
     # Sanity checks
-    if (np.sum(np.less(z_matrix, 0.0)) > 0
-            or np.sum(np.greater(z_matrix, 1.0)) > 0):
-        raise ValueError("The decision matrix must be normalized "
-                         "in order to apply the mTOPSIS scoring method")
+    if (
+        np.sum(np.less(z_matrix, 0.0)) > 0
+        or np.sum(np.greater(z_matrix, 1.0)) > 0
+    ):
+        raise ValueError(
+            "The decision matrix must be normalized in order to apply the "
+            + "mTOPSIS scoring method",
+        )
     if w_vector.shape != (z_matrix.shape[1],):
-        raise ValueError("The shape of the provided weight vector is not "
-                         "appropriate for the number of columns in the "
-                         "provided decision matrix")
+        raise ValueError(
+            "The shape of the provided weight vector is not appropriate for "
+            + "the number of columns in the provided decision matrix",
+        )
     if not np.isclose(np.sum(w_vector), 1.0):
         raise ValueError("The weight vector's elements must sum to 1")
     if len(is_benefit_z) != z_matrix.shape[1]:
-        raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit "
-                         "or a cost criterion does not match the number "
-                         "of columns in the provided decision matrix")
+        raise ValueError(
+            "The number of variables in the list that determines whether "
+            + "each criterion is a benefit or a cost criterion does not "
+            + "match the number of columns in the provided decision matrix",
+        )
 
     # mTOPSIS scores should always be sorted in descending order
     desc_order = True
@@ -82,10 +88,12 @@ def mtopsis(z_matrix, w_vector, is_benefit_z):
         pos_ideal_dist = 0.0
         neg_ideal_dist = 0.0
         for j in range(z_matrix.shape[1]):
-            pos_ideal_dist += (w_vector[j]
-                               * (pos_ideal_sol[j] - z_matrix[i, j])**2)
-            neg_ideal_dist += (w_vector[j]
-                               * (z_matrix[i, j] - neg_ideal_sol[j])**2)
+            pos_ideal_dist += (
+                w_vector[j] * (pos_ideal_sol[j] - z_matrix[i, j])**2
+            )
+            neg_ideal_dist += (
+                w_vector[j] * (z_matrix[i, j] - neg_ideal_sol[j])**2
+            )
         pos_ideal_dist = np.sqrt(pos_ideal_dist)
         neg_ideal_dist = np.sqrt(neg_ideal_dist)
         s_vector[i] = neg_ideal_dist / (neg_ideal_dist + pos_ideal_dist)

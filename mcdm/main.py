@@ -31,8 +31,16 @@ from .helper_scoring import score
 from .helper_weighting import weigh
 
 
-def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
-         w_vector=None, c_method=None, w_method="MW", s_method="SAW"):
+def rank(
+    x_matrix,
+    alt_names=None,
+    is_benefit_x=None,
+    n_method=None,
+    w_vector=None,
+    c_method=None,
+    w_method="MW",
+    s_method="SAW",
+):
     """
     Return the ranking of the provided alternatives, in descending order,
     using the selected methods.
@@ -46,9 +54,10 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
 
     # Sanity check
     if len(alt_names) != x_matrix.shape[0]:
-        raise ValueError("The number of names for the provided alternatives "
-                         "does not match the number of rows in the provided "
-                         "decision matrix")
+        raise ValueError(
+            "The number of names for the provided alternatives does not "
+            + "match the number of rows in the provided decision matrix",
+        )
 
     # If not specified, consider all criteria as benefit criteria
     if is_benefit_x is None:
@@ -67,9 +76,10 @@ def rank(x_matrix, alt_names=None, is_benefit_x=None, n_method=None,
 
         # Sanity checks
         if w_vector.shape != (x_matrix.shape[1],):
-            raise ValueError("The shape of the provided weight vector is not "
-                             "appropriate for the number of columns in the "
-                             "provided decision matrix")
+            raise ValueError(
+                "The shape of the provided weight vector is not appropriate "
+                + "for the number of columns in the provided decision matrix",
+            )
         if not np.isclose(np.sum(w_vector), 1.0):
             raise ValueError("The weight vector's elements must sum to 1")
 
@@ -115,11 +125,13 @@ def load(filepath, delimiter=",", skiprows=0, labeled_rows=False):
 
                 # Sanity checks
                 if len(row) <= 1:
-                    raise ValueError("The matrix should have at "
-                                     "least 1 column with data")
+                    raise ValueError(
+                        "The matrix should have at least 1 column with data",
+                    )
                 if len(row) - 1 != num_columns:
-                    raise ValueError("Wrong number of columns at "
-                                     "line {}".format(i))
+                    raise ValueError(
+                        "Wrong number of columns at line {}".format(i),
+                    )
 
                 # The row labels are expected to be
                 # in the first column of the text file
@@ -129,7 +141,11 @@ def load(filepath, delimiter=",", skiprows=0, labeled_rows=False):
         matrix = np.array(matrix_data, dtype=np.float64)
     else:
         # Load the matrix from the text file as a float64 NumPy array
-        matrix = np.loadtxt(filepath, dtype=np.float64, delimiter=delimiter,
-                            skiprows=skiprows)
+        matrix = np.loadtxt(
+            filepath,
+            dtype=np.float64,
+            delimiter=delimiter,
+            skiprows=skiprows,
+        )
 
     return matrix, row_labels

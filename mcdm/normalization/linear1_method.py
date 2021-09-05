@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the Linear1 normalization method. For more
 information, see the following publications:
 
@@ -47,16 +47,18 @@ def linear1(x_matrix, is_benefit_x):
 
     # Sanity check
     if len(is_benefit_x) != x_matrix.shape[1]:
-        raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit "
-                         "or a cost criterion does not match the number "
-                         "of columns in the provided matrix")
+        raise ValueError(
+            "The number of variables in the list that determines whether "
+            + "each criterion is a benefit or a cost criterion does not "
+            + "match the number of columns in the provided matrix",
+        )
 
     # Make sure that it does not contain any negative numbers
     if np.sum(np.less(x_matrix, 0.0)) > 0:
-        raise ValueError("The provided matrix must not contain any "
-                         "negative numbers in order to apply the "
-                         "Linear1 normalization method")
+        raise ValueError(
+            "The provided matrix must not contain any negative numbers in "
+            + "order to apply the Linear1 normalization method",
+        )
 
     # Construct the normalized matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)
@@ -64,16 +66,19 @@ def linear1(x_matrix, is_benefit_x):
         if is_benefit_x[j]:
             max_value = np.amax(x_matrix[:, j])
             if max_value == 0.0:
-                raise ValueError("The maximum value of a benefit criterion "
-                                 "must not be zero in order to apply the "
-                                 "Linear1 normalization method")
+                raise ValueError(
+                    "The maximum value of a benefit criterion must not be "
+                    + "zero in order to apply the Linear1 normalization "
+                    + "method",
+                )
             z_matrix[:, j] = x_matrix[:, j] / max_value
         else:
             min_value = np.amin(x_matrix[:, j])
             if min_value == 0.0:
-                raise ValueError("The minimum value of a cost criterion "
-                                 "must not be zero in order to apply the "
-                                 "Linear1 normalization method")
+                raise ValueError(
+                    "The minimum value of a cost criterion must not be zero "
+                    + "in order to apply the Linear1 normalization method",
+                )
             z_matrix[:, j] = min_value / x_matrix[:, j]
 
     # All criteria have been transformed into benefit criteria

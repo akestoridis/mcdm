@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the Linear3 normalization method. For more
 information, see the following publications:
 
@@ -47,25 +47,28 @@ def linear3(x_matrix, is_benefit_x):
 
     # Sanity check
     if len(is_benefit_x) != x_matrix.shape[1]:
-        raise ValueError("The number of variables in the list that "
-                         "determines whether each criterion is a benefit "
-                         "or a cost criterion does not match the number "
-                         "of columns in the provided matrix")
+        raise ValueError(
+            "The number of variables in the list that determines whether "
+            + "each criterion is a benefit or a cost criterion does not "
+            + "match the number of columns in the provided matrix",
+        )
 
     # Make sure that it does not contain any negative numbers
     if np.sum(np.less(x_matrix, 0.0)) > 0:
-        raise ValueError("The provided matrix must not contain any "
-                         "negative numbers in order to apply the "
-                         "Linear3 normalization method")
+        raise ValueError(
+            "The provided matrix must not contain any negative numbers in "
+            + "order to apply the Linear3 normalization method",
+        )
 
     # Construct the normalized matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)
     for j in range(x_matrix.shape[1]):
         denominator = np.sum(x_matrix[:, j])
         if denominator == 0.0:
-            raise ValueError("The sum of a criterion's values must not "
-                             "be equal to zero in order to apply "
-                             "the Linear3 normalization method")
+            raise ValueError(
+                "The sum of a criterion's values must not be equal to zero "
+                + "in order to apply the Linear3 normalization method",
+            )
         z_matrix[:, j] = x_matrix[:, j] / denominator
 
     # The criteria have not been transformed into benefit or cost criteria

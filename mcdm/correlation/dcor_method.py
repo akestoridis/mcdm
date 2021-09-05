@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the dCor correlation method. For more information,
 see the following publications:
 
@@ -45,8 +45,10 @@ def dcor(z_matrix):
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Initialize the matrix for the distance correlation coefficients
-    dcor_matrix = np.ones((z_matrix.shape[1], z_matrix.shape[1]),
-                          dtype=np.float64)
+    dcor_matrix = np.ones(
+        (z_matrix.shape[1], z_matrix.shape[1]),
+        dtype=np.float64,
+    )
 
     # Compute the matrix of squared distance covariances
     dcov2_matrix = squared_dcov_matrix(z_matrix)
@@ -85,8 +87,10 @@ def squared_dcov_matrix(z_matrix):
     the provided matrix.
     """
     # Initialize the distance covariance matrix
-    dcov2_matrix = np.zeros((z_matrix.shape[1], z_matrix.shape[1]),
-                            dtype=np.float64)
+    dcov2_matrix = np.zeros(
+        (z_matrix.shape[1], z_matrix.shape[1]),
+        dtype=np.float64,
+    )
 
     for j_col in range(z_matrix.shape[1]):
         # Compute the Euclidean distance matrix of the j-th criterion
@@ -118,8 +122,10 @@ def dist_matrix(z_vector):
     Return the Euclidean distance matrix of the provided vector.
     """
     # Initialize the Euclidean distance matrix
-    dmatrix = np.zeros((z_vector.shape[0], z_vector.shape[0]),
-                       dtype=np.float64)
+    dmatrix = np.zeros(
+        (z_vector.shape[0], z_vector.shape[0]),
+        dtype=np.float64,
+    )
 
     for i_row in range(z_vector.shape[0]):
         for k_row in range(i_row + 1, z_vector.shape[0]):
@@ -135,10 +141,12 @@ def lin_func(dmatrix):
     """
     Return the result of the linear function for the provided distance matrix.
     """
-    return (dmatrix
-            - np.mean(dmatrix, axis=0)
-            - np.reshape(np.mean(dmatrix, axis=1), (dmatrix.shape[0], 1))
-            + np.mean(dmatrix))
+    return (
+        dmatrix
+        - np.mean(dmatrix, axis=0)
+        - np.reshape(np.mean(dmatrix, axis=1), (dmatrix.shape[0], 1))
+        + np.mean(dmatrix)
+    )
 
 
 def squared_dcov(j_func, l_func):

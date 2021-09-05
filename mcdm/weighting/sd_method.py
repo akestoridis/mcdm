@@ -19,7 +19,7 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-u"""
+"""
 Python implementation of the SD weighting method. For more information, see
 the following publication:
 
@@ -42,10 +42,14 @@ def sd(z_matrix):
     z_matrix = np.array(z_matrix, dtype=np.float64)
 
     # Make sure that the provided decision matrix is normalized
-    if (np.sum(np.less(z_matrix, 0.0)) > 0
-            or np.sum(np.greater(z_matrix, 1.0)) > 0):
-        raise ValueError("The decision matrix must be normalized "
-                         "in order to apply the SD weighting method")
+    if (
+        np.sum(np.less(z_matrix, 0.0)) > 0
+        or np.sum(np.greater(z_matrix, 1.0)) > 0
+    ):
+        raise ValueError(
+            "The decision matrix must be normalized in order to apply the SD "
+            + "weighting method",
+        )
 
     # Compute the standard deviation of each criterion
     sd_vector = np.std(z_matrix, axis=0, dtype=np.float64)
