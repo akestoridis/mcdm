@@ -32,24 +32,17 @@ the following publication:
 
 import numpy as np
 
+from ..helper_validation import check_weighting_input
+
 
 def sd(z_matrix):
     """
     Return the weight vector of the provided decision matrix using the
     Standard Deviation method.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     z_matrix = np.array(z_matrix, dtype=np.float64)
-
-    # Make sure that the provided decision matrix is normalized
-    if (
-        np.sum(np.less(z_matrix, 0.0)) > 0
-        or np.sum(np.greater(z_matrix, 1.0)) > 0
-    ):
-        raise ValueError(
-            "The decision matrix must be normalized in order to apply the SD "
-            + "weighting method",
-        )
+    check_weighting_input(z_matrix, "", "SD")
 
     # Compute the standard deviation of each criterion
     sd_vector = np.std(z_matrix, axis=0, dtype=np.float64)

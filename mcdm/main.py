@@ -42,46 +42,30 @@ def rank(
     s_method="SAW",
 ):
     """
-    Return the ranking of the provided alternatives, in descending order,
-    using the selected methods.
+    Return the ranking of the alternatives, in descending order, using the
+    selected methods.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     x_matrix = np.array(x_matrix, dtype=np.float64)
-
-    # Create a list of names for the alternatives, if none was provided
     if alt_names is None:
         alt_names = ["a" + str(i + 1) for i in range(x_matrix.shape[0])]
-
-    # Sanity check
     if len(alt_names) != x_matrix.shape[0]:
         raise ValueError(
-            "The number of names for the provided alternatives does not "
-            + "match the number of rows in the provided decision matrix",
+            "The number of names for the alternatives does not match the "
+            + "number of rows in the decision matrix",
         )
 
     # If not specified, consider all criteria as benefit criteria
     if is_benefit_x is None:
         is_benefit_x = [True for _ in range(x_matrix.shape[1])]
 
-    # Normalize the provided decision matrix using the selected method
+    # Normalize the decision matrix using the selected method
     z_matrix, is_benefit_z = normalize(x_matrix, is_benefit_x, n_method)
 
     # Determine the weight of each criterion
     if w_vector is None:
         # Weigh each criterion using the selected methods
         w_vector = weigh(z_matrix, w_method, c_method)
-    else:
-        # Make sure that the provided weight vector is a float64 NumPy array
-        w_vector = np.array(w_vector, dtype=np.float64)
-
-        # Sanity checks
-        if w_vector.shape != (x_matrix.shape[1],):
-            raise ValueError(
-                "The shape of the provided weight vector is not appropriate "
-                + "for the number of columns in the provided decision matrix",
-            )
-        if not np.isclose(np.sum(w_vector), 1.0):
-            raise ValueError("The weight vector's elements must sum to 1")
 
     # Score each alternative using the selected method
     s_vector, desc_order = score(z_matrix, is_benefit_z, w_vector, s_method)
@@ -123,7 +107,7 @@ def load(filepath, delimiter=",", skiprows=0, labeled_rows=False):
                 if num_columns is None:
                     num_columns = len(row) - 1
 
-                # Sanity checks
+                # Perform sanity checks
                 if len(row) <= 1:
                     raise ValueError(
                         "The matrix should have at least 1 column with data",

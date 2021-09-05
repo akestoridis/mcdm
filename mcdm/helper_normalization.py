@@ -26,6 +26,7 @@ Helper module for the normalization methods of the ``mcdm`` package.
 import numpy as np
 
 from . import normalization
+from .helper_validation import check_normalization_input
 
 
 def normalize(x_matrix, is_benefit_x, n_method):
@@ -35,26 +36,10 @@ def normalize(x_matrix, is_benefit_x, n_method):
     """
     # Use the selected normalization method
     if n_method is None:
-        # Make sure that the provided matrix is a float64 NumPy array
+        # Perform sanity checks
         x_matrix = np.array(x_matrix, dtype=np.float64)
+        check_normalization_input(x_matrix, is_benefit_x, None)
 
-        # Sanity check
-        if len(is_benefit_x) != x_matrix.shape[1]:
-            raise ValueError(
-                "The number of variables in the list that determines whether "
-                + "each criterion is a benefit or a cost criterion does not "
-                + "match the number of columns in the provided matrix",
-            )
-
-        # Make sure that the provided matrix is already normalized
-        if (
-            np.sum(np.less(x_matrix, 0.0)) > 0
-            or np.sum(np.greater(x_matrix, 1.0)) > 0
-        ):
-            raise ValueError(
-                "The provided matrix is not normalized such that each "
-                + "element is between 0 and 1",
-            )
         return np.copy(x_matrix), is_benefit_x.copy()
     elif n_method.upper() == "LINEAR1":
         return normalization.linear1(x_matrix, is_benefit_x)

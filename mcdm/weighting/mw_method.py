@@ -32,24 +32,17 @@ the following publication:
 
 import numpy as np
 
+from ..helper_validation import check_weighting_input
+
 
 def mw(z_matrix):
     """
     Return the weight vector of the provided decision matrix using the Mean
     Weights method.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     z_matrix = np.array(z_matrix, dtype=np.float64)
-
-    # Make sure that the provided decision matrix is normalized
-    if (
-        np.sum(np.less(z_matrix, 0.0)) > 0
-        or np.sum(np.greater(z_matrix, 1.0)) > 0
-    ):
-        raise ValueError(
-            "The decision matrix must be normalized in order to apply the "
-            + "MW weighting method",
-        )
+    check_weighting_input(z_matrix, "", "MW")
 
     # Each criterion is considered equally important
     return (

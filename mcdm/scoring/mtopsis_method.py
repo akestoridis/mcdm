@@ -32,6 +32,8 @@ the following publication:
 
 import numpy as np
 
+from ..helper_validation import check_scoring_input
+
 
 def mtopsis(z_matrix, w_vector, is_benefit_z):
     """
@@ -39,34 +41,10 @@ def mtopsis(z_matrix, w_vector, is_benefit_z):
     Solution scores of the provided decision matrix with the provided weight
     vector.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     z_matrix = np.array(z_matrix, dtype=np.float64)
-
-    # Make sure that the provided weight vector is a float64 NumPy array
     w_vector = np.array(w_vector, dtype=np.float64)
-
-    # Sanity checks
-    if (
-        np.sum(np.less(z_matrix, 0.0)) > 0
-        or np.sum(np.greater(z_matrix, 1.0)) > 0
-    ):
-        raise ValueError(
-            "The decision matrix must be normalized in order to apply the "
-            + "mTOPSIS scoring method",
-        )
-    if w_vector.shape != (z_matrix.shape[1],):
-        raise ValueError(
-            "The shape of the provided weight vector is not appropriate for "
-            + "the number of columns in the provided decision matrix",
-        )
-    if not np.isclose(np.sum(w_vector), 1.0):
-        raise ValueError("The weight vector's elements must sum to 1")
-    if len(is_benefit_z) != z_matrix.shape[1]:
-        raise ValueError(
-            "The number of variables in the list that determines whether "
-            + "each criterion is a benefit or a cost criterion does not "
-            + "match the number of columns in the provided decision matrix",
-        )
+    check_scoring_input(z_matrix, w_vector, is_benefit_z, "mTOPSIS")
 
     # mTOPSIS scores should always be sorted in descending order
     desc_order = True

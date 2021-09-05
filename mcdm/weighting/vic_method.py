@@ -33,6 +33,7 @@ the following publication:
 import numpy as np
 
 from ..helper_correlation import correlate
+from ..helper_validation import check_weighting_input
 
 
 def vic(z_matrix, c_method="dCor"):
@@ -40,37 +41,14 @@ def vic(z_matrix, c_method="dCor"):
     Return the weight vector of the provided decision matrix using the
     Variability and Interdependencies of Criteria method.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     z_matrix = np.array(z_matrix, dtype=np.float64)
-
-    # Make sure that the provided decision matrix is normalized
-    if (
-        np.sum(np.less(z_matrix, 0.0)) > 0
-        or np.sum(np.greater(z_matrix, 1.0)) > 0
-    ):
-        raise ValueError(
-            "The decision matrix must be normalized in order to apply the "
-            + "VIC weighting method"
-        )
+    if c_method is None:
+        c_method = "dCor"
+    check_weighting_input(z_matrix, c_method, "VIC")
 
     # Compute the standard deviation of each criterion
     sd_vector = np.std(z_matrix, axis=0, dtype=np.float64)
-
-    # By default, VIC is using distance correlation (dCor) coefficients
-    if c_method is None:
-        c_method = "dCor"
-
-    # Make sure that VIC is compatible with the selected correlation method
-    if c_method.upper() in {"PEARSON"}:
-        raise ValueError(
-            "The VIC weighting method is not compatible with the "
-            + "{} correlation method".format(c_method),
-        )
-    if c_method.upper() not in {"ABSPEARSON", "DCOR"}:
-        raise ValueError(
-            "Unknown compatibility of the VIC weighting method with the "
-            + "{} correlation method".format(c_method),
-        )
 
     # Compute the correlation coefficients between pairs of criteria
     corr_matrix = correlate(z_matrix, c_method)

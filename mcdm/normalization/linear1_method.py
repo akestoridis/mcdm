@@ -36,29 +36,17 @@ information, see the following publications:
 
 import numpy as np
 
+from ..helper_validation import check_normalization_input
+
 
 def linear1(x_matrix, is_benefit_x):
     """
     Return the normalized version of the provided matrix using the Linear
     Normalization (1) method.
     """
-    # Make sure that the provided matrix is a float64 NumPy array
+    # Perform sanity checks
     x_matrix = np.array(x_matrix, dtype=np.float64)
-
-    # Sanity check
-    if len(is_benefit_x) != x_matrix.shape[1]:
-        raise ValueError(
-            "The number of variables in the list that determines whether "
-            + "each criterion is a benefit or a cost criterion does not "
-            + "match the number of columns in the provided matrix",
-        )
-
-    # Make sure that it does not contain any negative numbers
-    if np.sum(np.less(x_matrix, 0.0)) > 0:
-        raise ValueError(
-            "The provided matrix must not contain any negative numbers in "
-            + "order to apply the Linear1 normalization method",
-        )
+    check_normalization_input(x_matrix, is_benefit_x, "Linear1")
 
     # Construct the normalized matrix
     z_matrix = np.zeros(x_matrix.shape, dtype=np.float64)

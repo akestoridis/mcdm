@@ -36,37 +36,17 @@ the following publications:
 
 import numpy as np
 
+from ..helper_validation import check_weighting_input
+
 
 def em(z_matrix):
     """
     Return the weight vector of the provided decision matrix using the Entropy
     Measure method.
     """
-    # Make sure that the provided decision matrix is a float64 NumPy array
+    # Perform sanity checks
     z_matrix = np.array(z_matrix, dtype=np.float64)
-
-    # Make sure that the provided decision matrix is normalized
-    if (
-        np.sum(np.less(z_matrix, 0.0)) > 0
-        or np.sum(np.greater(z_matrix, 1.0)) > 0
-    ):
-        raise ValueError(
-            "The decision matrix must be normalized in order to apply the EM "
-            + "weighting method")
-
-    # Make sure that the columns of the decision matrix sum to 1
-    if (
-        not np.all(
-            np.isclose(
-                np.sum(z_matrix, axis=0),
-                np.ones(z_matrix.shape[1]),
-            )
-        )
-    ):
-        raise ValueError(
-            "The columns of the decision matrix must sum to 1 in order to "
-            + "apply the EM weighting method",
-        )
+    check_weighting_input(z_matrix, "", "EM")
 
     # Compute the normalization constant
     k_constant = 1.0 / np.log(z_matrix.shape[0])
