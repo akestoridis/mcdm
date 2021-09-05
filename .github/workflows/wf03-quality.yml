@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -47,7 +47,7 @@ jobs:
     - name: Install Bandit
       run: pip install bandit
     - name: Check the code quality with Flake8
-      run: flake8 --max-complexity 10 mcdm/ setup.py
+      run: flake8 -v --max-complexity 10 mcdm/ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm/ setup.py
   macos:
@@ -69,7 +69,7 @@ jobs:
     - name: Install Bandit
       run: pip install bandit
     - name: Check the code quality with Flake8
-      run: flake8 --max-complexity 10 mcdm/ setup.py
+      run: flake8 -v --max-complexity 10 mcdm/ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm/ setup.py
   windows:
@@ -91,6 +91,6 @@ jobs:
     - name: Install Bandit
       run: python -m pip install bandit
     - name: Check the code quality with Flake8
-      run: flake8 --max-complexity 10 mcdm\ setup.py
+      run: flake8 -v --max-complexity 10 mcdm\ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm\ setup.py
