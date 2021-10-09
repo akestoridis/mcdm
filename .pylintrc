@@ -3,11 +3,13 @@ persistent=no
 
 [MESSAGES CONTROL]
 enable=all
-disable=locally-disabled,
-        suppressed-message,
+disable=exec-used,
+        locally-disabled,
         no-else-return,
+        suppressed-message,
         too-many-arguments,
-        exec-used
+        too-many-lines,
+        too-many-public-methods,
 
 [BASIC]
 module-rgx=^[a-z_][a-z0-9_]+$
@@ -31,3 +33,10 @@ check-str-concat-over-line-jumps=yes
 
 [VARIABLES]
 dummy-variables-rgx=^_.*$
+
+[SIMILARITIES]
+min-similarity-lines=7
+ignore-comments=yes
+ignore-docstrings=yes
+ignore-imports=yes
+ignore-signatures=yes

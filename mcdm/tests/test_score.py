@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,12 +21,21 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import mcdm
-import numpy as np
+"""
+Test module for the scoring methods of the ``mcdm`` package.
+"""
+
 import unittest
+
+import numpy as np
+
+import mcdm
 
 
 class TestScore(unittest.TestCase):
+    """
+    Test class for the scoring methods of the ``mcdm`` package.
+    """
     def test_saw_balanced(self):
         """Test the SAW method with a balanced decision matrix."""
         z_matrix = np.array(

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,19 +21,27 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import mcdm
+"""
+Test module for the integration of the ``mcdm`` package.
+"""
+
 import os
 import unittest
+
+import mcdm
 
 
 DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 class TestIntegration(unittest.TestCase):
+    """
+    Test class for the integration of the ``mcdm`` package.
+    """
     def test_integration_default(self):
         """Test integration with the default parameters."""
         filepath = os.path.join(DIR_PATH, "data", "example03.tsv")
-        x_matrix, alt_names = mcdm.load(filepath, delimiter="\t")
+        x_matrix, _alt_names = mcdm.load(filepath, delimiter="\t")
         obtained_ranking = mcdm.rank(x_matrix)
         expected_ranking = [
             ("a1", 0.500000),
@@ -50,7 +58,7 @@ class TestIntegration(unittest.TestCase):
     def test_integration_mew(self):
         """Test integration with the MEW method."""
         filepath = os.path.join(DIR_PATH, "data", "example03.tsv")
-        x_matrix, alt_names = mcdm.load(filepath, delimiter="\t")
+        x_matrix, _alt_names = mcdm.load(filepath, delimiter="\t")
         obtained_ranking = mcdm.rank(x_matrix, s_method="MEW")
         expected_ranking = [
             ("a3", 0.500000),
@@ -67,7 +75,7 @@ class TestIntegration(unittest.TestCase):
     def test_integration_topsis_w(self):
         """Test integration with the TOPSIS and w_vector methods."""
         filepath = os.path.join(DIR_PATH, "data", "example03.tsv")
-        x_matrix, alt_names = mcdm.load(filepath, delimiter="\t")
+        x_matrix, _alt_names = mcdm.load(filepath, delimiter="\t")
         obtained_ranking = mcdm.rank(
             x_matrix, w_vector=[0.7, 0.3], s_method="TOPSIS")
         expected_ranking = [
@@ -85,7 +93,7 @@ class TestIntegration(unittest.TestCase):
     def test_integration_topsis_is_benefit_x(self):
         """Test integration with the TOPSIS method and mixed criteria."""
         filepath = os.path.join(DIR_PATH, "data", "example03.tsv")
-        x_matrix, alt_names = mcdm.load(filepath, delimiter="\t")
+        x_matrix, _alt_names = mcdm.load(filepath, delimiter="\t")
         obtained_ranking = mcdm.rank(
             x_matrix, is_benefit_x=[True, False], s_method="TOPSIS")
         expected_ranking = [

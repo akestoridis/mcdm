@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,12 +21,21 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import mcdm
-import numpy as np
+"""
+Test module for the correlation methods of the ``mcdm`` package.
+"""
+
 import unittest
+
+import numpy as np
+
+import mcdm
 
 
 class TestCorrelate(unittest.TestCase):
+    """
+    Test class for the correlation methods of the ``mcdm`` package.
+    """
     def test_pearson_linear(self):
         """Test the Pearson method with a linear association."""
         z_matrix = np.array(
