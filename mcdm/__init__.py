@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Python implementation of Multiple-Criteria Decision-Making algorithms
+Python implementation of multiple-criteria decision-making algorithms
 =====================================================================
 
 Features

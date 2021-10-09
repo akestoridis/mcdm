@@ -27,7 +27,7 @@ __title__ = "mcdm"
 __author__ = "Dimitrios-Georgios Akestoridis"
 __author_email__ = "akestoridis@gmail.com"
 __description__ = (
-    "Python implementation of Multiple-Criteria Decision-Making algorithms"
+    "Python implementation of multiple-criteria decision-making algorithms"
 )
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis"

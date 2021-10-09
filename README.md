@@ -1,6 +1,6 @@
 # mcdm
 
-Python implementation of Multiple-Criteria Decision-Making algorithms
+Python implementation of multiple-criteria decision-making algorithms
 
 <!-- START OF BADGES -->
 ![Status of tests workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/wf01-tests?label=tests)
