@@ -22,14 +22,18 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``helper_scoring.py`` file of the ``mcdm`` package.
+Test script for the ``helper_scoring.py`` file of the ``mcdm`` package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm import score
+
+from .helper_testing import (
+    get_matrix03,
+    get_vector05,
+)
 
 
 class TestScore(unittest.TestCase):
@@ -40,24 +44,12 @@ class TestScore(unittest.TestCase):
         """
         Test the selection of an unknown scoring method.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(
             ValueError,
             score,
-            z_matrix,
-            is_benefit_z,
-            w_vector,
+            np.array(get_matrix03(), dtype=np.float64),
+            [True, True],
+            np.array(get_vector05(), dtype=np.float64),
             "Unknown",
         )
 

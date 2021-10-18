@@ -22,15 +22,22 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``correlation/abspearson_method.py`` file of the ``mcdm``
+Test script for the ``correlation/abspearson_method.py`` file of the ``mcdm``
 package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm.correlation import abspearson
+
+from ..helper_testing import (
+    get_matrix01,
+    get_matrix02,
+    get_matrix11,
+    get_matrix35,
+    get_matrix36,
+)
 
 
 class TestAbspearson(unittest.TestCase):
@@ -42,27 +49,10 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        obtained_corr_matrix = abspearson(
+            np.array(get_matrix01(), dtype=np.float64),
         )
-        obtained_corr_matrix = abspearson(z_matrix)
-        expected_corr_matrix = np.array(
-            [
-                [1.0000000, 0.9314381, 0.9314381],
-                [0.9314381, 1.0000000, 1.0000000],
-                [0.9314381, 1.0000000, 1.0000000],
-            ],
-            dtype=np.float64,
-        )
+        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
         self.assertEqual(
             obtained_corr_matrix.dtype,
@@ -73,32 +63,10 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a non-linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0],
-                [0.2, 0.5, 0.0],
-                [0.2, 0.5, 1.0],
-                [0.4, 1.0, 0.0],
-                [0.4, 1.0, 1.0],
-                [0.6, 1.0, 0.0],
-                [0.6, 1.0, 1.0],
-                [0.8, 0.5, 0.0],
-                [0.8, 0.5, 1.0],
-                [1.0, 0.0, 0.0],
-                [1.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
+        obtained_corr_matrix = abspearson(
+            np.array(get_matrix02(), dtype=np.float64),
         )
-        obtained_corr_matrix = abspearson(z_matrix)
-        expected_corr_matrix = np.array(
-            [
-                [1.0, 0.0, 0.0],
-                [0.0, 1.0, 0.0],
-                [0.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
-        )
+        expected_corr_matrix = np.array(get_matrix35(), dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
         self.assertEqual(
             obtained_corr_matrix.dtype,
@@ -109,27 +77,10 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a float32 NumPy array.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float32,
+        obtained_corr_matrix = abspearson(
+            np.array(get_matrix01(), dtype=np.float32),
         )
-        obtained_corr_matrix = abspearson(z_matrix)
-        expected_corr_matrix = np.array(
-            [
-                [1.0000000, 0.9314381, 0.9314381],
-                [0.9314381, 1.0000000, 1.0000000],
-                [0.9314381, 1.0000000, 1.0000000],
-            ],
-            dtype=np.float64,
-        )
+        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
         self.assertEqual(
             obtained_corr_matrix.dtype,
@@ -140,24 +91,8 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a nested list.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9, 0.1],
-            [1.0, 1.0, 0.0],
-        ]
-        obtained_corr_matrix = abspearson(z_matrix)
-        expected_corr_matrix = np.array(
-            [
-                [1.0000000, 0.9314381, 0.9314381],
-                [0.9314381, 1.0000000, 1.0000000],
-                [0.9314381, 1.0000000, 1.0000000],
-            ],
-            dtype=np.float64,
-        )
+        obtained_corr_matrix = abspearson(get_matrix01())
+        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
         np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
         self.assertEqual(
             obtained_corr_matrix.dtype,
@@ -168,16 +103,7 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a missing element.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9],
-            [1.0, 1.0, 0.0],
-        ]
-        self.assertRaises(ValueError, abspearson, z_matrix)
+        self.assertRaises(ValueError, abspearson, get_matrix11())
 
 
 if __name__ == "__main__":

@@ -22,15 +22,22 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``normalization/linear3_method.py`` file of the ``mcdm``
+Test script for the ``normalization/linear3_method.py`` file of the ``mcdm``
 package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm.normalization import linear3
+
+from ..helper_testing import (
+    get_matrix24,
+    get_matrix25,
+    get_matrix26,
+    get_matrix27,
+    get_matrix28,
+)
 
 
 class TestLinear3(unittest.TestCase):
@@ -42,31 +49,11 @@ class TestLinear3(unittest.TestCase):
         """
         Test the calculations of the Linear3 normalization method.
         """
-        x_matrix = np.array(
-            [
-                [4.0, 4.0, 7.0, 7.0],
-                [3.0, 3.0, 7.0, 7.0],
-                [2.0, 2.0, 7.0, 7.0],
-                [1.0, 1.0, 7.0, 7.0],
-                [0.0, 0.0, 7.0, 7.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = linear3(
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix24(), dtype=np.float64),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.4, 0.4, 0.2, 0.2],
-                [0.3, 0.3, 0.2, 0.2],
-                [0.2, 0.2, 0.2, 0.2],
-                [0.1, 0.1, 0.2, 0.2],
-                [0.0, 0.0, 0.2, 0.2],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix25(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -76,31 +63,11 @@ class TestLinear3(unittest.TestCase):
         """
         Test the Linear3 normalization method with a float32 NumPy array.
         """
-        x_matrix = np.array(
-            [
-                [4.0, 4.0, 7.0, 7.0],
-                [3.0, 3.0, 7.0, 7.0],
-                [2.0, 2.0, 7.0, 7.0],
-                [1.0, 1.0, 7.0, 7.0],
-                [0.0, 0.0, 7.0, 7.0],
-            ],
-            dtype=np.float32,
-        )
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = linear3(
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix24(), dtype=np.float32),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.4, 0.4, 0.2, 0.2],
-                [0.3, 0.3, 0.2, 0.2],
-                [0.2, 0.2, 0.2, 0.2],
-                [0.1, 0.1, 0.2, 0.2],
-                [0.0, 0.0, 0.2, 0.2],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix25(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -110,28 +77,11 @@ class TestLinear3(unittest.TestCase):
         """
         Test the Linear3 normalization method with a nested list.
         """
-        x_matrix = [
-            [4.0, 4.0, 7.0, 7.0],
-            [3.0, 3.0, 7.0, 7.0],
-            [2.0, 2.0, 7.0, 7.0],
-            [1.0, 1.0, 7.0, 7.0],
-            [0.0, 0.0, 7.0, 7.0],
-        ]
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = linear3(
-            x_matrix,
-            is_benefit_x,
+            get_matrix24(),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.4, 0.4, 0.2, 0.2],
-                [0.3, 0.3, 0.2, 0.2],
-                [0.2, 0.2, 0.2, 0.2],
-                [0.1, 0.1, 0.2, 0.2],
-                [0.0, 0.0, 0.2, 0.2],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix25(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -141,85 +91,44 @@ class TestLinear3(unittest.TestCase):
         """
         Test the Linear3 normalization method with a missing element.
         """
-        x_matrix = [
-            [4.0, 4.0, 7.0, 7.0],
-            [3.0, 3.0, 7.0, 7.0],
-            [2.0, 2.0, 7.0, 7.0],
-            [1.0, 1.0, 7.0],
-            [0.0, 0.0, 7.0, 7.0],
-        ]
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             linear3,
-            x_matrix,
-            is_benefit_x,
+            get_matrix26(),
+            [True, False, True, False],
         )
 
     def test_negative_exception(self):
         """
         Test the Linear3 normalization method with a negative value.
         """
-        x_matrix = np.array(
-            [
-                [ 4.0, 4.0, 7.0, 7.0],  # noqa: E201
-                [ 3.0, 3.0, 7.0, 7.0],  # noqa: E201
-                [-2.0, 2.0, 7.0, 7.0],  # noqa: E201
-                [ 1.0, 1.0, 7.0, 7.0],  # noqa: E201
-                [ 0.0, 0.0, 7.0, 7.0],  # noqa: E201
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             linear3,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix27(), dtype=np.float64),
+            [True, False, True, False],
         )
 
     def test_zero_constant_exception(self):
         """
         Test the Linear3 normalization method with a zero constant vector.
         """
-        x_matrix = np.array(
-            [
-                [4.0, 4.0, 7.0, 0.0],
-                [3.0, 3.0, 7.0, 0.0],
-                [2.0, 2.0, 7.0, 0.0],
-                [1.0, 1.0, 7.0, 0.0],
-                [0.0, 0.0, 7.0, 0.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             linear3,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix28(), dtype=np.float64),
+            [True, False, True, False],
         )
 
     def test_is_benefit_x_exception(self):
         """
         Test the Linear3 normalization method with an invalid Boolean list.
         """
-        x_matrix = np.array(
-            [
-                [4.0, 4.0, 7.0, 7.0],
-                [3.0, 3.0, 7.0, 7.0],
-                [2.0, 2.0, 7.0, 7.0],
-                [1.0, 1.0, 7.0, 7.0],
-                [0.0, 0.0, 7.0, 7.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False, True]
         self.assertRaises(
             ValueError,
             linear3,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix24(), dtype=np.float64),
+            [True, False, True, False, True],
         )
 
 

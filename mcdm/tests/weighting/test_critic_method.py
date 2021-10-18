@@ -22,15 +22,22 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``weighting/critic_method.py`` file of the ``mcdm``
+Test script for the ``weighting/critic_method.py`` file of the ``mcdm``
 package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm.weighting import critic
+
+from ..helper_testing import (
+    get_matrix01,
+    get_matrix02,
+    get_matrix11,
+    get_matrix12,
+    get_matrix13,
+)
 
 
 class TestCritic(unittest.TestCase):
@@ -41,19 +48,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC weighting method with a linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
-        )
-        obtained_w_vector = critic(z_matrix)
+        obtained_w_vector = critic(np.array(get_matrix01(), dtype=np.float64))
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -65,24 +60,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC weighting method with a non-linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0],
-                [0.2, 0.5, 0.0],
-                [0.2, 0.5, 1.0],
-                [0.4, 1.0, 0.0],
-                [0.4, 1.0, 1.0],
-                [0.6, 1.0, 0.0],
-                [0.6, 1.0, 1.0],
-                [0.8, 0.5, 0.0],
-                [0.8, 0.5, 1.0],
-                [1.0, 0.0, 0.0],
-                [1.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
-        )
-        obtained_w_vector = critic(z_matrix)
+        obtained_w_vector = critic(np.array(get_matrix02(), dtype=np.float64))
         expected_w_vector = np.array(
             [0.27329284, 0.32664742, 0.40005975],
             dtype=np.float64,
@@ -94,19 +72,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC weighting method with a float32 NumPy array.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float32,
-        )
-        obtained_w_vector = critic(z_matrix)
+        obtained_w_vector = critic(np.array(get_matrix01(), dtype=np.float32))
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -118,16 +84,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC weighting method with a nested list.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9, 0.1],
-            [1.0, 1.0, 0.0],
-        ]
-        obtained_w_vector = critic(z_matrix)
+        obtained_w_vector = critic(get_matrix01())
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -139,19 +96,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.Pearson weighting method with a linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float64),
+            "Pearson",
         )
-        obtained_w_vector = critic(z_matrix, "Pearson")
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -164,24 +112,10 @@ class TestCritic(unittest.TestCase):
         Test the CRITIC.Pearson weighting method with a non-linear
         association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0],
-                [0.2, 0.5, 0.0],
-                [0.2, 0.5, 1.0],
-                [0.4, 1.0, 0.0],
-                [0.4, 1.0, 1.0],
-                [0.6, 1.0, 0.0],
-                [0.6, 1.0, 1.0],
-                [0.8, 0.5, 0.0],
-                [0.8, 0.5, 1.0],
-                [1.0, 0.0, 0.0],
-                [1.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix02(), dtype=np.float64),
+            "Pearson",
         )
-        obtained_w_vector = critic(z_matrix, "Pearson")
         expected_w_vector = np.array(
             [0.27329284, 0.32664742, 0.40005975],
             dtype=np.float64,
@@ -193,19 +127,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.Pearson weighting method with a float32 NumPy array.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float32,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float32),
+            "Pearson",
         )
-        obtained_w_vector = critic(z_matrix, "Pearson")
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -217,16 +142,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.Pearson weighting method with a nested list.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9, 0.1],
-            [1.0, 1.0, 0.0],
-        ]
-        obtained_w_vector = critic(z_matrix, "Pearson")
+        obtained_w_vector = critic(get_matrix01(), "Pearson")
         expected_w_vector = np.array(
             [0.25000000, 0.25857023, 0.49142977],
             dtype=np.float64,
@@ -238,19 +154,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.AbsPearson weighting method with a linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float64),
+            "AbsPearson",
         )
-        obtained_w_vector = critic(z_matrix, "AbsPearson")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -263,24 +170,10 @@ class TestCritic(unittest.TestCase):
         Test the CRITIC.AbsPearson weighting method with a non-linear
         association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0],
-                [0.2, 0.5, 0.0],
-                [0.2, 0.5, 1.0],
-                [0.4, 1.0, 0.0],
-                [0.4, 1.0, 1.0],
-                [0.6, 1.0, 0.0],
-                [0.6, 1.0, 1.0],
-                [0.8, 0.5, 0.0],
-                [0.8, 0.5, 1.0],
-                [1.0, 0.0, 0.0],
-                [1.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix02(), dtype=np.float64),
+            "AbsPearson",
         )
-        obtained_w_vector = critic(z_matrix, "AbsPearson")
         expected_w_vector = np.array(
             [0.27329284, 0.32664742, 0.40005975],
             dtype=np.float64,
@@ -293,19 +186,10 @@ class TestCritic(unittest.TestCase):
         Test the CRITIC.AbsPearson weighting method with a float32 NumPy
         array.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float32,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float32),
+            "AbsPearson",
         )
-        obtained_w_vector = critic(z_matrix, "AbsPearson")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -317,16 +201,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.AbsPearson weighting method with a nested list.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9, 0.1],
-            [1.0, 1.0, 0.0],
-        ]
-        obtained_w_vector = critic(z_matrix, "AbsPearson")
+        obtained_w_vector = critic(get_matrix01(), "AbsPearson")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -338,19 +213,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.dCor weighting method with a linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float64),
+            "dCor",
         )
-        obtained_w_vector = critic(z_matrix, "dCor")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -362,24 +228,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.dCor weighting method with a non-linear association.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.0],
-                [0.0, 0.0, 1.0],
-                [0.2, 0.5, 0.0],
-                [0.2, 0.5, 1.0],
-                [0.4, 1.0, 0.0],
-                [0.4, 1.0, 1.0],
-                [0.6, 1.0, 0.0],
-                [0.6, 1.0, 1.0],
-                [0.8, 0.5, 0.0],
-                [0.8, 0.5, 1.0],
-                [1.0, 0.0, 0.0],
-                [1.0, 0.0, 1.0],
-            ],
-            dtype=np.float64,
+        obtained_w_vector = critic(
+            np.array(get_matrix02(), dtype=np.float64),
+            "dCor",
         )
-        obtained_w_vector = critic(z_matrix, "dCor")
         expected_w_vector = np.array(
             [0.23971980, 0.28651997, 0.47376023],
             dtype=np.float64,
@@ -391,19 +243,10 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.dCor weighting method with a float32 NumPy array.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float32,
+        obtained_w_vector = critic(
+            np.array(get_matrix01(), dtype=np.float32),
+            "dCor",
         )
-        obtained_w_vector = critic(z_matrix, "dCor")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -415,16 +258,7 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC.dCor weighting method with a nested list.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9, 0.1],
-            [1.0, 1.0, 0.0],
-        ]
-        obtained_w_vector = critic(z_matrix, "dCor")
+        obtained_w_vector = critic(get_matrix01(), "dCor")
         expected_w_vector = np.array(
             [0.50000000, 0.25000000, 0.25000000],
             dtype=np.float64,
@@ -436,70 +270,38 @@ class TestCritic(unittest.TestCase):
         """
         Test the CRITIC weighting method with a missing element.
         """
-        z_matrix = [
-            [0.0, 0.0, 1.0],
-            [0.1, 0.2, 0.8],
-            [0.2, 0.4, 0.6],
-            [0.3, 0.7, 0.3],
-            [0.6, 0.8, 0.2],
-            [0.8, 0.9],
-            [1.0, 1.0, 0.0],
-        ]
-        self.assertRaises(ValueError, critic, z_matrix)
+        self.assertRaises(ValueError, critic, get_matrix11())
 
     def test_over_exception(self):
         """
         Test the CRITIC weighting method with a value greater than one.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.1],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        self.assertRaises(
+            ValueError,
+            critic,
+            np.array(get_matrix12(), dtype=np.float64),
         )
-        self.assertRaises(ValueError, critic, z_matrix)
 
     def test_under_exception(self):
         """
         Test the CRITIC weighting method with a value less than zero.
         """
-        z_matrix = np.array(
-            [
-                [ 0.0, 0.0, 1.0],  # noqa: E201
-                [-0.1, 0.2, 0.8],  # noqa: E201
-                [ 0.2, 0.4, 0.6],  # noqa: E201
-                [ 0.3, 0.7, 0.3],  # noqa: E201
-                [ 0.6, 0.8, 0.2],  # noqa: E201
-                [ 0.8, 0.9, 0.1],  # noqa: E201
-                [ 1.0, 1.0, 0.0],  # noqa: E201
-            ],
-            dtype=np.float64,
+        self.assertRaises(
+            ValueError,
+            critic,
+            np.array(get_matrix13(), dtype=np.float64),
         )
-        self.assertRaises(ValueError, critic, z_matrix)
 
     def test_unknown_selection_exception(self):
         """
         Test the CRITIC weighting method with an unknown correlation method.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        self.assertRaises(
+            ValueError,
+            critic,
+            np.array(get_matrix01(), dtype=np.float64),
+            "Unknown",
         )
-        self.assertRaises(ValueError, critic, z_matrix, "Unknown")
 
 
 if __name__ == "__main__":

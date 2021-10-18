@@ -22,14 +22,15 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``helper_correlation.py`` file of the ``mcdm`` package.
+Test script for the ``helper_correlation.py`` file of the ``mcdm`` package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm import correlate
+
+from .helper_testing import get_matrix01
 
 
 class TestCorrelate(unittest.TestCase):
@@ -40,19 +41,12 @@ class TestCorrelate(unittest.TestCase):
         """
         Test the selection of an unknown correlation method.
         """
-        z_matrix = np.array(
-            [
-                [0.0, 0.0, 1.0],
-                [0.1, 0.2, 0.8],
-                [0.2, 0.4, 0.6],
-                [0.3, 0.7, 0.3],
-                [0.6, 0.8, 0.2],
-                [0.8, 0.9, 0.1],
-                [1.0, 1.0, 0.0],
-            ],
-            dtype=np.float64,
+        self.assertRaises(
+            ValueError,
+            correlate,
+            np.array(get_matrix01(), dtype=np.float64),
+            "Unknown",
         )
-        self.assertRaises(ValueError, correlate, z_matrix, "Unknown")
 
 
 if __name__ == "__main__":

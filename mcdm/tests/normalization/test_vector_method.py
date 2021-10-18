@@ -22,15 +22,22 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``normalization/vector_method.py`` file of the ``mcdm``
+Test script for the ``normalization/vector_method.py`` file of the ``mcdm``
 package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm.normalization import vector
+
+from ..helper_testing import (
+    get_matrix29,
+    get_matrix30,
+    get_matrix31,
+    get_matrix32,
+    get_matrix33,
+)
 
 
 class TestVector(unittest.TestCase):
@@ -42,29 +49,11 @@ class TestVector(unittest.TestCase):
         """
         Test the calculations of the Vector normalization method.
         """
-        x_matrix = np.array(
-            [
-                [0.0, 0.0, 5.0, 5.0],
-                [6.0, 6.0, 5.0, 5.0],
-                [0.0, 0.0, 5.0, 5.0],
-                [8.0, 8.0, 5.0, 5.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = vector(
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix29(), dtype=np.float64),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.5, 0.5],
-                [0.6, 0.6, 0.5, 0.5],
-                [0.0, 0.0, 0.5, 0.5],
-                [0.8, 0.8, 0.5, 0.5],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix30(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -74,29 +63,11 @@ class TestVector(unittest.TestCase):
         """
         Test the Vector normalization method with a float32 NumPy array.
         """
-        x_matrix = np.array(
-            [
-                [0.0, 0.0, 5.0, 5.0],
-                [6.0, 6.0, 5.0, 5.0],
-                [0.0, 0.0, 5.0, 5.0],
-                [8.0, 8.0, 5.0, 5.0],
-            ],
-            dtype=np.float32,
-        )
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = vector(
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix29(), dtype=np.float32),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.5, 0.5],
-                [0.6, 0.6, 0.5, 0.5],
-                [0.0, 0.0, 0.5, 0.5],
-                [0.8, 0.8, 0.5, 0.5],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix30(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -106,26 +77,11 @@ class TestVector(unittest.TestCase):
         """
         Test the Vector normalization method with a nested list.
         """
-        x_matrix = [
-            [0.0, 0.0, 5.0, 5.0],
-            [6.0, 6.0, 5.0, 5.0],
-            [0.0, 0.0, 5.0, 5.0],
-            [8.0, 8.0, 5.0, 5.0],
-        ]
-        is_benefit_x = [True, False, True, False]
         obtained_z_matrix, obtained_is_benefit_z = vector(
-            x_matrix,
-            is_benefit_x,
+            get_matrix29(),
+            [True, False, True, False],
         )
-        expected_z_matrix = np.array(
-            [
-                [0.0, 0.0, 0.5, 0.5],
-                [0.6, 0.6, 0.5, 0.5],
-                [0.0, 0.0, 0.5, 0.5],
-                [0.8, 0.8, 0.5, 0.5],
-            ],
-            dtype=np.float64,
-        )
+        expected_z_matrix = np.array(get_matrix30(), dtype=np.float64)
         expected_is_benefit_z = [True, False, True, False]
         np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
         self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
@@ -135,81 +91,44 @@ class TestVector(unittest.TestCase):
         """
         Test the Vector normalization method with a missing element.
         """
-        x_matrix = [
-            [0.0, 0.0, 5.0, 5.0],
-            [6.0, 6.0, 5.0, 5.0],
-            [0.0, 0.0, 5.0],
-            [8.0, 8.0, 5.0, 5.0],
-        ]
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             vector,
-            x_matrix,
-            is_benefit_x,
+            get_matrix31(),
+            [True, False, True, False],
         )
 
     def test_negative_exception(self):
         """
         Test the Vector normalization method with a negative value.
         """
-        x_matrix = np.array(
-            [
-                [0.0,  0.0, 5.0, 5.0],
-                [6.0, -6.0, 5.0, 5.0],
-                [0.0,  0.0, 5.0, 5.0],
-                [8.0,  8.0, 5.0, 5.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             vector,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix32(), dtype=np.float64),
+            [True, False, True, False],
         )
 
     def test_zero_constant_exception(self):
         """
         Test the Vector normalization method with a zero constant vector.
         """
-        x_matrix = np.array(
-            [
-                [0.0, 0.0, 5.0, 0.0],
-                [6.0, 6.0, 5.0, 0.0],
-                [0.0, 0.0, 5.0, 0.0],
-                [8.0, 8.0, 5.0, 0.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False]
         self.assertRaises(
             ValueError,
             vector,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix33(), dtype=np.float64),
+            [True, False, True, False],
         )
 
     def test_is_benefit_x_exception(self):
         """
         Test the Vector normalization method with an invalid Boolean list.
         """
-        x_matrix = np.array(
-            [
-                [0.0, 0.0, 5.0, 5.0],
-                [6.0, 6.0, 5.0, 5.0],
-                [0.0, 0.0, 5.0, 5.0],
-                [8.0, 8.0, 5.0, 5.0],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_x = [True, False, True, False, True]
         self.assertRaises(
             ValueError,
             vector,
-            x_matrix,
-            is_benefit_x,
+            np.array(get_matrix29(), dtype=np.float64),
+            [True, False, True, False, True],
         )
 
 

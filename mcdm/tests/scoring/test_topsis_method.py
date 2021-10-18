@@ -22,14 +22,29 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Test module for the ``scoring/topsis_method.py`` file of the ``mcdm`` package.
+Test script for the ``scoring/topsis_method.py`` file of the ``mcdm`` package.
 """
 
 import unittest
 
 import numpy as np
-
 from mcdm.scoring import topsis
+
+from ..helper_testing import (
+    get_matrix03,
+    get_matrix06,
+    get_matrix10,
+    get_matrix47,
+    get_matrix48,
+    get_vector03,
+    get_vector04,
+    get_vector05,
+    get_vector06,
+    get_vector07,
+    get_vector11,
+    get_vector12,
+    get_vector13,
+)
 
 
 class TestTopsis(unittest.TestCase):
@@ -40,27 +55,12 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with a balanced decision matrix.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix03(), dtype=np.float64),
+            np.array(get_vector05(), dtype=np.float64),
+            [True, True],
         )
-        expected_s_vector = np.array(
-            [0.5, 0.5, 0.5, 0.5, 0.5],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -70,25 +70,12 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with simple benefit criteria.
         """
-        z_matrix = np.array(
-            [
-                [0.5, 0.6, 0.3, 0.2, 0.9],
-                [0.5, 0.5, 0.5, 0.5, 0.5],
-                [0.5, 0.4, 0.7, 0.8, 0.1],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True, True, True, True]
-        w_vector = np.array([0.0, 0.1, 0.2, 0.3, 0.4], dtype=np.float64)
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix06(), dtype=np.float64),
+            np.array(get_vector07(), dtype=np.float64),
+            [True, True, True, True, True],
         )
-        expected_s_vector = np.array(
-            [0.6194425, 0.5000000, 0.3805575],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector11(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -98,25 +85,12 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with simple cost criteria.
         """
-        z_matrix = np.array(
-            [
-                [0.5, 0.6, 0.3, 0.2, 0.9],
-                [0.5, 0.5, 0.5, 0.5, 0.5],
-                [0.5, 0.4, 0.7, 0.8, 0.1],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [False, False, False, False, False]
-        w_vector = np.array([0.0, 0.1, 0.2, 0.3, 0.4], dtype=np.float64)
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix06(), dtype=np.float64),
+            np.array(get_vector07(), dtype=np.float64),
+            [False, False, False, False, False],
         )
-        expected_s_vector = np.array(
-            [0.3805575, 0.5000000, 0.6194425],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector12(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -127,25 +101,12 @@ class TestTopsis(unittest.TestCase):
         Test the TOPSIS scoring method with a mixture of benefit and cost
         criteria.
         """
-        z_matrix = np.array(
-            [
-                [0.5, 0.6, 0.3, 0.2, 0.9],
-                [0.5, 0.5, 0.5, 0.5, 0.5],
-                [0.5, 0.4, 0.7, 0.8, 0.1],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, False, True, True, True]
-        w_vector = np.array([0.0, 0.1, 0.2, 0.3, 0.4], dtype=np.float64)
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix06(), dtype=np.float64),
+            np.array(get_vector07(), dtype=np.float64),
+            [True, False, True, True, True],
         )
-        expected_s_vector = np.array(
-            [0.6177727, 0.5000000, 0.3822273],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector13(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -155,27 +116,12 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with float32 NumPy arrays.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float32,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float32)
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix03(), dtype=np.float32),
+            np.array(get_vector05(), dtype=np.float32),
+            [True, True],
         )
-        expected_s_vector = np.array(
-            [0.5, 0.5, 0.5, 0.5, 0.5],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -185,24 +131,12 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with nested lists.
         """
-        z_matrix = [
-            [0.00, 1.00],
-            [0.25, 0.75],
-            [0.50, 0.50],
-            [0.75, 0.25],
-            [1.00, 0.00],
-        ]
-        is_benefit_z = [True, True]
-        w_vector = [0.5, 0.5]
         obtained_s_vector, obtained_desc_order = topsis(
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            get_matrix03(),
+            get_vector05(),
+            [True, True],
         )
-        expected_s_vector = np.array(
-            [0.5, 0.5, 0.5, 0.5, 0.5],
-            dtype=np.float64,
-        )
+        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
         expected_desc_order = True
         np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
         self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
@@ -212,141 +146,72 @@ class TestTopsis(unittest.TestCase):
         """
         Test the TOPSIS scoring method with a missing element.
         """
-        z_matrix = [
-            [0.00, 1.00],
-            [0.25, 0.75],
-            [0.50, 0.50],
-            [0.75],
-            [1.00, 0.00],
-        ]
-        is_benefit_z = [True, True]
-        w_vector = [0.5, 0.5]
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            get_matrix10(),
+            get_vector05(),
+            [True, True],
         )
 
     def test_over_exception(self):
         """
         Test the TOPSIS scoring method with a value greater than one.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.01],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix47(), dtype=np.float64),
+            np.array(get_vector05(), dtype=np.float64),
+            [True, True],
         )
 
     def test_under_exception(self):
         """
         Test the TOPSIS scoring method with a value less than zero.
         """
-        z_matrix = np.array(
-            [
-                [ 0.00, 1.00],  # noqa: E201
-                [-0.25, 0.75],  # noqa: E201
-                [ 0.50, 0.50],  # noqa: E201
-                [ 0.75, 0.25],  # noqa: E201
-                [ 1.00, 0.00],  # noqa: E201
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix48(), dtype=np.float64),
+            np.array(get_vector05(), dtype=np.float64),
+            [True, True],
         )
 
     def test_w_vector_length_exception(self):
         """
         Test the TOPSIS scoring method with an invalid weight vector length.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.25, 0.25, 0.25, 0.25], dtype=np.float64)
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix03(), dtype=np.float64),
+            np.array(get_vector03(), dtype=np.float64),
+            [True, True],
         )
 
     def test_w_vector_sum_exception(self):
         """
         Test the TOPSIS scoring method with an invalid weight vector sum.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True]
-        w_vector = np.array([0.5, 0.4], dtype=np.float64)
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix03(), dtype=np.float64),
+            np.array(get_vector04(), dtype=np.float64),
+            [True, True],
         )
 
     def test_is_benefit_z_exception(self):
         """
         Test the TOPSIS scoring method with an invalid Boolean list.
         """
-        z_matrix = np.array(
-            [
-                [0.00, 1.00],
-                [0.25, 0.75],
-                [0.50, 0.50],
-                [0.75, 0.25],
-                [1.00, 0.00],
-            ],
-            dtype=np.float64,
-        )
-        is_benefit_z = [True, True, True]
-        w_vector = np.array([0.5, 0.5], dtype=np.float64)
         self.assertRaises(
             ValueError,
             topsis,
-            z_matrix,
-            w_vector,
-            is_benefit_z,
+            np.array(get_matrix03(), dtype=np.float64),
+            np.array(get_vector05(), dtype=np.float64),
+            [True, True, True],
         )
 
 
