@@ -73,7 +73,7 @@ def check_scoring_input(z_matrix, w_vector, is_benefit_z, s_method):
                 + "each criterion is a benefit or a cost criterion does not "
                 + "match the number of columns in the decision matrix",
             )
-    else:  # pragma: no cover
+    else:
         raise ValueError("Unknown scoring method ({})".format(s_method))
 
 
@@ -118,7 +118,7 @@ def check_weighting_input(z_matrix, c_method, w_method):
                     "Unknown compatibility of the VIC weighting method with "
                     + "the {} correlation method".format(c_method),
                 )
-    else:  # pragma: no cover
+    else:
         raise ValueError("Unknown weighting method ({})".format(w_method))
 
 
@@ -150,5 +150,5 @@ def check_normalization_input(x_matrix, is_benefit_x, n_method):
                     + "negative numbers in order to apply the "
                     + "{} normalization method".format(n_method),
                 )
-    else:  # pragma: no cover
+    else:
         raise ValueError("Unknown normalization method ({})".format(n_method))
