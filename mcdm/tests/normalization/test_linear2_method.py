@@ -32,6 +32,7 @@ import numpy as np
 from mcdm.normalization import linear2
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix05,
     get_matrix19,
     get_matrix20,
@@ -41,7 +42,7 @@ from ..helper_testing import (
 )
 
 
-class TestLinear2(unittest.TestCase):
+class TestLinear2(ExtendedTestCase):
     """
     Test class for the ``linear2`` function of the ``mcdm.normalization``
     package.
@@ -54,11 +55,14 @@ class TestLinear2(unittest.TestCase):
             np.array(get_matrix05(), dtype=np.float64),
             [True, False, True, False, True, False],
         )
-        expected_z_matrix = np.array(get_matrix19(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True, True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix19(), dtype=np.float64),
+        )
+        self.assertEqual(
+            obtained_is_benefit_z,
+            [True, True, True, True, True, True],
+        )
 
     def test_float32(self):
         """
@@ -68,11 +72,14 @@ class TestLinear2(unittest.TestCase):
             np.array(get_matrix05(), dtype=np.float32),
             [True, False, True, False, True, False],
         )
-        expected_z_matrix = np.array(get_matrix19(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True, True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix19(), dtype=np.float64),
+        )
+        self.assertEqual(
+            obtained_is_benefit_z,
+            [True, True, True, True, True, True],
+        )
 
     def test_nested_list(self):
         """
@@ -82,11 +89,14 @@ class TestLinear2(unittest.TestCase):
             get_matrix05(),
             [True, False, True, False, True, False],
         )
-        expected_z_matrix = np.array(get_matrix19(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True, True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix19(), dtype=np.float64),
+        )
+        self.assertEqual(
+            obtained_is_benefit_z,
+            [True, True, True, True, True, True],
+        )
 
     def test_missing_element_exception(self):
         """

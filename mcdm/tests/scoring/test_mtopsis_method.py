@@ -32,6 +32,7 @@ import numpy as np
 from mcdm.scoring import mtopsis
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix03,
     get_matrix06,
     get_matrix10,
@@ -48,7 +49,7 @@ from ..helper_testing import (
 )
 
 
-class TestMtopsis(unittest.TestCase):
+class TestMtopsis(ExtendedTestCase):
     """
     Test class for the ``mtopsis`` function of the ``mcdm.scoring`` package.
     """
@@ -61,11 +62,11 @@ class TestMtopsis(unittest.TestCase):
             np.array(get_vector05(), dtype=np.float64),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector06(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_simple_benefit(self):
         """
@@ -76,11 +77,11 @@ class TestMtopsis(unittest.TestCase):
             np.array(get_vector07(), dtype=np.float64),
             [True, True, True, True, True],
         )
-        expected_s_vector = np.array(get_vector14(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector14(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_simple_cost(self):
         """
@@ -91,11 +92,11 @@ class TestMtopsis(unittest.TestCase):
             np.array(get_vector07(), dtype=np.float64),
             [False, False, False, False, False],
         )
-        expected_s_vector = np.array(get_vector15(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector15(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_simple_mixture(self):
         """
@@ -107,11 +108,11 @@ class TestMtopsis(unittest.TestCase):
             np.array(get_vector07(), dtype=np.float64),
             [True, False, True, True, True],
         )
-        expected_s_vector = np.array(get_vector16(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector16(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_float32(self):
         """
@@ -122,11 +123,11 @@ class TestMtopsis(unittest.TestCase):
             np.array(get_vector05(), dtype=np.float32),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector06(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_nested_list(self):
         """
@@ -137,11 +138,11 @@ class TestMtopsis(unittest.TestCase):
             get_vector05(),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector06(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector06(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_missing_element_exception(self):
         """

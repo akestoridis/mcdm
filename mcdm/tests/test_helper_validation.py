@@ -35,13 +35,14 @@ from mcdm.helper_validation import (
 )
 
 from .helper_testing import (
+    ExtendedTestCase,
     get_matrix01,
     get_matrix03,
     get_vector05,
 )
 
 
-class TestCheckScoringInput(unittest.TestCase):
+class TestCheckScoringInput(ExtendedTestCase):
     """
     Test class for the ``check_scoring_input`` function of the
     ``mcdm.helper_validation`` module.
@@ -60,7 +61,7 @@ class TestCheckScoringInput(unittest.TestCase):
         )
 
 
-class TestCheckWeightingInput(unittest.TestCase):
+class TestCheckWeightingInput(ExtendedTestCase):
     """
     Test class for the ``check_weighting_input`` function of the
     ``mcdm.helper_validation`` module.
@@ -78,7 +79,7 @@ class TestCheckWeightingInput(unittest.TestCase):
         )
 
 
-class TestCheckNormalizationInput(unittest.TestCase):
+class TestCheckNormalizationInput(ExtendedTestCase):
     """
     Test class for the ``check_normalization_input`` function of the
     ``mcdm.helper_validation`` module.

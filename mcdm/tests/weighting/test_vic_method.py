@@ -31,15 +31,20 @@ import numpy as np
 from mcdm.weighting import vic
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix01,
     get_matrix02,
     get_matrix11,
     get_matrix12,
     get_matrix13,
+    get_vector20,
+    get_vector24,
+    get_vector25,
+    get_vector26,
 )
 
 
-class TestVic(unittest.TestCase):
+class TestVic(ExtendedTestCase):
     """
     Test class for the ``vic`` function of the ``mcdm.weighting`` package.
     """
@@ -47,164 +52,110 @@ class TestVic(unittest.TestCase):
         """
         Test the VIC weighting method with a linear association.
         """
-        obtained_w_vector = vic(np.array(get_matrix01(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float64)),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nonlinear(self):
         """
         Test the VIC weighting method with a non-linear association.
         """
-        obtained_w_vector = vic(np.array(get_matrix02(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.22633480, 0.27052183, 0.50314336],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix02(), dtype=np.float64)),
+            np.array(get_vector25(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_float32(self):
         """
         Test the VIC weighting method with a float32 NumPy array.
         """
-        obtained_w_vector = vic(np.array(get_matrix01(), dtype=np.float32))
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float32)),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nested_list(self):
         """
         Test the VIC weighting method with a nested list.
         """
-        obtained_w_vector = vic(get_matrix01())
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(get_matrix01()),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_abspearson_linear(self):
         """
         Test the VIC.AbsPearson weighting method with a linear association.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix01(), dtype=np.float64),
-            "AbsPearson",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float64), "AbsPearson"),
+            np.array(get_vector26(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.33861310, 0.33069345, 0.33069345],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_abspearson_nonlinear(self):
         """
         Test the VIC.AbsPearson weighting method with a non-linear
         association.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix02(), dtype=np.float64),
-            "AbsPearson",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix02(), dtype=np.float64), "AbsPearson"),
+            np.array(get_vector20(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.27329284, 0.32664742, 0.40005975],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_abspearson_float32(self):
         """
         Test the VIC.AbsPearson weighting method with a float32 NumPy array.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix01(), dtype=np.float32),
-            "AbsPearson",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float32), "AbsPearson"),
+            np.array(get_vector26(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.33861310, 0.33069345, 0.33069345],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_abspearson_nested_list(self):
         """
         Test the VIC.AbsPearson weighting method with a nested list.
         """
-        obtained_w_vector = vic(get_matrix01(), "AbsPearson")
-        expected_w_vector = np.array(
-            [0.33861310, 0.33069345, 0.33069345],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(get_matrix01(), "AbsPearson"),
+            np.array(get_vector26(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_dcor_linear(self):
         """
         Test the VIC.dCor weighting method with a linear association.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix01(), dtype=np.float64),
-            "dCor",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float64), "dCor"),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_dcor_nonlinear(self):
         """
         Test the VIC.dCor weighting method with a non-linear association.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix02(), dtype=np.float64),
-            "dCor",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix02(), dtype=np.float64), "dCor"),
+            np.array(get_vector25(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.22633480, 0.27052183, 0.50314336],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_dcor_float32(self):
         """
         Test the VIC.dCor weighting method with a float32 NumPy array.
         """
-        obtained_w_vector = vic(
-            np.array(get_matrix01(), dtype=np.float32),
-            "dCor",
+        self.assertAlmostEqualArrays(
+            vic(np.array(get_matrix01(), dtype=np.float32), "dCor"),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
-        )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_dcor_nested_list(self):
         """
         Test the VIC.dCor weighting method with a nested list.
         """
-        obtained_w_vector = vic(get_matrix01(), "dCor")
-        expected_w_vector = np.array(
-            [0.33817571, 0.33091215, 0.33091215],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            vic(get_matrix01(), "dCor"),
+            np.array(get_vector24(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_missing_element_exception(self):
         """

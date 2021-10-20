@@ -23,6 +23,34 @@
 Helper module for the testing of the ``mcdm`` package.
 """
 
+import unittest
+
+import numpy as np
+
+
+class ExtendedTestCase(unittest.TestCase):
+    # pylint: disable=invalid-name
+    """
+    Extended ``TestCase`` class of the ``unittest`` module.
+    """
+    def assertAlmostEqualArrays(self, obtained_array, expected_array):
+        """
+        Assert that two NumPy arrays are element-wise almost equal and use the
+        same data type.
+        """
+        np.testing.assert_allclose(obtained_array, expected_array)
+        self.assertEqual(obtained_array.dtype, expected_array.dtype)
+
+    def assertAlmostEqualRankings(self, obtained_ranking, expected_ranking):
+        """
+        Assert that two lists of tuples contain the same alternatives in the
+        same order with almost equal scores.
+        """
+        self.assertEqual(len(obtained_ranking), len(expected_ranking))
+        for i, tmp in enumerate(obtained_ranking):
+            self.assertEqual(tmp[0], expected_ranking[i][0])
+            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+
 
 def get_labels01():
     """
@@ -1357,4 +1385,114 @@ def get_vector16():
         0.5714286,
         0.5000000,
         0.4285714,
+    ]
+
+
+def get_vector17():
+    """
+    Return the vector with ID 17.
+    """
+    return [
+        0.33333333,
+        0.33333333,
+        0.33333333,
+    ]
+
+
+def get_vector18():
+    """
+    Return the vector with ID 18.
+    """
+    return [
+        0.37406776,
+        0.25186448,
+        0.37406776,
+    ]
+
+
+def get_vector19():
+    """
+    Return the vector with ID 19.
+    """
+    return [
+        0.20724531,
+        0.31710188,
+        0.47565280,
+    ]
+
+
+def get_vector20():
+    """
+    Return the vector with ID 20.
+    """
+    return [
+        0.27329284,
+        0.32664742,
+        0.40005975,
+    ]
+
+
+def get_vector21():
+    """
+    Return the vector with ID 21.
+    """
+    return [
+        0.25000000,
+        0.25857023,
+        0.49142977,
+    ]
+
+
+def get_vector22():
+    """
+    Return the vector with ID 22.
+    """
+    return [
+        0.50000000,
+        0.25000000,
+        0.25000000,
+    ]
+
+
+def get_vector23():
+    """
+    Return the vector with ID 23.
+    """
+    return [
+        0.23971980,
+        0.28651997,
+        0.47376023,
+    ]
+
+
+def get_vector24():
+    """
+    Return the vector with ID 24.
+    """
+    return [
+        0.33817571,
+        0.33091215,
+        0.33091215,
+    ]
+
+
+def get_vector25():
+    """
+    Return the vector with ID 25.
+    """
+    return [
+        0.22633480,
+        0.27052183,
+        0.50314336,
+    ]
+
+
+def get_vector26():
+    """
+    Return the vector with ID 26.
+    """
+    return [
+        0.33861310,
+        0.33069345,
+        0.33069345,
     ]

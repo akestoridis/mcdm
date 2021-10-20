@@ -31,16 +31,19 @@ import numpy as np
 from mcdm.weighting import em
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix41,
     get_matrix42,
     get_matrix43,
     get_matrix44,
     get_matrix45,
     get_matrix46,
+    get_vector18,
+    get_vector19,
 )
 
 
-class TestEm(unittest.TestCase):
+class TestEm(ExtendedTestCase):
     """
     Test class for the ``em`` function of the ``mcdm.weighting`` package.
     """
@@ -48,49 +51,37 @@ class TestEm(unittest.TestCase):
         """
         Test the EM weighting method with a linear association.
         """
-        obtained_w_vector = em(np.array(get_matrix41(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.37406776, 0.25186448, 0.37406776],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            em(np.array(get_matrix41(), dtype=np.float64)),
+            np.array(get_vector18(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nonlinear(self):
         """
         Test the EM weighting method with a non-linear association.
         """
-        obtained_w_vector = em(np.array(get_matrix42(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.20724531, 0.31710188, 0.47565280],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            em(np.array(get_matrix42(), dtype=np.float64)),
+            np.array(get_vector19(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_float32(self):
         """
         Test the EM weighting method with a float32 NumPy array.
         """
-        obtained_w_vector = em(np.array(get_matrix41(), dtype=np.float32))
-        expected_w_vector = np.array(
-            [0.37406776, 0.25186448, 0.37406776],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            em(np.array(get_matrix41(), dtype=np.float32)),
+            np.array(get_vector18(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nested_list(self):
         """
         Test the EM weighting method with a nested list.
         """
-        obtained_w_vector = em(get_matrix41())
-        expected_w_vector = np.array(
-            [0.37406776, 0.25186448, 0.37406776],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            em(get_matrix41()),
+            np.array(get_vector18(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_missing_element_exception(self):
         """

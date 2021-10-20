@@ -31,12 +31,13 @@ import numpy as np
 from mcdm import score
 
 from .helper_testing import (
+    ExtendedTestCase,
     get_matrix03,
     get_vector05,
 )
 
 
-class TestScore(unittest.TestCase):
+class TestScore(ExtendedTestCase):
     """
     Test class for the ``score`` function of the ``mcdm`` package.
     """

@@ -30,10 +30,13 @@ import unittest
 import numpy as np
 from mcdm import weigh
 
-from .helper_testing import get_matrix01
+from .helper_testing import (
+    ExtendedTestCase,
+    get_matrix01,
+)
 
 
-class TestWeigh(unittest.TestCase):
+class TestWeigh(ExtendedTestCase):
     """
     Test class for the ``weigh`` function of the ``mcdm`` package.
     """

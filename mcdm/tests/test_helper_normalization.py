@@ -31,6 +31,7 @@ import numpy as np
 from mcdm import normalize
 
 from .helper_testing import (
+    ExtendedTestCase,
     get_matrix01,
     get_matrix11,
     get_matrix12,
@@ -38,7 +39,7 @@ from .helper_testing import (
 )
 
 
-class TestNormalize(unittest.TestCase):
+class TestNormalize(ExtendedTestCase):
     """
     Test class for the ``normalize`` function of the ``mcdm`` package.
     """
@@ -51,11 +52,11 @@ class TestNormalize(unittest.TestCase):
             [True, True, True],
             None,
         )
-        expected_z_matrix = np.array(get_matrix01(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix01(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_is_benefit_z, [True, True, True])
 
     def test_none_float32(self):
         """
@@ -67,11 +68,11 @@ class TestNormalize(unittest.TestCase):
             [True, True, True],
             None,
         )
-        expected_z_matrix = np.array(get_matrix01(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix01(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_is_benefit_z, [True, True, True])
 
     def test_none_nested_list(self):
         """
@@ -82,11 +83,11 @@ class TestNormalize(unittest.TestCase):
             [True, True, True],
             None,
         )
-        expected_z_matrix = np.array(get_matrix01(), dtype=np.float64)
-        expected_is_benefit_z = [True, True, True]
-        np.testing.assert_allclose(obtained_z_matrix, expected_z_matrix)
-        self.assertEqual(obtained_z_matrix.dtype, expected_z_matrix.dtype)
-        self.assertEqual(obtained_is_benefit_z, expected_is_benefit_z)
+        self.assertAlmostEqualArrays(
+            obtained_z_matrix,
+            np.array(get_matrix01(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_is_benefit_z, [True, True, True])
 
     def test_none_missing_element_exception(self):
         """

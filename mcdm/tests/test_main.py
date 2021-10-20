@@ -35,6 +35,7 @@ from mcdm import (
 )
 
 from .helper_testing import (
+    ExtendedTestCase,
     get_labels01,
     get_labels02,
     get_labels03,
@@ -76,7 +77,7 @@ from .helper_testing import (
 DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
-class TestRank(unittest.TestCase):
+class TestRank(ExtendedTestCase):
     """
     Test class for the ``rank`` function of the ``mcdm`` package.
     """
@@ -84,304 +85,265 @@ class TestRank(unittest.TestCase):
         """
         Test the ranking of alternatives with the default selections.
         """
-        obtained_ranking = rank(get_matrix03())
-        expected_ranking = get_ranking01()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+        self.assertAlmostEqualRankings(rank(get_matrix03()), get_ranking01())
 
     def test_default_float64(self):
         """
         Test the ranking of alternatives with the default selections and a
         float64 NumPy array.
         """
-        obtained_ranking = rank(np.array(get_matrix03(), dtype=np.float64))
-        expected_ranking = get_ranking01()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+        self.assertAlmostEqualRankings(
+            rank(np.array(get_matrix03(), dtype=np.float64)),
+            get_ranking01(),
+        )
 
     def test_default_float32(self):
         """
         Test the ranking of alternatives with the default selections and a
         float32 NumPy array.
         """
-        obtained_ranking = rank(np.array(get_matrix03(), dtype=np.float32))
-        expected_ranking = get_ranking01()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
+        self.assertAlmostEqualRankings(
+            rank(np.array(get_matrix03(), dtype=np.float32)),
+            get_ranking01(),
+        )
 
     def test_default_w_desc_order(self):
         """
         Test the ranking of alternatives with the default selections,
         predefined weights, and benefit criteria.
         """
-        obtained_ranking = rank(
-            get_matrix03(),
-            is_benefit_x=[True, True],
-            w_vector=get_vector01(),
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix03(),
+                is_benefit_x=[True, True],
+                w_vector=get_vector01(),
+            ),
+            get_ranking02(),
         )
-        expected_ranking = get_ranking02()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_default_w_asc_order(self):
         """
         Test the ranking of alternatives with the default selections,
         predefined weights, and cost criteria.
         """
-        obtained_ranking = rank(
-            get_matrix03(),
-            is_benefit_x=[False, False],
-            w_vector=get_vector01(),
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix03(),
+                is_benefit_x=[False, False],
+                w_vector=get_vector01(),
+            ),
+            get_ranking03(),
         )
-        expected_ranking = get_ranking03()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_mw_linear1(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the MW
         weighting method, and the Linear1 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear1",
-            w_method="MW",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear1",
+                w_method="MW",
+                s_method="SAW",
+            ),
+            get_ranking04(),
         )
-        expected_ranking = get_ranking04()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_sd_linear1(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the SD
         weighting method, and the Linear1 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear1",
-            w_method="SD",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear1",
+                w_method="SD",
+                s_method="SAW",
+            ),
+            get_ranking05(),
         )
-        expected_ranking = get_ranking05()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_vic_linear1(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the VIC
         weighting method, and the Linear1 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear1",
-            w_method="VIC",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear1",
+                w_method="VIC",
+                s_method="SAW",
+            ),
+            get_ranking06(),
         )
-        expected_ranking = get_ranking06()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_vic_abspearson_linear1(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the
         VIC.AbsPearson weighting method, and the Linear1 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear1",
-            c_method="AbsPearson",
-            w_method="VIC",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear1",
+                c_method="AbsPearson",
+                w_method="VIC",
+                s_method="SAW",
+            ),
+            get_ranking07(),
         )
-        expected_ranking = get_ranking07()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_mew_vic_linear1(self):
         """
         Test the ranking of alternatives with the MEW scoring method, the VIC
         weighting method, and the Linear1 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear1",
-            w_method="VIC",
-            s_method="MEW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear1",
+                w_method="VIC",
+                s_method="MEW",
+            ),
+            get_ranking08(),
         )
-        expected_ranking = get_ranking08()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_critic_linear2(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the
         CRITIC weighting method, and the Linear2 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear2",
-            w_method="CRITIC",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear2",
+                w_method="CRITIC",
+                s_method="SAW",
+            ),
+            get_ranking09(),
         )
-        expected_ranking = get_ranking09()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_critic_dcor_linear2(self):
         """
         Test the ranking of alternatives with the SAW scoring method, the
         CRITIC.dCor weighting method, and the Linear2 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear2",
-            c_method="dCor",
-            w_method="CRITIC",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear2",
+                c_method="dCor",
+                w_method="CRITIC",
+                s_method="SAW",
+            ),
+            get_ranking10(),
         )
-        expected_ranking = get_ranking10()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_topsis_em_linear3(self):
         """
         Test the ranking of alternatives with the TOPSIS scoring method, the
         EM weighting method, and the Linear3 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear3",
-            w_method="EM",
-            s_method="TOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear3",
+                w_method="EM",
+                s_method="TOPSIS",
+            ),
+            get_ranking11(),
         )
-        expected_ranking = get_ranking11()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_mtopsis_em_linear3(self):
         """
         Test the ranking of alternatives with the mTOPSIS scoring method, the
         EM weighting method, and the Linear3 normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Linear3",
-            w_method="EM",
-            s_method="mTOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Linear3",
+                w_method="EM",
+                s_method="mTOPSIS",
+            ),
+            get_ranking12(),
         )
-        expected_ranking = get_ranking12()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_topsis_w_vector(self):
         """
         Test the ranking of alternatives with the TOPSIS scoring method,
         predefined weights, and the Vector normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Vector",
-            w_vector=get_vector02(),
-            s_method="TOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Vector",
+                w_vector=get_vector02(),
+                s_method="TOPSIS",
+            ),
+            get_ranking13(),
         )
-        expected_ranking = get_ranking13()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_mtopsis_w_vector(self):
         """
         Test the ranking of alternatives with the mTOPSIS scoring method,
         predefined weights, and the Vector normalization method.
         """
-        obtained_ranking = rank(
-            get_matrix07(),
-            is_benefit_x=[True, False, False, True],
-            n_method="Vector",
-            w_vector=get_vector02(),
-            s_method="mTOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix07(),
+                is_benefit_x=[True, False, False, True],
+                n_method="Vector",
+                w_vector=get_vector02(),
+                s_method="mTOPSIS",
+            ),
+            get_ranking14(),
         )
-        expected_ranking = get_ranking14()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_saw_critic(self):
         """
         Test the ranking of alternatives with the SAW scoring method and the
         CRITIC weighting method.
         """
-        obtained_ranking = rank(
-            get_matrix09(),
-            alt_names=get_labels04(),
-            is_benefit_x=[True, True, True],
-            w_method="CRITIC",
-            s_method="SAW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix09(),
+                alt_names=get_labels04(),
+                is_benefit_x=[True, True, True],
+                w_method="CRITIC",
+                s_method="SAW",
+            ),
+            get_ranking15(),
         )
-        expected_ranking = get_ranking15()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_mew_vic(self):
         """
         Test the ranking of alternatives with the MEW scoring method and the
         VIC weighting method.
         """
-        obtained_ranking = rank(
-            get_matrix09(),
-            alt_names=get_labels04(),
-            is_benefit_x=[True, True, True],
-            w_method="VIC",
-            s_method="MEW",
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix09(),
+                alt_names=get_labels04(),
+                is_benefit_x=[True, True, True],
+                w_method="VIC",
+                s_method="MEW",
+            ),
+            get_ranking16(),
         )
-        expected_ranking = get_ranking16()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_topsis_w_vector_float64(self):
         """
@@ -389,18 +351,16 @@ class TestRank(unittest.TestCase):
         predefined weights, the Vector normalization method, and float64 NumPy
         arrays.
         """
-        obtained_ranking = rank(
-            np.array(get_matrix07(), dtype=np.float64),
-            is_benefit_x=[True, False, False, True],
-            n_method="Vector",
-            w_vector=np.array(get_vector02(), dtype=np.float64),
-            s_method="TOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                np.array(get_matrix07(), dtype=np.float64),
+                is_benefit_x=[True, False, False, True],
+                n_method="Vector",
+                w_vector=np.array(get_vector02(), dtype=np.float64),
+                s_method="TOPSIS",
+            ),
+            get_ranking13(),
         )
-        expected_ranking = get_ranking13()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_topsis_w_vector_float32(self):
         """
@@ -408,18 +368,16 @@ class TestRank(unittest.TestCase):
         predefined weights, the Vector normalization method, and float32 NumPy
         arrays.
         """
-        obtained_ranking = rank(
-            np.array(get_matrix07(), dtype=np.float32),
-            is_benefit_x=[True, False, False, True],
-            n_method="Vector",
-            w_vector=np.array(get_vector02(), dtype=np.float32),
-            s_method="TOPSIS",
+        self.assertAlmostEqualRankings(
+            rank(
+                np.array(get_matrix07(), dtype=np.float32),
+                is_benefit_x=[True, False, False, True],
+                n_method="Vector",
+                w_vector=np.array(get_vector02(), dtype=np.float32),
+                s_method="TOPSIS",
+            ),
+            get_ranking13(),
         )
-        expected_ranking = get_ranking13()
-        self.assertEqual(len(obtained_ranking), len(expected_ranking))
-        for i, tmp in enumerate(obtained_ranking):
-            self.assertEqual(tmp[0], expected_ranking[i][0])
-            self.assertAlmostEqual(tmp[1], expected_ranking[i][1], places=6)
 
     def test_missing_element_exception(self):
         """
@@ -484,7 +442,7 @@ class TestRank(unittest.TestCase):
         )
 
 
-class TestLoad(unittest.TestCase):
+class TestLoad(ExtendedTestCase):
     """
     Test class for the ``load`` function of the ``mcdm`` package.
     """
@@ -496,11 +454,11 @@ class TestLoad(unittest.TestCase):
         obtained_matrix, obtained_row_labels = load(
             os.path.join(DIR_PATH, "data", "example01.csv"),
         )
-        expected_matrix = np.array(get_matrix01(), dtype=np.float64)
-        expected_row_labels = None
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix01(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, None)
 
     def test_example02(self):
         """
@@ -512,11 +470,11 @@ class TestLoad(unittest.TestCase):
             skiprows=1,
             labeled_rows=True,
         )
-        expected_matrix = np.array(get_matrix02(), dtype=np.float64)
-        expected_row_labels = get_labels01()
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix02(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, get_labels01())
 
     def test_example03(self):
         """
@@ -527,11 +485,11 @@ class TestLoad(unittest.TestCase):
             os.path.join(DIR_PATH, "data", "example03.tsv"),
             delimiter="\t",
         )
-        expected_matrix = np.array(get_matrix03(), dtype=np.float64)
-        expected_row_labels = None
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix03(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, None)
 
     def test_example04(self):
         """
@@ -543,11 +501,11 @@ class TestLoad(unittest.TestCase):
             delimiter="\t",
             skiprows=1,
         )
-        expected_matrix = np.array(get_matrix04(), dtype=np.float64)
-        expected_row_labels = None
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix04(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, None)
 
     def test_example05(self):
         """
@@ -557,11 +515,11 @@ class TestLoad(unittest.TestCase):
             os.path.join(DIR_PATH, "data", "example05.csv"),
             labeled_rows=True,
         )
-        expected_matrix = np.array(get_matrix05(), dtype=np.float64)
-        expected_row_labels = get_labels02()
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix05(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, get_labels02())
 
     def test_example06(self):
         """
@@ -572,11 +530,11 @@ class TestLoad(unittest.TestCase):
             os.path.join(DIR_PATH, "data", "example06.csv"),
             skiprows=1,
         )
-        expected_matrix = np.array(get_matrix06(), dtype=np.float64)
-        expected_row_labels = None
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix06(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, None)
 
     def test_example07(self):
         """
@@ -587,11 +545,11 @@ class TestLoad(unittest.TestCase):
             os.path.join(DIR_PATH, "data", "example07.csv"),
             skiprows=3,
         )
-        expected_matrix = np.array(get_matrix07(), dtype=np.float64)
-        expected_row_labels = None
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix07(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, None)
 
     def test_example08(self):
         """
@@ -602,11 +560,11 @@ class TestLoad(unittest.TestCase):
             delimiter="\t",
             labeled_rows=True,
         )
-        expected_matrix = np.array(get_matrix08(), dtype=np.float64)
-        expected_row_labels = get_labels03()
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix08(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, get_labels03())
 
     def test_example09(self):
         """
@@ -618,11 +576,11 @@ class TestLoad(unittest.TestCase):
             skiprows=1,
             labeled_rows=True,
         )
-        expected_matrix = np.array(get_matrix09(), dtype=np.float64)
-        expected_row_labels = get_labels04()
-        np.testing.assert_allclose(obtained_matrix, expected_matrix)
-        self.assertEqual(obtained_matrix.dtype, expected_matrix.dtype)
-        self.assertEqual(obtained_row_labels, expected_row_labels)
+        self.assertAlmostEqualArrays(
+            obtained_matrix,
+            np.array(get_matrix09(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_row_labels, get_labels04())
 
     def test_wrong_columns_exception(self):
         """

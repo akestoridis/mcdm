@@ -31,15 +31,18 @@ import numpy as np
 from mcdm.weighting import sd
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix01,
     get_matrix02,
     get_matrix11,
     get_matrix12,
     get_matrix13,
+    get_vector17,
+    get_vector20,
 )
 
 
-class TestSd(unittest.TestCase):
+class TestSd(ExtendedTestCase):
     """
     Test class for the ``sd`` function of the ``mcdm.weighting`` package.
     """
@@ -47,49 +50,37 @@ class TestSd(unittest.TestCase):
         """
         Test the SD weighting method with a linear association.
         """
-        obtained_w_vector = sd(np.array(get_matrix01(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.33333333, 0.33333333, 0.33333333],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            sd(np.array(get_matrix01(), dtype=np.float64)),
+            np.array(get_vector17(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nonlinear(self):
         """
         Test the SD weighting method with a non-linear association.
         """
-        obtained_w_vector = sd(np.array(get_matrix02(), dtype=np.float64))
-        expected_w_vector = np.array(
-            [0.27329284, 0.32664742, 0.40005975],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            sd(np.array(get_matrix02(), dtype=np.float64)),
+            np.array(get_vector20(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_float32(self):
         """
         Test the SD weighting method with a float32 NumPy array.
         """
-        obtained_w_vector = sd(np.array(get_matrix01(), dtype=np.float32))
-        expected_w_vector = np.array(
-            [0.33333333, 0.33333333, 0.33333333],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            sd(np.array(get_matrix01(), dtype=np.float32)),
+            np.array(get_vector17(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_nested_list(self):
         """
         Test the SD weighting method with a nested list.
         """
-        obtained_w_vector = sd(get_matrix01())
-        expected_w_vector = np.array(
-            [0.33333333, 0.33333333, 0.33333333],
-            dtype=np.float64,
+        self.assertAlmostEqualArrays(
+            sd(get_matrix01()),
+            np.array(get_vector17(), dtype=np.float64),
         )
-        np.testing.assert_allclose(obtained_w_vector, expected_w_vector)
-        self.assertEqual(obtained_w_vector.dtype, expected_w_vector.dtype)
 
     def test_missing_element_exception(self):
         """

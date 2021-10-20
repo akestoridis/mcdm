@@ -32,6 +32,7 @@ import numpy as np
 from mcdm.correlation import abspearson
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix01,
     get_matrix02,
     get_matrix11,
@@ -40,7 +41,7 @@ from ..helper_testing import (
 )
 
 
-class TestAbspearson(unittest.TestCase):
+class TestAbspearson(ExtendedTestCase):
     """
     Test class for the ``abspearson`` function of the ``mcdm.correlation``
     package.
@@ -49,54 +50,36 @@ class TestAbspearson(unittest.TestCase):
         """
         Test the AbsPearson correlation method with a linear association.
         """
-        obtained_corr_matrix = abspearson(
-            np.array(get_matrix01(), dtype=np.float64),
-        )
-        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
-        np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
-        self.assertEqual(
-            obtained_corr_matrix.dtype,
-            expected_corr_matrix.dtype,
+        self.assertAlmostEqualArrays(
+            abspearson(np.array(get_matrix01(), dtype=np.float64)),
+            np.array(get_matrix36(), dtype=np.float64),
         )
 
     def test_nonlinear(self):
         """
         Test the AbsPearson correlation method with a non-linear association.
         """
-        obtained_corr_matrix = abspearson(
-            np.array(get_matrix02(), dtype=np.float64),
-        )
-        expected_corr_matrix = np.array(get_matrix35(), dtype=np.float64)
-        np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
-        self.assertEqual(
-            obtained_corr_matrix.dtype,
-            expected_corr_matrix.dtype,
+        self.assertAlmostEqualArrays(
+            abspearson(np.array(get_matrix02(), dtype=np.float64)),
+            np.array(get_matrix35(), dtype=np.float64),
         )
 
     def test_float32(self):
         """
         Test the AbsPearson correlation method with a float32 NumPy array.
         """
-        obtained_corr_matrix = abspearson(
-            np.array(get_matrix01(), dtype=np.float32),
-        )
-        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
-        np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
-        self.assertEqual(
-            obtained_corr_matrix.dtype,
-            expected_corr_matrix.dtype,
+        self.assertAlmostEqualArrays(
+            abspearson(np.array(get_matrix01(), dtype=np.float32)),
+            np.array(get_matrix36(), dtype=np.float64),
         )
 
     def test_nested_list(self):
         """
         Test the AbsPearson correlation method with a nested list.
         """
-        obtained_corr_matrix = abspearson(get_matrix01())
-        expected_corr_matrix = np.array(get_matrix36(), dtype=np.float64)
-        np.testing.assert_allclose(obtained_corr_matrix, expected_corr_matrix)
-        self.assertEqual(
-            obtained_corr_matrix.dtype,
-            expected_corr_matrix.dtype,
+        self.assertAlmostEqualArrays(
+            abspearson(get_matrix01()),
+            np.array(get_matrix36(), dtype=np.float64),
         )
 
     def test_missing_element_exception(self):

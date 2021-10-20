@@ -30,10 +30,13 @@ import unittest
 import numpy as np
 from mcdm import correlate
 
-from .helper_testing import get_matrix01
+from .helper_testing import (
+    ExtendedTestCase,
+    get_matrix01,
+)
 
 
-class TestCorrelate(unittest.TestCase):
+class TestCorrelate(ExtendedTestCase):
     """
     Test class for the ``correlate`` function of the ``mcdm`` package.
     """

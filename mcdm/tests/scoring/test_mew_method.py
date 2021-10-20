@@ -31,6 +31,7 @@ import numpy as np
 from mcdm.scoring import mew
 
 from ..helper_testing import (
+    ExtendedTestCase,
     get_matrix03,
     get_matrix06,
     get_matrix10,
@@ -45,7 +46,7 @@ from ..helper_testing import (
 )
 
 
-class TestMew(unittest.TestCase):
+class TestMew(ExtendedTestCase):
     """
     Test class for the ``mew`` function of the ``mcdm.scoring`` package.
     """
@@ -58,11 +59,11 @@ class TestMew(unittest.TestCase):
             np.array(get_vector05(), dtype=np.float64),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector09(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector09(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_simple_benefit(self):
         """
@@ -73,11 +74,11 @@ class TestMew(unittest.TestCase):
             np.array(get_vector07(), dtype=np.float64),
             [True, True, True, True, True],
         )
-        expected_s_vector = np.array(get_vector10(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector10(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_simple_cost(self):
         """
@@ -88,11 +89,11 @@ class TestMew(unittest.TestCase):
             np.array(get_vector07(), dtype=np.float64),
             [False, False, False, False, False],
         )
-        expected_s_vector = np.array(get_vector10(), dtype=np.float64)
-        expected_desc_order = False
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector10(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, False)
 
     def test_float32(self):
         """
@@ -103,11 +104,11 @@ class TestMew(unittest.TestCase):
             np.array(get_vector05(), dtype=np.float32),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector09(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector09(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_nested_list(self):
         """
@@ -118,11 +119,11 @@ class TestMew(unittest.TestCase):
             get_vector05(),
             [True, True],
         )
-        expected_s_vector = np.array(get_vector09(), dtype=np.float64)
-        expected_desc_order = True
-        np.testing.assert_allclose(obtained_s_vector, expected_s_vector)
-        self.assertEqual(obtained_s_vector.dtype, expected_s_vector.dtype)
-        self.assertEqual(obtained_desc_order, expected_desc_order)
+        self.assertAlmostEqualArrays(
+            obtained_s_vector,
+            np.array(get_vector09(), dtype=np.float64),
+        )
+        self.assertEqual(obtained_desc_order, True)
 
     def test_missing_element_exception(self):
         """
