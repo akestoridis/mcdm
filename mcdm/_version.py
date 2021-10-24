@@ -28,23 +28,23 @@ import re
 import subprocess
 
 
-def getversion(pkg_dirpath):
+def get_version(pkg_dirpath):
     """
     Return the derived version number of the ``mcdm`` package.
     """
     version_filepath = os.path.join(pkg_dirpath, "VERSION.txt")
     git_dirpath = os.path.join(os.path.dirname(pkg_dirpath), ".git")
 
-    version = getversion_git(version_filepath, git_dirpath)
+    version = get_version_from_git(version_filepath, git_dirpath)
     if version is None:
-        version = getversion_file(version_filepath)
+        version = get_version_from_file(version_filepath)
         if version is None:
             version = "0+unknown"
 
     return version
 
 
-def getversion_git(version_filepath, git_dirpath):
+def get_version_from_git(version_filepath, git_dirpath):
     """
     Try to derive and then return the version number of the ``mcdm`` package
     according to a Git command. If the derivation process succeeds, write the
@@ -71,8 +71,7 @@ def getversion_git(version_filepath, git_dirpath):
                         r"^\-[0-9]+\-g([0-9a-f]{7})$",
                         match.group(2),
                     ).group(1)
-                with open(version_filepath, mode="w", encoding="utf-8") as fp:
-                    fp.write("{}\n".format(version))
+                write_version_to_file(version_filepath, version)
                 return version
 
         args = [
@@ -88,8 +87,7 @@ def getversion_git(version_filepath, git_dirpath):
             match = re.search(r"^[0-9a-f]{7}$", cp.stdout.decode().rstrip())
             if match:
                 version = "0+" + match.group(0)
-                with open(version_filepath, mode="w", encoding="utf-8") as fp:
-                    fp.write("{}\n".format(version))
+                write_version_to_file(version_filepath, version)
                 return version
     except Exception:  # pylint: disable=broad-except
         return None
@@ -97,7 +95,7 @@ def getversion_git(version_filepath, git_dirpath):
     return None
 
 
-def getversion_file(version_filepath):
+def get_version_from_file(version_filepath):
     """
     Try to derive and then return the version number of the ``mcdm`` package
     according to an existing file.
@@ -120,3 +118,11 @@ def getversion_file(version_filepath):
         return "0+" + match.group(0)
 
     return None
+
+
+def write_version_to_file(version_filepath, version):
+    """
+    Write the derived version number of the ``mcdm`` package to a file.
+    """
+    with open(version_filepath, mode="w", encoding="utf-8") as fp:
+        fp.write("{}\n".format(version))

@@ -354,27 +354,29 @@ This project is licensed under the terms of the MIT License (MIT).
 
 import os
 
-from .__about__ import __author__            # noqa: F401
-from .__about__ import __author_email__      # noqa: F401
-from .__about__ import __classifiers__       # noqa: F401
-from .__about__ import __copyright__         # noqa: F401
-from .__about__ import __description__       # noqa: F401
-from .__about__ import __install_requires__  # noqa: F401
-from .__about__ import __keywords__          # noqa: F401
-from .__about__ import __license__           # noqa: F401
-from .__about__ import __python_requires__   # noqa: F401
-from .__about__ import __title__             # noqa: F401
-from .__about__ import __url__               # noqa: F401
-
-from .__getversion__ import getversion
-
+from ._metadata import (  # noqa: F401
+    __author__,
+    __author_email__,
+    __classifiers__,
+    __copyright__,
+    __description__,
+    __install_requires__,
+    __keywords__,
+    __license__,
+    __python_requires__,
+    __title__,
+    __url__,
+)
+from ._version import get_version
 from .helper_correlation import correlate
 from .helper_normalization import normalize
 from .helper_scoring import score
 from .helper_weighting import weigh
-from .main import load
-from .main import rank
+from .main import (
+    load,
+    rank,
+)
 
 
-__version__ = getversion(os.path.dirname(os.path.abspath(__file__)))
+__version__ = get_version(os.path.dirname(os.path.abspath(__file__)))
 __all__ = ["rank", "load", "score", "weigh", "correlate", "normalize"]

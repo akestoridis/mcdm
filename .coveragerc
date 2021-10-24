@@ -3,7 +3,7 @@ branch = True
 source = mcdm
 omit =
 	mcdm/tests/*
-	mcdm/__getversion__.py
+	mcdm/_version.py
 
 [report]
 show_missing = True

@@ -3,7 +3,8 @@ persistent=no
 
 [MESSAGES CONTROL]
 enable=all
-disable=exec-used,
+disable=consider-using-f-string,
+        exec-used,
         locally-disabled,
         no-else-return,
         suppressed-message,

@@ -39,13 +39,13 @@ def setup():
     top_dirpath = os.path.dirname(os.path.abspath(__file__))
     pkg_dirpath = os.path.join(top_dirpath, "mcdm")
 
-    about = {}
+    metadata = {}
     with open(
-        os.path.join(pkg_dirpath, "__about__.py"),
+        os.path.join(pkg_dirpath, "_metadata.py"),
         mode="r",
         encoding="utf-8",
     ) as fp:
-        exec(fp.read(), about)  # nosec
+        exec(fp.read(), metadata)  # nosec
 
     long_description = ""
     with open(
@@ -62,28 +62,28 @@ def setup():
             elif comment_counter == 0:
                 long_description += line
 
-    getversion_spec = importlib.util.spec_from_file_location(
-        "__getversion__",
-        os.path.join(pkg_dirpath, "__getversion__.py"),
+    version_spec = importlib.util.spec_from_file_location(
+        "_version",
+        os.path.join(pkg_dirpath, "_version.py"),
     )
-    getversion_module = importlib.util.module_from_spec(getversion_spec)
-    sys.modules["__getversion__"] = getversion_module
-    getversion_spec.loader.exec_module(getversion_module)
+    version_module = importlib.util.module_from_spec(version_spec)
+    sys.modules["_version"] = version_module
+    version_spec.loader.exec_module(version_module)
 
     setuptools.setup(
-        name=about["__title__"],
-        version=getversion_module.getversion(pkg_dirpath),
-        author=about["__author__"],
-        author_email=about["__author_email__"],
-        description=about["__description__"],
+        name=metadata["__title__"],
+        version=version_module.get_version(pkg_dirpath),
+        author=metadata["__author__"],
+        author_email=metadata["__author_email__"],
+        description=metadata["__description__"],
         long_description=long_description,
         long_description_content_type="text/markdown",
-        license=about["__license__"],
-        url=about["__url__"],
-        keywords=about["__keywords__"],
-        classifiers=about["__classifiers__"],
-        install_requires=about["__install_requires__"],
-        python_requires=about["__python_requires__"],
+        license=metadata["__license__"],
+        url=metadata["__url__"],
+        keywords=metadata["__keywords__"],
+        classifiers=metadata["__classifiers__"],
+        install_requires=metadata["__install_requires__"],
+        python_requires=metadata["__python_requires__"],
         include_package_data=True,
         zip_safe=False,
         packages=setuptools.find_packages(),
