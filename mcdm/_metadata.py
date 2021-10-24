@@ -52,6 +52,6 @@ __classifiers__ = [
     "Programming Language :: Python :: 3.9",
 ]
 __install_requires__ = [
-    "numpy>=1.19.4, <2",
+    "numpy>=1.21.3, <2",
 ]
 __python_requires__ = ">=3.7, <4"
