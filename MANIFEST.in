@@ -2,6 +2,7 @@ include .banditrc
 include .coveragerc
 include .gitattributes
 include .gitignore
+include .pylintrc
 include LICENSE.txt
 include MANIFEST.in
 include README.md
