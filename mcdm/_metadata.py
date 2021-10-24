@@ -50,6 +50,7 @@ __classifiers__ = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
 ]
 __install_requires__ = [
     "numpy>=1.21.3, <2",
