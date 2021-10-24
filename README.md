@@ -8,7 +8,7 @@ Python implementation of multiple-criteria decision-making algorithms
 ![Status of quality workflow](https://img.shields.io/github/workflow/status/akestoridis/mcdm/wf03-quality?label=quality)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/akestoridis/mcdm)
 ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/akestoridis/mcdm/latest)
-![Python version requirement](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue)
+![Python version requirement](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 <!-- END OF BADGES -->
 
@@ -183,7 +183,7 @@ In addition, you can use the MEW scoring method, the VIC weighting method, and t
 [('A', 0.596199006150288), ('B', 0.5926510141687035), ('D', 0.5816528401371021), ('C', 0.507066254464828)]
 ```
 
-Finally, you can use the `load` function of the `mcdm` package to load a decision matrix from a text file (e.g., the [example09.tsv](https://github.com/akestoridis/mcdm/blob/master/mcdm/tests/data/example09.tsv) file), and then compute the ranking of its alternatives using the MEW scoring method and the VIC weighting method as follows:
+Finally, you can use the `load` function of the `mcdm` package to load a decision matrix from a text file (e.g., the [example09.tsv](https://github.com/akestoridis/mcdm/raw/77d526b93f70eabbe91dc20a88aa1347459e4e75/mcdm/tests/data/example09.tsv) file), and then compute the ranking of its alternatives using the MEW scoring method and the VIC weighting method as follows:
 ```pycon
 >>> x_matrix, alt_names = mcdm.load("./mcdm/tests/data/example09.tsv", delimiter="\t", skiprows=1, labeled_rows=True)
 >>> mcdm.rank(x_matrix, alt_names=alt_names, w_method="VIC", s_method="MEW")
