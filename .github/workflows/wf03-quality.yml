@@ -44,10 +44,14 @@ jobs:
       run: pip install --upgrade pip
     - name: Install Flake8
       run: pip install flake8
+    - name: Install Pylint
+      run: pip install pylint
     - name: Install Bandit
       run: pip install bandit
     - name: Check the code quality with Flake8
       run: flake8 -v --max-complexity 10 mcdm/ setup.py
+    - name: Check the code quality with Pylint
+      run: pylint --verbose --rcfile=.pylintrc mcdm/ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm/ setup.py
   macos:
@@ -66,10 +70,14 @@ jobs:
       run: pip install --upgrade pip
     - name: Install Flake8
       run: pip install flake8
+    - name: Install Pylint
+      run: pip install pylint
     - name: Install Bandit
       run: pip install bandit
     - name: Check the code quality with Flake8
       run: flake8 -v --max-complexity 10 mcdm/ setup.py
+    - name: Check the code quality with Pylint
+      run: pylint --verbose --rcfile=.pylintrc mcdm/ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm/ setup.py
   windows:
@@ -88,9 +96,13 @@ jobs:
       run: python -m pip install --upgrade pip
     - name: Install Flake8
       run: python -m pip install flake8
+    - name: Install Pylint
+      run: python -m pip install pylint
     - name: Install Bandit
       run: python -m pip install bandit
     - name: Check the code quality with Flake8
       run: flake8 -v --max-complexity 10 mcdm\ setup.py
+    - name: Check the code quality with Pylint
+      run: pylint --verbose --rcfile=.pylintrc mcdm\ setup.py
     - name: Check for common security issues with Bandit
       run: bandit -v -c .banditrc -r mcdm\ setup.py
