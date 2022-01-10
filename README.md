@@ -27,6 +27,25 @@ $ cd mcdm/
 $ pip3 install .
 ```
 
+If an old unsupported version of a dependency was already installed on your system and you cannot or do not want to upgrade it, then you can avoid the dependency conflict by installing the `mcdm` package in a Python 3 virtual environment as follows:
+```console
+$ python3 -m venv venv/
+$ source venv/bin/activate
+(venv) $ pip install --upgrade pip
+(venv) $ pip install mcdm
+```
+
+If, for some reason, a future supported version of a dependency contains breaking changes, then you can use the `requirements.txt` file to install the exact version that was last used to test the `mcdm` package, e.g.:
+```console
+$ git clone https://github.com/akestoridis/mcdm.git
+$ cd mcdm/
+$ python3 -m venv venv/
+$ source venv/bin/activate
+(venv) $ pip install --upgrade pip
+(venv) $ pip install -r requirements.txt
+(venv) $ pip install .
+```
+
 
 ## Features
 
