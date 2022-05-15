@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -347,7 +347,7 @@ group decision making,” *Math. Comput. Model.*, vol. 45, no. 7–8, pp. \
 License
 -------
 
-Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 
 This project is licensed under the terms of the MIT License (MIT).
 """

@@ -233,6 +233,6 @@ Finally, you can use the `load` function of the `mcdm` package to load a decisio
 
 ## License
 
-Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 
 This project is licensed under the terms of the MIT License (MIT).
