@@ -27,6 +27,7 @@ class-const-rgx=^(([A-Z_][A-Z0-9_]*)|(__[a-zA-Z0-9_]*__))$
 bad-names=l,O,I
 
 [FORMAT]
+max-line-length=78
 expected-line-ending-format=LF
 
 [STRING]

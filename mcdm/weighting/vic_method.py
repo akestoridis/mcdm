@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -56,9 +56,7 @@ def vic(z_matrix, c_method="dCor"):
     # Compute the importance of each criterion
     imp_vector = np.zeros(z_matrix.shape[1], dtype=np.float64)
     for j_col in range(z_matrix.shape[1]):
-        tmp_sum = 0.0
-        for l_col in range(z_matrix.shape[1]):
-            tmp_sum += corr_matrix[j_col, l_col]
+        tmp_sum = float(np.sum(corr_matrix[j_col]))
         imp_vector[j_col] = sd_vector[j_col] / tmp_sum
 
     # Normalize the importance of each criterion

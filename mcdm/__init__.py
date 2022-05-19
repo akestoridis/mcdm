@@ -161,8 +161,13 @@ and the Vector normalization method with named alternatives as follows:
     ...     [2, 15,  5],
     ... ]
     >>> alt_names = ["A", "B", "C", "D"]
-    >>> mcdm.rank(x_matrix, alt_names=alt_names, n_method="Vector",
-    ...           w_method="SD", s_method="TOPSIS")
+    >>> mcdm.rank(
+    ...     x_matrix,
+    ...     alt_names=alt_names,
+    ...     n_method="Vector",
+    ...     w_method="SD",
+    ...     s_method="TOPSIS",
+    ... )
     [
         ('A', 0.5623140105790617),
         ('D', 0.472563994792934),
@@ -180,8 +185,13 @@ and the Linear2 normalization method with named alternatives as follows:
     ...     [2, 15,  5],
     ... ]
     >>> alt_names = ["A", "B", "C", "D"]
-    >>> mcdm.rank(x_matrix, alt_names=alt_names, n_method="Linear2",
-    ...           w_method="CRITIC", s_method="SAW")
+    >>> mcdm.rank(
+    ...     x_matrix,
+    ...     alt_names=alt_names,
+    ...     n_method="Linear2",
+    ...     w_method="CRITIC",
+    ...     s_method="SAW",
+    ... )
     [
         ('C', 0.5864039798997854),
         ('A', 0.5363555775174913),
@@ -199,8 +209,13 @@ and the Linear3 normalization method with named alternatives as follows:
     ...     [2, 15,  5],
     ... ]
     >>> alt_names = ["A", "B", "C", "D"]
-    >>> mcdm.rank(x_matrix, alt_names=alt_names, n_method="Linear3",
-    ...           w_method="EM", s_method="mTOPSIS")
+    >>> mcdm.rank(
+    ...     x_matrix,
+    ...     alt_names=alt_names,
+    ...     n_method="Linear3",
+    ...     w_method="EM",
+    ...     s_method="mTOPSIS",
+    ... )
     [
         ('A', 0.5671982017516887),
         ('D', 0.4737709007480381),
@@ -218,8 +233,13 @@ the Linear1 normalization method with named alternatives as follows:
     ...     [2, 15,  5],
     ... ]
     >>> alt_names = ["A", "B", "C", "D"]
-    >>> mcdm.rank(x_matrix, alt_names=alt_names, n_method="Linear1",
-    ...           w_method="VIC", s_method="MEW")
+    >>> mcdm.rank(
+    ...     x_matrix,
+    ...     alt_names=alt_names,
+    ...     n_method="Linear1",
+    ...     w_method="VIC",
+    ...     s_method="MEW",
+    ... )
     [
         ('A', 0.596199006150288),
         ('B', 0.5926510141687035),
@@ -232,11 +252,18 @@ decision matrix from a text file, and then compute the ranking of its
 alternatives using the MEW scoring method and the VIC weighting method as
 follows:
 
-    >>> x_matrix, alt_names = mcdm.load("./mcdm/tests/data/example09.tsv",
-    ...                                 delimiter="\\t", skiprows=1,
-    ...                                 labeled_rows=True)
-    >>> mcdm.rank(x_matrix, alt_names=alt_names, w_method="VIC",
-    ...           s_method="MEW")
+    >>> x_matrix, alt_names = mcdm.load(
+    ...     "./mcdm/tests/data/example09.tsv",
+    ...     delimiter="\\t",
+    ...     skiprows=1,
+    ...     labeled_rows=True,
+    ... )
+    >>> mcdm.rank(
+    ...     x_matrix,
+    ...     alt_names=alt_names,
+    ...     w_method="VIC",
+    ...     s_method="MEW",
+    ... )
     [
         ('COORD.PRoPHET', 0.47540101629920883),
         ('DF.PRoPHET', 0.4720540449389032),
