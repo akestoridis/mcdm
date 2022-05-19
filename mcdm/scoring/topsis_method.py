@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -66,6 +66,13 @@ def topsis(z_matrix, w_vector, is_benefit_z):
     for i in range(t_matrix.shape[0]):
         pos_ideal_dist = np.linalg.norm(pos_ideal_sol - t_matrix[i, :])
         neg_ideal_dist = np.linalg.norm(t_matrix[i, :] - neg_ideal_sol)
-        s_vector[i] = neg_ideal_dist / (neg_ideal_dist + pos_ideal_dist)
+        denominator = neg_ideal_dist + pos_ideal_dist
+        if denominator == 0.0:
+            raise ValueError(
+                "The sum of the negative ideal distance and the positive "
+                + "ideal distance must not be equal to zero in order to use "
+                + "the TOPSIS method",
+            )
+        s_vector[i] = neg_ideal_dist / denominator
 
     return s_vector, desc_order

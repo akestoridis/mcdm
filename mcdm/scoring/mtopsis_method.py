@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -74,6 +74,13 @@ def mtopsis(z_matrix, w_vector, is_benefit_z):
             )
         pos_ideal_dist = np.sqrt(pos_ideal_dist)
         neg_ideal_dist = np.sqrt(neg_ideal_dist)
-        s_vector[i] = neg_ideal_dist / (neg_ideal_dist + pos_ideal_dist)
+        denominator = neg_ideal_dist + pos_ideal_dist
+        if denominator == 0.0:
+            raise ValueError(
+                "The sum of the negative ideal distance and the positive "
+                + "ideal distance must not be equal to zero in order to use "
+                + "the mTOPSIS method",
+            )
+        s_vector[i] = neg_ideal_dist / denominator
 
     return s_vector, desc_order

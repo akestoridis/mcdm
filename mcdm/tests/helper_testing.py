@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -835,6 +835,19 @@ def get_matrix48():
     ]
 
 
+def get_matrix49():
+    """
+    Return the matrix with ID 49.
+    """
+    return [
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+        [0.0, 0.0, 0.0, 0.0],
+    ]
+
+
 def get_ranking01():
     """
     Return the ranking with ID 01.
@@ -1204,6 +1217,19 @@ def get_ranking23():
         ("B", 0.592651),
         ("D", 0.581653),
         ("C", 0.507066),
+    ]
+
+
+def get_ranking24():
+    """
+    Return the ranking with ID 24.
+    """
+    return [
+        ("a1", 0.0),
+        ("a2", 0.0),
+        ("a3", 0.0),
+        ("a4", 0.0),
+        ("a5", 0.0),
     ]
 
 

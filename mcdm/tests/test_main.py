@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020-2021 Dimitrios-Georgios Akestoridis
+# Copyright (c) 2020-2022 Dimitrios-Georgios Akestoridis
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -51,6 +51,7 @@ from .helper_testing import (
     get_matrix08,
     get_matrix09,
     get_matrix10,
+    get_matrix49,
     get_ranking01,
     get_ranking02,
     get_ranking03,
@@ -67,6 +68,7 @@ from .helper_testing import (
     get_ranking14,
     get_ranking15,
     get_ranking16,
+    get_ranking24,
     get_vector01,
     get_vector02,
     get_vector03,
@@ -329,6 +331,20 @@ class TestRank(ExtendedTestCase):
             get_ranking15(),
         )
 
+    def test_saw_mw_zeros(self):
+        """
+        Test the ranking of zero-valued alternatives with the SAW scoring
+        method and the MW weighting method.
+        """
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix49(),
+                w_method="MW",
+                s_method="SAW",
+            ),
+            get_ranking24(),
+        )
+
     def test_mew_vic(self):
         """
         Test the ranking of alternatives with the MEW scoring method and the
@@ -343,6 +359,20 @@ class TestRank(ExtendedTestCase):
                 s_method="MEW",
             ),
             get_ranking16(),
+        )
+
+    def test_mew_mw_zeros(self):
+        """
+        Test the ranking of zero-valued alternatives with the MEW scoring
+        method and the MW weighting method.
+        """
+        self.assertAlmostEqualRankings(
+            rank(
+                get_matrix49(),
+                w_method="MW",
+                s_method="MEW",
+            ),
+            get_ranking24(),
         )
 
     def test_topsis_w_vector_float64(self):
@@ -439,6 +469,32 @@ class TestRank(ExtendedTestCase):
             alt_names=get_labels05(),
             is_benefit_x=[True, True],
             w_vector=get_vector04(),
+        )
+
+    def test_topsis_mw_zeros_exception(self):
+        """
+        Test the ranking of zero-valued alternatives with the TOPSIS scoring
+        method and the MW weighting method.
+        """
+        self.assertRaises(
+            ValueError,
+            rank,
+            get_matrix49(),
+            w_method="MW",
+            s_method="TOPSIS",
+        )
+
+    def test_mtopsis_mw_zeros_exception(self):
+        """
+        Test the ranking of zero-valued alternatives with the mTOPSIS scoring
+        method and the MW weighting method.
+        """
+        self.assertRaises(
+            ValueError,
+            rank,
+            get_matrix49(),
+            w_method="MW",
+            s_method="mTOPSIS",
         )
 
 
